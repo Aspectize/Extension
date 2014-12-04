@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<diagram xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="bc3fa21c-983d-4178-8954-9a88d2f3ad23" domain="BasicAuth" xmlns="http://schemas.microsoft.com/dsltools/EntityDesigner">
+  <entities>
+    <entity Id="147107b6-e66d-432d-9f16-fb1ae7668166" name="User" guid="2689d522-30a4-4206-8094-91fe148d3264" hasCustomValidators="false" hasTriggers="false">
+      <properties>
+        <entityProperty name="UserName" nullable="true" size="100" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="Password" nullable="true" size="50" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" serverOnly="true" />
+        <entityProperty name="DateLastLogin" type="DateTime" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" excludeFromConcurrencyCheck="true" />
+        <entityProperty name="UserAgent" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" serverOnly="true" />
+      </properties>
+    </entity>
+    <entity Id="a9ed736c-98b1-4b1e-915d-ba48e976d262" name="CurrentUser" guid="0375d66e-3fe4-460b-a63e-d38a157ed61b" mustPersist="false" hasCustomValidators="false" hasTriggers="false" />
+  </entities>
+  <relations>
+    <relation Id="497d9f0e-e599-4035-899d-c14a153467d4" name="IsUser" guid="00000000-0000-0000-0000-000000000000" mustPersist="false" hasTriggers="false" hasCustomValidators="false">
+      <entityReferenceClasses>
+        <relationReferencesEntityReferenceClasses Id="7583c475-d03f-41d3-a1f7-a8c16047bf37" role="CurrentUser" cardinality="O__I">
+          <entityMoniker Id="a9ed736c-98b1-4b1e-915d-ba48e976d262" />
+        </relationReferencesEntityReferenceClasses>
+        <relationReferencesEntityReferenceClasses Id="6ce50f84-cd55-4cec-afbb-fe6e0818394e" role="User" cardinality="I__I">
+          <entityMoniker Id="147107b6-e66d-432d-9f16-fb1ae7668166" />
+        </relationReferencesEntityReferenceClasses>
+      </entityReferenceClasses>
+    </relation>
+  </relations>
+</diagram>
