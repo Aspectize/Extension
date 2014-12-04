@@ -5,8 +5,46 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{78EE9290-E7EA-4117-AFC6-5F452952E117}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicAuth", "BasicAuth\BasicAuth.csproj", "{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAuth", "MailAuth\MailAuth.csproj", "{65655B16-0618-467F-882E-9337FC1A0E50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{A42273DD-5855-44A4-B5DF-861EC9350622}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQueryExtension", "JQueryExtension\JQueryExtension.csproj", "{C241D3B4-3F06-44BA-8886-2A21AB21D0ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMce", "TinyMce\TinyMce.csproj", "{E745FC7A-1711-47E6-AFC0-F4640CF173B4}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65655B16-0618-467F-882E-9337FC1A0E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65655B16-0618-467F-882E-9337FC1A0E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65655B16-0618-467F-882E-9337FC1A0E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65655B16-0618-467F-882E-9337FC1A0E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C241D3B4-3F06-44BA-8886-2A21AB21D0ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C241D3B4-3F06-44BA-8886-2A21AB21D0ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C241D3B4-3F06-44BA-8886-2A21AB21D0ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C241D3B4-3F06-44BA-8886-2A21AB21D0ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E745FC7A-1711-47E6-AFC0-F4640CF173B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E745FC7A-1711-47E6-AFC0-F4640CF173B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E745FC7A-1711-47E6-AFC0-F4640CF173B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E745FC7A-1711-47E6-AFC0-F4640CF173B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD} = {78EE9290-E7EA-4117-AFC6-5F452952E117}
+		{65655B16-0618-467F-882E-9337FC1A0E50} = {78EE9290-E7EA-4117-AFC6-5F452952E117}
+		{C241D3B4-3F06-44BA-8886-2A21AB21D0ED} = {A42273DD-5855-44A4-B5DF-861EC9350622}
+		{E745FC7A-1711-47E6-AFC0-F4640CF173B4} = {A42273DD-5855-44A4-B5DF-861EC9350622}
 	EndGlobalSection
 EndGlobal
