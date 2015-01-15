@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B0FA3DD1-1364-46D3-BFD3-AA19F264548C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bootstrap</RootNamespace>
+    <AssemblyName>Bootstrap</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspectizeCore">
+      <HintPath>..\..\..\..\Delivery\Aspectize.core\AspectizeCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartBlocksCore">
+      <HintPath>..\..\..\..\Delivery\Aspectize.core\SmartBlocksCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrap 3.2.0\css\bootstrap-theme.css" />
+    <Content Include="bootstrap 3.2.0\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap 3.2.0\css\bootstrap.css" />
+    <Content Include="bootstrap 3.2.0\css\bootstrap.min.css" />
+    <Content Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap 3.2.0\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BootstrapOverride.css" />
+    <Content Include="Datepicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="Datepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Datepicker\css\datepicker.css" />
+    <Content Include="Datepicker\js\bootstrap-datepicker.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\bootstrap-datetimepicker.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.bg.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ca.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.cs.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.da.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.de.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.el.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.es.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.fi.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.fr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.he.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.hr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.id.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.is.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.it.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ja.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.kr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.lt.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.lv.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ms.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.nb.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.nl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.pl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.pt-BR.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.pt.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ro.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.rs-latin.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.rs.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ru.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sk.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sv.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sw.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.th.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.tr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.uk.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.zh-CN.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\locales\bootstrap-datepicker.zh-TW.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Datepicker\js\moment.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jQuery\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="jQuery\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="jQuery\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="jQuery\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="jQuery\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="jQuery\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="jQuery\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="jQuery\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="jQuery\images\ui-icons_222222_256x240.png" />
+    <Content Include="jQuery\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="jQuery\images\ui-icons_454545_256x240.png" />
+    <Content Include="jQuery\images\ui-icons_888888_256x240.png" />
+    <Content Include="jQuery\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="jQuery\jQuery-1.9.1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jQuery\jQuery-ui.css" />
+    <Content Include="jQuery\jQuery-ui.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <AspectizeCompileLibraryTask ProjectPath="$(ProjectPath)" TargetAppName="Bootstrap" OutputPath="$(OutputPath)">
+    </AspectizeCompileLibraryTask>
+  </Target>
+</Project>

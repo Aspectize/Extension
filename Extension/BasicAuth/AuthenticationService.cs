@@ -9,9 +9,10 @@ namespace BasicAuth
     public interface IInscriptionService
     {
         bool SignUp(string userName, string pwd);
+        bool IsUserNameAvailable(string userName);
     }
 
-    [Service(Name = "BasicAuthenticationService")]
+    [Service(Name = "BasicAuthenticationService", ConfigurationRequired = true)]
     public class BasicAuthenticationService : IAuthentication, IUserProfile, IPersistentAuthentication, IInscriptionService //, IInitializable, ISingleton
     {
         [ParameterAttribute]
@@ -113,7 +114,7 @@ namespace BasicAuth
             {
                 user = em.CreateInstance<User>();
 
-                user.UserName = userName;
+                user.UserName = userName.ToLower().Trim();
                 user.Password = pwd;
 
                 dm.SaveTransactional();
@@ -124,6 +125,17 @@ namespace BasicAuth
             {
                 return false;
             }
+        }
+
+        bool IInscriptionService.IsUserNameAvailable(string userName)
+        {
+            IDataManager dm = EntityManager.FromDataBaseService(DataBaseService);
+
+            IEntityManager em = dm as IEntityManager;
+
+            List<User> users = dm.GetEntities<User>(new QueryCriteria(User.Fields.UserName, ComparisonOperator.Equal, userName.ToLower().Trim()));
+
+            return (users.Count == 0);
         }
 
     }
