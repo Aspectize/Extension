@@ -172,7 +172,7 @@ Global.JQueryExtension = {
        }
    },
 
-   JQueryDatePickerExtend: {
+   JQueryDatePicker: {
        Properties: { Value: new Date(4100000000000), MinDate: null, MaxDate: null, DefaultDate: new Date(), Mask: '', DisplayFormat: '', FirstDay: 0, ChangeMonth: false, ChangeYear: false, YearRange: 'c-10:c+10', ShowButton: true, ShowOn: '', WithTime: false, ShowTime: true, OnlyTime: false, StepMinute: 1, TimeZone: null },
        Events: ['OnValueChanged'],
        Init: function (elem) {

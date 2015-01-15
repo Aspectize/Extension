@@ -79,6 +79,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap 3.1.1\css\bootstrap-tabs.css" />
+    <Content Include="bootstrap 3.1.1\css\bootstrap-theme.css" />
+    <Content Include="bootstrap 3.1.1\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap 3.1.1\css\bootstrap.css" />
+    <Content Include="bootstrap 3.1.1\css\bootstrap.min.css" />
+    <Content Include="bootstrap 3.1.1\js\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bootstrap 3.1.1\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="bootstrap 3.2.0\css\bootstrap-theme.css" />
     <Content Include="bootstrap 3.2.0\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap 3.2.0\css\bootstrap.css" />
