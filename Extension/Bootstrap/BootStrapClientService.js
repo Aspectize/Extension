@@ -41,24 +41,24 @@ Global.BootStrapClientService = {
     },
 
     ShowModal: function (viewName, keyboard, backdrop) {
+        if (keyboard && (typeof keyboard === 'string')) {
+
+            keyboard = keyboard.toLowerCase() === 'true';
+        }
+
+        if (backdrop && (typeof backdrop === 'string')) {
+
+            backdrop = backdrop.toLowerCase() === 'true';
+        }
+
+        if (keyboard == undefined) keyboard = true;
+        if (backdrop == undefined) backdrop = true;
+
         var uiView = this.ShowView(viewName);
 
         if (uiView) {
             if ($('.ZoneModal').length) {
                 $('.ZoneModal').removeClass('modal fade in').addClass('modal fade in');
-
-                if (keyboard && (typeof keyboard === 'string')) {
-
-                    keyboard = keyboard.toLowerCase() === 'true';
-                }
-
-                if (backdrop && (typeof backdrop === 'string')) {
-
-                    backdrop = backdrop.toLowerCase() === 'true';
-                }
-
-                if (keyboard == undefined) keyboard = true;
-                if (backdrop == undefined) backdrop = true;
 
                 $('.ZoneModal').modal({
                     keyboard: keyboard,
@@ -66,7 +66,15 @@ Global.BootStrapClientService = {
                 });
             }
             else {
-                $('#' + viewName + ' .modal').modal('show');
+                $('#' + viewName + ' .modal').modal({
+                    show: true,
+                    backdrop: backdrop,
+                    keyboard: keyboard
+                });
+
+                $('#' + viewName).on('shown.bs.modal', function () {
+                    $('#' + viewName+ ' [autofocus]:first').focus();
+                });
 
                 $('#' + viewName).on('hidden.bs.modal', function () {
                     var uiService = Aspectize.Host.GetService('UIService');
