@@ -47,6 +47,40 @@ Global.GoogleTableBuilder = {
 
             controlInfo.aasGoogleTable = data;
 
+            var columnsBuilt = (data.getNumberOfColumns() > 0);
+
+            if (!columnsBuilt) {
+                var columns = {};
+
+                for (var n = 0; n < rowControls.length; n++) {
+                    var tryNextRow = false;
+
+                    var rowControl = rowControls[n];
+
+                    var cellControls = rowControl.CellControls;
+
+                    for (var j = 0; j < cellControls.length; j++) {
+                        var cellControl = cellControls[j];
+
+                        var columnName = cellControl.aasColumnName;
+
+                        if (!columns[columnName]) {
+                            var rowValue = cellControl.aasControlInfo.PropertyBag.Value;
+
+                            if (rowValue) {
+                                data.addColumn(getColumnTypeFromValue(rowValue), columnName);
+
+                                columns[columnName] = true;
+                            } else {
+                                tryNextRow = true;
+                            }
+                        }
+                    }
+
+                    if (!tryNextRow) break;
+                }
+            }
+
             var rows = [];
 
             for (var n = 0; n < rowControls.length; n++) {
@@ -55,7 +89,7 @@ Global.GoogleTableBuilder = {
 
                 var rowControl = rowControls[n];
 
-                var columnsBuilt = (data.getNumberOfColumns() > 0);
+                //var columnsBuilt = (data.getNumberOfColumns() > 0);
 
                 var cellControls = rowControl.CellControls;
 
@@ -65,12 +99,12 @@ Global.GoogleTableBuilder = {
 
                     var rowValue = cellControl.aasControlInfo.PropertyBag.Value;
 
-                    if (!columnsBuilt) {
+                    //if (!columnsBuilt) {
 
-                        var columnName = cellControl.aasColumnName;
+                    //    var columnName = cellControl.aasColumnName;
 
-                        data.addColumn(getColumnTypeFromValue(rowValue), columnName);
-                    }
+                    //    data.addColumn(getColumnTypeFromValue(rowValue), columnName);
+                    //}
 
                     //                    if (cellControl.aasDataBindings.Value && cellControl.aasDataBindings.Value.Format) {
                     //                        var rowValueWithFormat = Aspectize.formatString(rowValue, cellControl.aasDataBindings.Value.Format);

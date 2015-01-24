@@ -94,7 +94,9 @@
     <Content Include="bootstrap 3.2.0\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap 3.2.0\css\bootstrap.css" />
     <Content Include="bootstrap 3.2.0\css\bootstrap.min.css" />
-    <Content Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="bootstrap 3.2.0\js\bootstrap.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -248,9 +250,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.eot" />
-    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bootstrap 3.2.0\fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
