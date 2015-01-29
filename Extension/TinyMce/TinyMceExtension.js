@@ -1,10 +1,9 @@
-﻿/// <reference path="S:\Delivery\Aspectize.core\AspectizeIntellisenseLibrary.js" />
-
-Global.TinyMceExtension = {
+﻿Global.TinyMceExtension = {
 
    aasService:'TinyMceExtension',
-   aasPublished:true,
-      
+   aasPublished:false,
+   aasUiExtension: true,
+
    TinyMCEv4: {
        Properties: { EditMode: true, Value: '', CustomImage: false, CustomLink: false, RelativeUrls: false, Inline: false, MenuBar: false, StatusBar: false, WordCount: false, DisableIFrame: false },
        Events: ['OnCustomImage', 'OnCustomLink'],

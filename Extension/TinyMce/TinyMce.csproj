@@ -74,648 +74,220 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TinyMceExtension.js" />
-    <Content Include="tinyMCEV4\js\tinymce\classes\AddOnManager.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\Compat.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\ControlSelection.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\DomQuery.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\DOMUtils.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\EventUtils.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Range.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\RangeUtils.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\ScriptLoader.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Selection.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Serializer.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Sizzle.jQuery.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Sizzle.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\TreeWalker.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\dom\TridentSelection.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\Editor.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\EditorCommands.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\EditorManager.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\EnterKey.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\Env.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\FocusManager.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ForceBlocks.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\Formatter.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\DomParser.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\Entities.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\Node.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\SaxParser.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\Schema.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\Serializer.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\Styles.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\html\Writer.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\jquery.tinymce.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\LegacyInput.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\Shortcuts.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\AbsoluteLayout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Button.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ButtonGroup.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Checkbox.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Collection.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ColorButton.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ComboBox.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Container.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Control.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\DomUtils.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\DragHelper.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ElementPath.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Factory.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FieldSet.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FilePicker.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FitLayout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FlexLayout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FloatPanel.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FlowLayout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Form.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FormatControls.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FormItem.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\GridLayout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Iframe.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\KeyboardNavigation.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Label.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Layout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ListBox.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Menu.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MenuBar.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MenuButton.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MenuItem.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MessageBox.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Movable.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Panel.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\PanelButton.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Path.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Radio.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Resizable.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ResizeHandle.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Scrollable.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Selector.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Spacer.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\SplitButton.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\StackLayout.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\TabPanel.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\TextBox.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Throbber.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Toolbar.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Tooltip.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Widget.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Window.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\UndoManager.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\Class.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\I18n.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\JSON.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\JSONP.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\JSONRequest.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\LocalStorage.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\Observable.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\Quirks.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\Tools.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\URI.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\VK.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\util\XHR.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\classes\WindowManager.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\jquery.tinymce.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\langs\fr_FR.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\license.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\advlist\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\advlist\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\anchor\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\anchor\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\autolink\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\autolink\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\autoresize\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\autoresize\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\autosave\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\autosave\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\bbcode\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\bbcode\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\charmap\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\charmap\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\code\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\code\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\editable_selects.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\form_utils.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\mctabs.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\tiny_mce_popup.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\validate.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\contextmenu\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\contextmenu\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\directionality\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\directionality\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-cool.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-cry.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-embarassed.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-frown.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-innocent.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-kiss.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-laughing.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-money-mouth.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-sealed.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-smile.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-surprised.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-tongue-out.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-undecided.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-wink.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-yell.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\example\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\example\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\example_dependency\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\example_dependency\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\fullpage\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\fullpage\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\fullscreen\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\fullscreen\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\hr\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\hr\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\image\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\image\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\insertdatetime\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\insertdatetime\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\layer\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\layer\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\legacyoutput\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\legacyoutput\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\link\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\link\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\lists\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\lists\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\media\moxieplayer.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\media\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\media\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\nonbreaking\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\nonbreaking\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\noneditable\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\noneditable\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\pagebreak\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\pagebreak\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\Clipboard.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\Plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\Quirks.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\WordFilter.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\plugin.dev.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\preview\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\preview\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\print\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\print\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\save\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\save\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\searchreplace\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\searchreplace\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\classes\DomTextMatcher.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\classes\Plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\DomTextMatcher.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\plugin.dev.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\tabfocus\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\tabfocus\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\CellSelection.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\Plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\Quirks.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\TableGrid.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\plugin.dev.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\table\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\template\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\template\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\textcolor\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\textcolor\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\css\visualblocks.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\address.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\article.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\classes\AddOnManager.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\Compat.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\ControlSelection.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\DomQuery.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\DOMUtils.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\EventUtils.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Range.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\RangeUtils.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\ScriptLoader.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Selection.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Serializer.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Sizzle.jQuery.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\Sizzle.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\TreeWalker.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\dom\TridentSelection.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\Editor.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\EditorCommands.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\EditorManager.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\EnterKey.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\Env.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\FocusManager.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ForceBlocks.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\Formatter.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\DomParser.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\Entities.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\Node.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\SaxParser.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\Schema.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\Serializer.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\Styles.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\html\Writer.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\jquery.tinymce.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\LegacyInput.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\Shortcuts.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\AbsoluteLayout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Button.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ButtonGroup.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Checkbox.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Collection.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ColorButton.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ComboBox.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Container.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Control.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\DomUtils.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\DragHelper.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ElementPath.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Factory.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FieldSet.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FilePicker.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FitLayout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FlexLayout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FloatPanel.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FlowLayout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Form.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FormatControls.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\FormItem.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\GridLayout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Iframe.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\KeyboardNavigation.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Label.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Layout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ListBox.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Menu.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MenuBar.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MenuButton.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MenuItem.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\MessageBox.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Movable.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Panel.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\PanelButton.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Path.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Radio.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Resizable.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\ResizeHandle.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Scrollable.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Selector.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Spacer.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\SplitButton.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\StackLayout.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\TabPanel.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\TextBox.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Throbber.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Toolbar.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Tooltip.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Widget.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\ui\Window.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\UndoManager.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\Class.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\I18n.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\JSON.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\JSONP.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\JSONRequest.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\LocalStorage.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\Observable.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\Quirks.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\Tools.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\URI.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\VK.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\util\XHR.js" />
+    <Content Include="tinyMCEV4\js\tinymce\classes\WindowManager.js" />
+    <Content Include="tinyMCEV4\js\tinymce\jquery.tinymce.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\langs\fr_FR.js" />
+    <Content Include="tinyMCEV4\js\tinymce\license.txt" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\code\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\editable_selects.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\form_utils.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\mctabs.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\compat3x\validate.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\example\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\example_dependency\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\hr\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\image\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\layer\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\link\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\lists\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\media\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\Clipboard.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\Plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\Quirks.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\classes\WordFilter.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\plugin.dev.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\preview\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\print\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\save\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\classes\DomTextMatcher.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\classes\Plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\DomTextMatcher.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\plugin.dev.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\CellSelection.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\Plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\Quirks.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\classes\TableGrid.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\plugin.dev.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\template\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\address.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\article.gif" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\aside.gif" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\blockquote.gif" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\div.gif" />
@@ -730,87 +302,40 @@
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\p.gif" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\pre.gif" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\img\section.gif" />
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualchars\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\visualchars\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\wordcount\plugin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\plugins\wordcount\plugin.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.inline.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.dev.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.dev.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\anchor.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\loader.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\object.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\trans.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\wline.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.ie7.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.dev.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.dev.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="tinyMCEV4\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.dev.svg" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.eot" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.svg" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.ttf" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.woff" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.dev.svg" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.eot" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.svg" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.ttf" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.woff" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\wline.gif" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.js" />
+    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.dev.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.dev.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.min.js" />
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\langs\fr_FR.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -998,8 +523,12 @@
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\plugins\wordcount\plugin.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\content.inline.min.css" />
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\content.min.css" />
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\content.inline.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\content.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.dev.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1012,12 +541,24 @@
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\anchor.gif" />
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\loader.gif" />
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\object.gif" />
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\trans.gif" />
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\skin.ie7.min.css" />
-    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\skin.min.css" />
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\anchor.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\loader.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\object.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\img\trans.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\skin.ie7.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\skin.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\themes\modern\theme.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1040,178 +581,71 @@
   <ItemGroup>
     <None Include="TinyMceExtensionKeyFile.snk" />
     <None Include="tinyMCEV4\js\tinymce\langs\readme.md" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\AbsoluteLayout.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Animations.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Button.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ButtonGroup.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Checkbox.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ColorButton.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ComboBox.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Container.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Inline.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Objects.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FieldSet.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FitLayout.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FloatPanel.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FlowLayout.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\readme.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.Ie7.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Iframe.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Label.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ListBox.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Menu.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuBar.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuButton.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuItem.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Mixins.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Panel.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Path.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Radio.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Reset.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ResizeHandle.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Scrollable.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Select.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Spacer.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\SplitButton.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\StackLayout.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TabPanel.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TextBox.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Throbber.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TinyMCE.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ToolTip.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Variables.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Window.less">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\AbsoluteLayout.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Animations.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Button.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ButtonGroup.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Checkbox.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ColorButton.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ComboBox.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Container.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Inline.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Objects.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FieldSet.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FitLayout.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FloatPanel.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FlowLayout.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.Ie7.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Iframe.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Label.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ListBox.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Menu.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuBar.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuButton.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuItem.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Mixins.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Panel.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Path.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Radio.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Reset.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ResizeHandle.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Scrollable.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Select.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Spacer.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\SplitButton.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\StackLayout.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TabPanel.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TextBox.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Throbber.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TinyMCE.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ToolTip.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Variables.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Window.less" />
     <None Include="tinyMCEV4\js\tinymce_4.1.0\langs\readme.md" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\readme.md">
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.eot">
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.ttf">
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.woff">
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce-small.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.eot">
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.ttf">
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.woff">
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\tinymce.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
