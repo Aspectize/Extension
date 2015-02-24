@@ -85,6 +85,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="jQuery-Mask-Plugin-master\jquery.mask.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jQuery-Mask-Plugin-master\jquery.mask.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="JQueryExtension.js" />
   </ItemGroup>
   <ItemGroup>
