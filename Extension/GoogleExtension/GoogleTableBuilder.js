@@ -81,6 +81,8 @@ Global.GoogleTableBuilder = {
                 }
             }
 
+            columnsBuilt = true;
+
             var rows = [];
 
             for (var n = 0; n < rowControls.length; n++) {
