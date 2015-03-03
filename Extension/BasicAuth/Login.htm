@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Untitled</title>
+</head>
+<body>
+
+    <div aas:control="Login">
+        <h1 class="text-center">Login</h1>
+        <div class="form">
+            <div class="form-group">
+                <label>UserName</label>
+                <input name="TxtUserName" type="text" class="form-control" placeholder="User Name" autofocus="autofocus" />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input name="TxtPwd" type="password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="control-group">
+                <div class="checkbox">
+                    <label>
+                        <input name="CheckBoxRememberMe" type="checkbox" />Remember me
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button name="BtnLogin" class="btn btn-success">Login</button>
+                <a aas:name="Register" class="btn btn-link pull-right">Not member ?</a>
+                <br /><br />
+                <div class="control-group">
+                    <div class="LoginAlert alert fade in" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div aas:control="Register">
+        <h1 class="text-center">Register</h1>
+        <div class="form">
+            <div class="HideFormOnSuccess">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" class="form-control input-xlarge" placeholder="User name" name="TxtUserName" autofocus="autofocus" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control input-xlarge" name="TxtPwd" />
+                </div>
+                <div class="form-group">
+                    <label>Confirm password</label>
+                    <input type="password" class="form-control input-xlarge" name="TxtConfirmPwd" autofocus="autofocus" />
+                </div>
+                <button class="btn btn-primary" name="SignUp">Create an account</button>
+                <a aas:name="Login" class="btn btn-link pull-right">Already member ?</a>
+            </div>
+            <br /><br />
+            <div class="control-group">
+                <div class="RegisterAlert alert fade in" aria-hidden="true"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
