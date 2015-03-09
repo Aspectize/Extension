@@ -85,33 +85,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DyGraph.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DygraphChartBuilder.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleLineChartBuilder.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleLineChartControl.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleMapBuilder.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleMapControl.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleTableBuilder.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleTableControlBuilder.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GoogleTableVisualization.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="DyGraph.htm" />
+    <Content Include="DygraphChartBuilder.js" />
+    <Content Include="GoogleLineChartBuilder.js" />
+    <Content Include="GoogleLineChartControl.htm" />
+    <Content Include="GoogleMapBuilder.js" />
+    <Content Include="GoogleMapControl.htm" />
+    <Content Include="GoogleTableBuilder.js" />
+    <Content Include="GoogleTableControlBuilder.js" />
+    <Content Include="GoogleTableVisualization.htm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GoogleExtensionKeyFile.snk" />
