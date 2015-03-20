@@ -73,6 +73,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\DynamicLinkAdd.png" />
+    <Content Include="images\Image16Add.png" />
     <Content Include="TinyMceExtension.js" />
     <Content Include="tinyMCEV4\js\tinymce\classes\AddOnManager.js" />
     <Content Include="tinyMCEV4\js\tinymce\classes\Compat.js" />

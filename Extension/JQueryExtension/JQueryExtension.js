@@ -217,13 +217,13 @@ Global.JQueryExtension = {
                    dayNames: langageInfo.DayNames[1],
                    dayNamesMin: langageInfo.ShortDayNames,
 
-                   timeText: 'Horaire',
-                   hourText: 'Heure',
+                   timeText: 'Time',
+                   hourText: 'Hour',
                    minuteText: 'Minutes',
-                   currentText: 'Maintenant',
-                   closeText: 'Fermer',
+                   currentText: 'Now',
+                   closeText: 'Close',
 
-                   buttonImage: "../Applications/Frameworks/images/date_add.png",
+                   buttonImage: "../Applications/JQueryExtension/images/date_add.png",
                    buttonImageOnly: true,
 
                    changeMonth: Aspectize.UiExtensions.GetProperty(elem, 'ChangeMonth'),

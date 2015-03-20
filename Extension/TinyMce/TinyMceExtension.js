@@ -64,7 +64,7 @@
                        if (Aspectize.UiExtensions.GetProperty(elem, 'CustomImage')) {
                            editor.addButton('customimagebutton', {
                                title: 'Custom Image',
-                               image: '../Applications/FrameWorks/images/Image16Add.png',
+                               image: '../Applications/TinyMce/images/Image16Add.png',
                                onclick: function () {
                                    var customImageLink = {
                                        callback: function (imageUrl) {
@@ -83,7 +83,7 @@
                        if (Aspectize.UiExtensions.GetProperty(elem, 'CustomLink')) {
                            editor.addButton('customlinkbutton', {
                                title: 'Custom Link',
-                               image: '../Applications/FrameWorks/images/DynamicLinkAdd.png',
+                               image: '../Applications/TinyMce/images/DynamicLinkAdd.png',
                                onclick: function () {
                                    var linkText = editor.selection.getContent();
                                    var customImageLink = {
