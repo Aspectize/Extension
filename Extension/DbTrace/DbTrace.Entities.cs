@@ -41,6 +41,7 @@ namespace DbTrace
 			public const string ServiceName = "ServiceName";
 			public const string CommandName = "CommandName";
 			public const string UserHost = "UserHost";
+			public const string UserAgent = "UserAgent";
 		}
 
 		void IDataWrapper.InitData(DataRow data, string namePrefix)
@@ -109,6 +110,13 @@ namespace DbTrace
 		{
 			get { return getValue<string>("UserHost"); }
 			set { setValue<string>("UserHost", value); }
+		}
+
+		[Data(DefaultValue = "", IsNullable = true)]
+		public string UserAgent
+		{
+			get { return getValue<string>("UserAgent"); }
+			set { setValue<string>("UserAgent", value); }
 		}
 
 	}

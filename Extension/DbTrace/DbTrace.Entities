@@ -11,6 +11,7 @@
         <entityProperty name="ServiceName" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="CommandName" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="UserHost" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="UserAgent" nullable="true" defaultValue="&quot;&quot;" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
       </properties>
     </entity>
   </entities>

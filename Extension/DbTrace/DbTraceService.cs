@@ -32,6 +32,8 @@ namespace DbTrace
             trace.Received = traceInfo.Received;
             trace.ServiceName = traceInfo.ServiceName;
             trace.UserHost = traceInfo.UserHost;
+            trace.UserAgent = (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Request != null) ? System.Web.HttpContext.Current.Request.UserAgent : "";
+
 
             if (traceInfo.Message.Length > 10000)
             {
