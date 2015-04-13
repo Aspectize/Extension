@@ -40,6 +40,7 @@ namespace DBLogException
 			public const string ServiceName = "ServiceName";
 			public const string CommandName = "CommandName";
 			public const string UserName = "UserName";
+			public const string UserAgent = "UserAgent";
 		}
 
 		void IDataWrapper.InitData(DataRow data, string namePrefix)
@@ -101,6 +102,13 @@ namespace DBLogException
 		{
 			get { return getValue<string>("UserName"); }
 			set { setValue<string>("UserName", value); }
+		}
+
+		[Data(DefaultValue = "")]
+		public string UserAgent
+		{
+			get { return getValue<string>("UserAgent"); }
+			set { setValue<string>("UserAgent", value); }
 		}
 
 	}

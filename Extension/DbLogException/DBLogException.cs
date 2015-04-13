@@ -36,6 +36,7 @@ namespace DBLogException
                     logException.Message = traceInfo.Message;
                     logException.ServiceName = traceInfo.ServiceName;
                     logException.DateException = traceInfo.Received;
+                    logException.UserAgent = (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Request != null) ? System.Web.HttpContext.Current.Request.UserAgent : "";
 
                     AspectizeUser aspectizeUser = ExecutingContext.CurrentUser;
 
@@ -66,6 +67,9 @@ namespace DBLogException
                         sb.AppendLine("<br />");
                         sb.AppendLine();
                         sb.AppendFormat("Host: {0}", ExecutingContext.CurrentHostUrl);
+                        sb.AppendLine("<br />");
+                        sb.AppendLine();
+                        sb.AppendFormat("UserAgent: {0}", logException.UserAgent);
                         sb.AppendLine("<br />");
                         sb.AppendLine();
                         sb.AppendFormat("Service: {0}", traceInfo.ServiceName);
