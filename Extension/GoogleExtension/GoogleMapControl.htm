@@ -5,8 +5,8 @@
 </head>
 <body>
 
-    <div aas:control="name:'GoogleMapControl', binding:'GridBinding', properties : { DefaultMarkerUrlIcon: '', AddMarkerOnClick:false, AutoComplete:'', Zoom:12, InitLat:0, InitLng:0, DisableDefaultUI: true },  events:['OnMapClick','OnAutoComplete'], templateBuilders:['GoogleMapControlBuilder'], parts:['GoogleMarkerPart', 'GoogleMarkerLongitude','GoogleMarkerLatitude']"></div>
-    <div aas:control="name:'GoogleMarkerPart', isControlPart:true, properties : {Title:'', Draggable:false, Visible:true, UrlIcon: '', Longitude:0, Latitude:0, InfoWindowText: '' }, events:['OnPropertyChanged','OnLongitudeChanged', 'OnLatitudeChanged', 'OnUrlIconChanged', 'OnMarkerClick','OnDragBegin','OnDragEnd','OnMarkerMouseOver','OnMarkerMouseOut'], templateBuilders:['GoogleMapControlMarkerBuilder']"></div>
+    <div aas-control="name:'GoogleMapControl', binding:'GridBinding', properties : { DefaultMarkerUrlIcon: '', AddMarkerOnClick:false, AutoComplete:'', Zoom:12, InitLat:0, InitLng:0, DisableDefaultUI: true },  events:['OnMapClick','OnAutoComplete'], templateBuilders:['GoogleMapControlBuilder'], parts:['GoogleMarkerPart', 'GoogleMarkerLongitude','GoogleMarkerLatitude']"></div>
+    <div aas-control="name:'GoogleMarkerPart', isControlPart:true, properties : {Title:'', Draggable:false, Visible:true, UrlIcon: '', Longitude:0, Latitude:0, InfoWindowText: '' }, events:['OnPropertyChanged','OnLongitudeChanged', 'OnLatitudeChanged', 'OnUrlIconChanged', 'OnMarkerClick','OnDragBegin','OnDragEnd','OnMarkerMouseOver','OnMarkerMouseOut'], templateBuilders:['GoogleMapControlMarkerBuilder']"></div>
 
 </body>
 </html>

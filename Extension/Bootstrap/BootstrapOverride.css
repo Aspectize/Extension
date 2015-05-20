@@ -4,30 +4,19 @@
     position: static;
 }
 
-.BootstrapGrid table > thead > tr > th span.up, .BootstrapGrid table > thead > tr > th span.down {
+[aas-type="Bootstrap.BootstrapGrid"] > table > thead > tr > th span.up, 
+[aas-type="Bootstrap.BootstrapGrid"] > table > thead > tr > th span.down, 
+.BootstrapGrid table > thead > tr > th span.down,
+.BootstrapGrid table > thead > tr > th span.up {
     display: none;
 }
 
-.BootstrapGrid table > thead > tr > th.desc span.down, .BootstrapGrid table > thead > tr > th.asc span.up {
+[aas-type="Bootstrap.BootstrapGrid"] > table > thead > tr > th.desc span.down, 
+[aas-type="Bootstrap.BootstrapGrid"] > table > thead > tr > th.asc span.up
+.BootstrapGrid table > thead > tr > th.desc span.down, 
+.BootstrapGrid table > thead > tr > th.asc span.up {
     display: inline;
 }
-
-/*
-.popupDiv, .aasModal, .aasFlyOut
-{
-	z-index: 1100;
-}
-
-.aasModalBackground 
-{
-	z-index: 1099;
-}
-
-.aasModalWait
-{
-	z-index: 1101;
-}
-*/
 
 .popupDiv, .aasModal, .aasFlyOut {
     z-index: 1039;

@@ -5,47 +5,47 @@
 </head>
 <body>
 
-    <div aas:control="name:'BootstrapGrid', binding:'GridBinding', properties : {CurrentData:null, AutoSort:true, GroupRows:false, PageSize:0, EmptyGridMessage:'', HideHeadersIfNoData:false, RowCount:0}, events:['OnRowClick', 'OnRowCountChanged'], templateBuilders:['HtmlTableBuilder'], parts:['BootstrapSpan', 'BootstrapHtmlDiv', 'BootstrapButton', 'BootstrapButtonIcon', 'BootstrapText', 'BootstrapImage', 'CheckBox', 'CheckBoxHeader', 'Link', 'DynamicImageLink', 'DynamicLink', 'RowClass'], selectedStyle:'active'" class='table'></div>
+    <div aas-control="name:'BootstrapGrid', binding:'GridBinding', properties : {CurrentData:null, AutoSort:true, GroupRows:false, PageSize:0, EmptyGridMessage:'', HideHeadersIfNoData:false, RowCount:0}, events:['OnRowClick', 'OnRowCountChanged'], templateBuilders:['HtmlTableBuilder'], parts:['BootstrapSpan', 'BootstrapHtmlDiv', 'BootstrapButton', 'BootstrapButtonIcon', 'BootstrapText', 'BootstrapImage', 'CheckBox', 'CheckBoxHeader', 'Link', 'DynamicImageLink', 'DynamicLink', 'RowClass'], selectedStyle:'active'" class='table'></div>
     
-    <div aas:control="name:'BootstrapSpan', isControlPart:true, properties: {NullValueDisplay:''}, events:['Click']">
-        <div aas:section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
-        <div aas:section="data"><span onclick="return Aspectize.GridColumnClicked (event, this);" title="{ToolTip}">{Text}</span></div>
+    <div aas-control="name:'BootstrapSpan', isControlPart:true, properties: {NullValueDisplay:''}, events:['Click']">
+        <div aas-section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
+        <div aas-section="data"><span onclick="return Aspectize.GridColumnClicked (event, this);" title="{ToolTip}">{Text}</span></div>
     </div>
 
-    <div aas:control="name:'BootstrapHtmlDiv', isControlPart:true, properties: {NullValueDisplay:''}" >
-        <div aas:section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
-        <div aas:section="data"><div title="{ToolTip}">{Html}</div></div>    
+    <div aas-control="name:'BootstrapHtmlDiv', isControlPart:true, properties: {NullValueDisplay:''}" >
+        <div aas-section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
+        <div aas-section="data"><div title="{ToolTip}">{Html}</div></div>    
     </div>
 
-    <div aas:control="name:'BootstrapButton', isControlPart:true, events:['Click']" >
-        <div aas:section="header">{HeaderText}</div>
-        <div aas:section="data"><button class="btn btn-xs btn-default" onclick="return Aspectize.GridColumnClicked (event, this);">{Text}</button></div>    
+    <div aas-control="name:'BootstrapButton', isControlPart:true, events:['Click']" >
+        <div aas-section="header">{HeaderText}</div>
+        <div aas-section="data"><button class="btn btn-xs btn-default" onclick="return Aspectize.GridColumnClicked (event, this);">{Text}</button></div>    
     </div>
 
-    <div aas:control="name:'BootstrapButtonIcon', isControlPart:true, events:['Click']" >
-        <div aas:section="header">{HeaderText}</div>
-        <div aas:section="data"><button class="btn btn-xs btn-default" onclick="return Aspectize.GridColumnClicked (event, this);">{Text}&nbsp;<i class="{IconButton}"></i></button></div>    
+    <div aas-control="name:'BootstrapButtonIcon', isControlPart:true, events:['Click']" >
+        <div aas-section="header">{HeaderText}</div>
+        <div aas-section="data"><button class="btn btn-xs btn-default" onclick="return Aspectize.GridColumnClicked (event, this);">{Text}&nbsp;<i class="{IconButton}"></i></button></div>    
     </div>
 
-    <div aas:control="name:'BootstrapText', isControlPart:true" >
-        <div aas:section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
-        <div aas:section="data"><input name="input" type="text" value="{Text}" class="form-control Edit"/></div>    
+    <div aas-control="name:'BootstrapText', isControlPart:true" >
+        <div aas-section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
+        <div aas-section="data"><input name="input" type="text" value="{Text}" class="form-control Edit"/></div>    
     </div>
 
-    <div aas:control="name:'BootstrapImage', isControlPart:true,  events:['Click']" >
-     <div aas:section="header"><span title="{HeaderToolTip}">{HeaderText}</span></div>
-     <div aas:section="data"><span title="{ToolTip}"><img src="" aas:src = "{ImageUrl}" alt="{Alt}" onclick="return Aspectize.GridColumnClicked (event, this);"/> </span></div>
+    <div aas-control="name:'BootstrapImage', isControlPart:true,  events:['Click']" >
+     <div aas-section="header"><span title="{HeaderToolTip}">{HeaderText}</span></div>
+     <div aas-section="data"><span title="{ToolTip}"><img src="" aas-src = "{ImageUrl}" alt="{Alt}" onclick="return Aspectize.GridColumnClicked (event, this);"/> </span></div>
     </div>
 
-    <div aas:control="name:'BootstrapTab', IsTab:true, templateBuilders:['HtmlTabBuilder'], selectedStyle:'active'"> 
-        <div aas:section="tabContainer">
+    <div aas-control="name:'BootstrapTab', IsTab:true, templateBuilders:['HtmlTabBuilder'], selectedStyle:'active'"> 
+        <div aas-section="tabContainer">
             <ul class="nav nav-tabs">
 	        </ul>
         </div>
-        <div aas:section="pageContainer">
+        <div aas-section="pageContainer">
 	        <div class="tab-content"></div>
         </div>
-        <div aas:section="tab">
+        <div aas-section="tab">
             <a data-toggle="tab"></a>
         </div>
     </div>

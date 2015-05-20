@@ -112,15 +112,7 @@ Global.BootStrapClientService = {
         var uiView = this.ShowView(viewName);
 
         if (uiView) {
-            if ($('.ZoneModal').length) {
-                $('.ZoneModal').removeClass('modal fade in').addClass('modal fade in');
-
-                $('.ZoneModal').modal({
-                    keyboard: keyboard,
-                    backdrop: backdrop
-                });
-            }
-            else {
+            if (viewName) {
                 $('#' + viewName + ' .modal').modal({
                     show: true,
                     backdrop: backdrop,
@@ -141,9 +133,7 @@ Global.BootStrapClientService = {
     },
 
     CloseModal: function (viewName) {
-        if ($('.ZoneModal').length) {
-            $('.ZoneModal').modal('hide');
-        } else if (viewName) {
+        if (viewName) {
             $('#' + viewName + ' .modal').modal('hide');
         }
     },
@@ -159,26 +149,6 @@ Global.BootStrapClientService = {
         })
 
         return uiView;
-    },
-
-    InitBootstrap: function () {
-        $('.ZoneModal').on('hidden.bs.modal', function () {
-
-            $('.ZoneModalContent').children('.aasControl').each(function (index) {
-                var viewName = this.id;
-
-                if (viewName) {
-                    var uiService = Aspectize.Host.GetService('UIService');
-
-                    uiService.UnactivateView(viewName);
-                }
-            });
-        })
-
-        $('.ZoneModal').on('shown.bs.modal', function () {
-            $('.ZoneModalContent [autofocus]:first').focus();
-        })
-
     }
 
 };

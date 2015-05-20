@@ -11,7 +11,7 @@ Global.JQueryExtension = {
    },
 
    JQueryAutoComplete: {
-       Properties: { Url: '', value: '', Custom: false, MultiValue: false, MultiValueSeparator: ';' },
+       Properties: { Url: '', value: '', Custom: false, MultiValue: false, MultiValueSeparator: ';', FillSelected: true },
        Events: ['OnSelectItem', 'OnSelectNewItem'],
        Init: function (elem) {
            $(elem).autocomplete({
@@ -30,10 +30,14 @@ Global.JQueryExtension = {
            Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
                var url = Aspectize.UiExtensions.GetProperty(elem, 'Url');
                var multiValue = Aspectize.UiExtensions.GetProperty(elem, 'MultiValue');
+               var fillSelected = Aspectize.UiExtensions.GetProperty(elem, 'FillSelected');
+
                if (arg.Name === 'Url') {
                    url = arg.Value;
                } else if (arg.Name === 'MultiValue') {
                    multiValue = arg.Value;
+               } else if (arg.Name === 'FillSelected') {
+                   fillSelected = arg.Value;
                } else if (arg.Name === 'value') {
                    $(sender).val(arg.Value);
                }
@@ -47,19 +51,21 @@ Global.JQueryExtension = {
                                }, response);
                            },
                            select: function (event, ui) {
-                               var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
-                               var terms = split(currentValue);
-                               // remove the current input
-                               terms.pop();
-                               terms.push(ui.item.label);
+                               if (fillSelected) {
+                                   var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
+                                   var terms = split(currentValue);
+                                   // remove the current input
+                                   terms.pop();
+                                   terms.push(ui.item.label);
 
-                               // add placeholder to get the comma-and-space at the end
-                               terms.push("");
-                               var newValue = terms.join(", ");
-                               Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
-                               $(elem).val(newValue);
-                               //event.preventDefault();
-                               event.stopPropagation();
+                                   // add placeholder to get the comma-and-space at the end
+                                   terms.push("");
+                                   var newValue = terms.join(", ");
+                                   Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
+                                   $(elem).val(newValue);
+                                   //event.preventDefault();
+                                   event.stopPropagation();
+                               }
                                Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
                                Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
                                return false;
@@ -76,8 +82,10 @@ Global.JQueryExtension = {
                        $(elem).autocomplete({
                            source: url,
                            select: function (event, ui) {
-                               Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
-                               $(elem).val(ui.item.label);
+                               if (fillSelected) {
+                                   Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
+                                   $(elem).val(ui.item.label);
+                               }
                                Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
                                Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
                                return false;
