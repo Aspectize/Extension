@@ -27,6 +27,10 @@ Global.DisplayExceptionService = {
         var bootStrapClientService = Aspectize.Host.GetService('BootStrapClientService');
 
         bootStrapClientService.ShowModal('ErrorModal');
+
+        if (x.EndDisplay) {
+            x.EndDisplay();
+        }
     }
 };
 
