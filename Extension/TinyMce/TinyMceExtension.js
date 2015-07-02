@@ -1,6 +1,6 @@
-﻿Global.TinyMceExtension = {
+﻿Global.TinyMCEExtension = {
 
-   aasService:'TinyMceExtension',
+   aasService: 'TinyMCEExtension',
    aasPublished:false,
    aasUiExtension: true,
 
