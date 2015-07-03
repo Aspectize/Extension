@@ -91,6 +91,7 @@
     <Content Include="GoogleLineChartControl.htm" />
     <Content Include="GoogleMapBuilder.js" />
     <Content Include="GoogleMapControl.htm" />
+    <Content Include="GoogleMapExtension.js" />
     <Content Include="GoogleTableBuilder.js" />
     <Content Include="GoogleTableControlBuilder.js" />
     <Content Include="GoogleTableVisualization.htm" />
