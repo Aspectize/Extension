@@ -99,7 +99,6 @@
   <ItemGroup>
     <None Include="GoogleExtensionKeyFile.snk" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -108,8 +107,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="AfterBuild">
-    <AspectizeCompileLibraryTask ProjectPath="$(ProjectPath)" TargetAppName="GoogleExtension" OutputPath="$(OutputPath)">
+  <Target Name="Build">
+    <AspectizeCompileLibraryTask ProjectPath="$(MSBuildProjectFullPath)" TargetAppName="GoogleExtension" OutputPath="$(OutputPath)">
     </AspectizeCompileLibraryTask>
+  </Target>
+  <Target Name="Clean">
+    <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 </Project>

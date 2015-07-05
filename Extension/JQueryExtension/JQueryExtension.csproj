@@ -138,8 +138,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="AfterBuild">
-    <AspectizeCompileLibraryTask ProjectPath="$(ProjectPath)" TargetAppName="JQueryExtension" OutputPath="$(OutputPath)">
+  <Target Name="Build">
+    <AspectizeCompileLibraryTask ProjectPath="$(MSBuildProjectFullPath)" TargetAppName="JQueryExtension" OutputPath="$(OutputPath)">
     </AspectizeCompileLibraryTask>
+  </Target>
+  <Target Name="Clean">
+    <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 </Project>

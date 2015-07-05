@@ -1,403 +1,398 @@
 ﻿/// <reference path="S:\Delivery\Aspectize.core\AspectizeIntellisenseLibrary.js" />
 
-Global.JQueryExtension = {
-
-   aasService:'JQueryExtension',
-   aasPublished: false,
-   aasUiExtension: true,
-
-   JQueryButton: function (elem) {
-       $(elem).button();
-   },
-
-   JQueryAutoComplete: {
-       Properties: { Url: '', value: '', Custom: false, MultiValue: false, MultiValueSeparator: ';', FillSelected: true },
-       Events: ['OnSelectItem', 'OnSelectNewItem'],
-       Init: function (elem) {
-           $(elem).autocomplete({
-               minLength: 0,
-               focus: function () {
-                   // prevent value inserted on focus
-                   return false;
-               }
-           });
-           function split(val) {
-               return val.split(/,\s*/);
-           }
-           function extractLast(term) {
-               return split(term).pop();
-           }
-           Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
-               var url = Aspectize.UiExtensions.GetProperty(elem, 'Url');
-               var multiValue = Aspectize.UiExtensions.GetProperty(elem, 'MultiValue');
-               var fillSelected = Aspectize.UiExtensions.GetProperty(elem, 'FillSelected');
-
-               if (arg.Name === 'Url') {
-                   url = arg.Value;
-               } else if (arg.Name === 'MultiValue') {
-                   multiValue = arg.Value;
-               } else if (arg.Name === 'FillSelected') {
-                   fillSelected = arg.Value;
-               } else if (arg.Name === 'value') {
-                   $(sender).val(arg.Value);
-               }
-
-               $(function () {
-                   if (multiValue) {
-                       $(elem).autocomplete({
-                           source: function (request, response) {
-                               $.getJSON(url, {
-                                   term: extractLast(request.term)
-                               }, response);
-                           },
-                           select: function (event, ui) {
-                               if (fillSelected) {
-                                   var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
-                                   var terms = split(currentValue);
-                                   // remove the current input
-                                   terms.pop();
-                                   terms.push(ui.item.label);
-
-                                   // add placeholder to get the comma-and-space at the end
-                                   terms.push("");
-                                   var newValue = terms.join(", ");
-                                   Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
-                                   $(elem).val(newValue);
-                                   //event.preventDefault();
-                                   event.stopPropagation();
-                               }
-                               Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
-                               Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
-                               return false;
-                           },
-                           change: function (event, ui) {
-                               if (ui.item == null) {
-                                   Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
-                               }
-                           }
-
-                       });
-
-                   } else {
-                       $(elem).autocomplete({
-                           source: url,
-                           select: function (event, ui) {
-                               if (fillSelected) {
-                                   Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
-                                   $(elem).val(ui.item.label);
-                               }
-                               Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
-                               Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
-                               return false;
-                           },
-                           change: function (event, ui) {
-                               if (ui.item == null) {
-                                   Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
-                               }
-                           }
-                       });
-                   }
-               });
-           });
-
-           $(elem).keyup(function () {
-               var newValue = $(elem).val();
-               Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
-               Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', true);
-           });
-       }
-   },
-
-   JQueryMask: {
-       Properties: { Value: '', Mask: '' },
-       Events: [],
-       Init: function (elem) {
-
-           var options = {
-               onComplete: function (newValue) {
-                   var newValue = $(elem).data('mask').getCleanVal();
-                   if (newValue !== Aspectize.UiExtensions.GetProperty(elem, 'Value')) {
-                       Aspectize.UiExtensions.ChangeProperty(elem, 'Value', newValue);
-                   }
-               },
-               onKeyPress: function (cep, event, currentField, options) {
-                   /*console.log('An key was pressed!:', cep, ' event: ', event, 'currentField: ', currentField, ' options: ', options);*/
-               },
-               onChange: function (newValue) {
-                   /*
-                   var newValue = $(elem).data('mask').getCleanVal();
-                   if (newValue !== Aspectize.UiExtensions.GetProperty(elem, 'Value')) {
-                   Aspectize.UiExtensions.ChangeProperty(elem, 'Value', newValue);
-                   }
-                   */
-               }
-           };
-
-           var m = Aspectize.UiExtensions.GetProperty(elem, 'Mask');
-
-           if (m) {
-               $(elem).mask(m, options);
-           }
-
-           $(elem).on('blur', function () {
-               Aspectize.UiExtensions.ChangeProperty(elem, 'Value', $(elem).data('mask').getCleanVal());
-           });
-
-           Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
-               if (arg.Name == 'Mask') {
-                   $(sender).mask(arg.Value, options);
-               }
-               else if (arg.Name == 'Value') {
-                   $(sender).val(arg.Value);
-               }
-           });
-       }
-   },
-
-   JQueryColorPicker: {
-       Properties: { Value: '', DefaultValue: '', InLine: false, Theme: 'default' },
-       Events: ['OnValueChanged'],
-       Init: function (elem) {
-           var jqminicolor = $(elem).minicolors ? $(elem).minicolors : $(elem).miniColors;
-
-           jqminicolor.call($(elem), {
-               change: function (hex, rgb) {
-                   Aspectize.UiExtensions.ChangeProperty(elem, 'Value', hex);
-               }
-           });
-
-           Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
-               if (arg.Name === 'Value') {
-                   jqminicolor.call($(elem), 'value', arg.Value);
-               } else if (arg.Name === 'DefaultValue') {
-                   jqminicolor.call($(elem), 'settings', { 'defaultValue': arg.Value });
-               } else if (arg.Name === 'InLine') {
-                   jqminicolor.call($(elem), 'settings', { 'inline': arg.Value });
-               } else if (arg.Name === 'Theme') {
-                   jqminicolor.call($(elem), 'settings', { 'theme': arg.Value });
-               }
-           });
-       }
-   },
-
-   JQueryDatePicker: {
-       Properties: { Value: new Date(4100000000000), MinDate: null, MaxDate: null, DefaultDate: new Date(), Mask: '', DisplayFormat: '', FirstDay: 0, ChangeMonth: false, ChangeYear: false, YearRange: 'c-10:c+10', ShowButton: true, ShowOn: '', WithTime: false, ShowTime: true, OnlyTime: false, StepMinute: 1, TimeZone: null },
-       Events: ['OnValueChanged'],
-       Init: function (elem) {
-
-           var datePickerInitialized = false;
-           var modeWithTime = null;
-           var modeOnlyTime = null;
-
-           var dynOptionMap = {
-
-               DefaultDate: 'defaultDate', DisplayFormat: 'dateFormat', FirstDay: 'firstDay',
-               ChangeMonth: 'changeMonth', ChangeYear: 'changeYear', YearRange: 'yearRange',
-               ShowTime: 'showTime', StepMinute: 'stepMinute'
-           };
-
-           function buildOptions(properties) {
-
-               var langageInfo = Aspectize.CultureInfo.GetLanguageInfo();
-
-               var showOnOption = Aspectize.UiExtensions.GetProperty(elem, 'ShowOn');
-
-               if (!showOnOption) {
-                   showOnOption = Aspectize.UiExtensions.GetProperty(elem, 'ShowButton') ? 'button' : 'focus';
-               }
-
-               var dateCustomFormat = Aspectize.UiExtensions.JQuery.GetDateFormat();
-               var boundFormat = Aspectize.UiExtensions.GetProperty(elem, 'DisplayFormat');
+Aspectize.Extend("JQueryExtension", {
+
+    JQueryButton: function (elem) {
+        $(elem).button();
+    },
+
+    JQueryAutoComplete: {
+        Properties: { Url: '', value: '', Custom: false, MultiValue: false, MultiValueSeparator: ';', FillSelected: true },
+        Events: ['OnSelectItem', 'OnSelectNewItem'],
+        Init: function (elem) {
+            $(elem).autocomplete({
+                minLength: 0,
+                focus: function () {
+                    // prevent value inserted on focus
+                    return false;
+                }
+            });
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+            function extractLast(term) {
+                return split(term).pop();
+            }
+            Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
+                var url = Aspectize.UiExtensions.GetProperty(elem, 'Url');
+                var multiValue = Aspectize.UiExtensions.GetProperty(elem, 'MultiValue');
+                var fillSelected = Aspectize.UiExtensions.GetProperty(elem, 'FillSelected');
+
+                if (arg.Name === 'Url') {
+                    url = arg.Value;
+                } else if (arg.Name === 'MultiValue') {
+                    multiValue = arg.Value;
+                } else if (arg.Name === 'FillSelected') {
+                    fillSelected = arg.Value;
+                } else if (arg.Name === 'value') {
+                    $(sender).val(arg.Value);
+                }
+
+                $(function () {
+                    if (multiValue) {
+                        $(elem).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON(url, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            select: function (event, ui) {
+                                if (fillSelected) {
+                                    var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
+                                    var terms = split(currentValue);
+                                    // remove the current input
+                                    terms.pop();
+                                    terms.push(ui.item.label);
+
+                                    // add placeholder to get the comma-and-space at the end
+                                    terms.push("");
+                                    var newValue = terms.join(", ");
+                                    Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
+                                    $(elem).val(newValue);
+                                    //event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
+                                Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
+                                return false;
+                            },
+                            change: function (event, ui) {
+                                if (ui.item == null) {
+                                    Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
+                                }
+                            }
+
+                        });
+
+                    } else {
+                        $(elem).autocomplete({
+                            source: url,
+                            select: function (event, ui) {
+                                if (fillSelected) {
+                                    Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
+                                    $(elem).val(ui.item.label);
+                                }
+                                Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
+                                Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
+                                return false;
+                            },
+                            change: function (event, ui) {
+                                if (ui.item == null) {
+                                    Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(elem).keyup(function () {
+                var newValue = $(elem).val();
+                Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
+                Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', true);
+            });
+        }
+    },
+
+    JQueryMask: {
+        Properties: { Value: '', Mask: '' },
+        Events: [],
+        Init: function (elem) {
+
+            var options = {
+                onComplete: function (newValue) {
+                    var newValue = $(elem).data('mask').getCleanVal();
+                    if (newValue !== Aspectize.UiExtensions.GetProperty(elem, 'Value')) {
+                        Aspectize.UiExtensions.ChangeProperty(elem, 'Value', newValue);
+                    }
+                },
+                onKeyPress: function (cep, event, currentField, options) {
+                    /*console.log('An key was pressed!:', cep, ' event: ', event, 'currentField: ', currentField, ' options: ', options);*/
+                },
+                onChange: function (newValue) {
+                    /*
+                    var newValue = $(elem).data('mask').getCleanVal();
+                    if (newValue !== Aspectize.UiExtensions.GetProperty(elem, 'Value')) {
+                    Aspectize.UiExtensions.ChangeProperty(elem, 'Value', newValue);
+                    }
+                    */
+                }
+            };
+
+            var m = Aspectize.UiExtensions.GetProperty(elem, 'Mask');
+
+            if (m) {
+                $(elem).mask(m, options);
+            }
+
+            $(elem).on('blur', function () {
+                Aspectize.UiExtensions.ChangeProperty(elem, 'Value', $(elem).data('mask').getCleanVal());
+            });
+
+            Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
+                if (arg.Name == 'Mask') {
+                    $(sender).mask(arg.Value, options);
+                }
+                else if (arg.Name == 'Value') {
+                    $(sender).val(arg.Value);
+                }
+            });
+        }
+    },
+
+    JQueryColorPicker: {
+        Properties: { Value: '', DefaultValue: '', InLine: false, Theme: 'default' },
+        Events: ['OnValueChanged'],
+        Init: function (elem) {
+            var jqminicolor = $(elem).minicolors ? $(elem).minicolors : $(elem).miniColors;
+
+            jqminicolor.call($(elem), {
+                change: function (hex, rgb) {
+                    Aspectize.UiExtensions.ChangeProperty(elem, 'Value', hex);
+                }
+            });
+
+            Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
+                if (arg.Name === 'Value') {
+                    jqminicolor.call($(elem), 'value', arg.Value);
+                } else if (arg.Name === 'DefaultValue') {
+                    jqminicolor.call($(elem), 'settings', { 'defaultValue': arg.Value });
+                } else if (arg.Name === 'InLine') {
+                    jqminicolor.call($(elem), 'settings', { 'inline': arg.Value });
+                } else if (arg.Name === 'Theme') {
+                    jqminicolor.call($(elem), 'settings', { 'theme': arg.Value });
+                }
+            });
+        }
+    },
+
+    JQueryDatePicker: {
+        Properties: { Value: new Date(4100000000000), MinDate: null, MaxDate: null, DefaultDate: new Date(), Mask: '', DisplayFormat: '', FirstDay: 0, ChangeMonth: false, ChangeYear: false, YearRange: 'c-10:c+10', ShowButton: true, ShowOn: '', WithTime: false, ShowTime: true, OnlyTime: false, StepMinute: 1, TimeZone: null },
+        Events: ['OnValueChanged'],
+        Init: function (elem) {
+
+            var datePickerInitialized = false;
+            var modeWithTime = null;
+            var modeOnlyTime = null;
+
+            var dynOptionMap = {
+
+                DefaultDate: 'defaultDate', DisplayFormat: 'dateFormat', FirstDay: 'firstDay',
+                ChangeMonth: 'changeMonth', ChangeYear: 'changeYear', YearRange: 'yearRange',
+                ShowTime: 'showTime', StepMinute: 'stepMinute'
+            };
+
+            function buildOptions(properties) {
+
+                var langageInfo = Aspectize.CultureInfo.GetLanguageInfo();
 
-               if (boundFormat) dateCustomFormat = boundFormat;
-
-               modeOnlyTime = Aspectize.UiExtensions.GetProperty(elem, 'OnlyTime');
-               modeWithTime = modeOnlyTime || Aspectize.UiExtensions.GetProperty(elem, 'WithTime');
-
-               var options = {
+                var showOnOption = Aspectize.UiExtensions.GetProperty(elem, 'ShowOn');
+
+                if (!showOnOption) {
+                    showOnOption = Aspectize.UiExtensions.GetProperty(elem, 'ShowButton') ? 'button' : 'focus';
+                }
 
-                   showOn: showOnOption,
-                   dateFormat: dateCustomFormat,
+                var dateCustomFormat = Aspectize.UiExtensions.JQuery.GetDateFormat();
+                var boundFormat = Aspectize.UiExtensions.GetProperty(elem, 'DisplayFormat');
 
-                   monthNamesShort: langageInfo.MonthNames[0],
-                   monthNames: langageInfo.MonthNames[1],
-                   dayNamesShort: langageInfo.DayNames[0],
-                   dayNames: langageInfo.DayNames[1],
-                   dayNamesMin: langageInfo.ShortDayNames,
+                if (boundFormat) dateCustomFormat = boundFormat;
 
-                   timeText: 'Time',
-                   hourText: 'Hour',
-                   minuteText: 'Minutes',
-                   currentText: 'Now',
-                   closeText: 'Close',
+                modeOnlyTime = Aspectize.UiExtensions.GetProperty(elem, 'OnlyTime');
+                modeWithTime = modeOnlyTime || Aspectize.UiExtensions.GetProperty(elem, 'WithTime');
 
-                   buttonImage: "../Applications/JQueryExtension/images/date_add.png",
-                   buttonImageOnly: true,
+                var options = {
 
-                   changeMonth: Aspectize.UiExtensions.GetProperty(elem, 'ChangeMonth'),
-                   changeYear: Aspectize.UiExtensions.GetProperty(elem, 'ChangeYear'),
-                   defaultDate: Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate'),
-                   yearRange: Aspectize.UiExtensions.GetProperty(elem, 'YearRange'),
-                   stepMinute: Aspectize.UiExtensions.GetProperty(elem, 'StepMinute'),
-                   showTime: Aspectize.UiExtensions.GetProperty(elem, 'ShowTime'),
-                   firstDay: Aspectize.UiExtensions.GetProperty(elem, 'FirstDay'),
-                   /*controlType: 'select', */
+                    showOn: showOnOption,
+                    dateFormat: dateCustomFormat,
 
-                   onSelect: function (dateText, inst) {
+                    monthNamesShort: langageInfo.MonthNames[0],
+                    monthNames: langageInfo.MonthNames[1],
+                    dayNamesShort: langageInfo.DayNames[0],
+                    dayNames: langageInfo.DayNames[1],
+                    dayNamesMin: langageInfo.ShortDayNames,
 
-                       if (modeWithTime) return;
+                    timeText: 'Time',
+                    hourText: 'Hour',
+                    minuteText: 'Minutes',
+                    currentText: 'Now',
+                    closeText: 'Close',
 
-                       var value = $(elem).datepicker('getDate');
+                    buttonImage: "../Applications/JQueryExtension/images/date_add.png",
+                    buttonImageOnly: true,
 
-                       Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
-                   },
+                    changeMonth: Aspectize.UiExtensions.GetProperty(elem, 'ChangeMonth'),
+                    changeYear: Aspectize.UiExtensions.GetProperty(elem, 'ChangeYear'),
+                    defaultDate: Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate'),
+                    yearRange: Aspectize.UiExtensions.GetProperty(elem, 'YearRange'),
+                    stepMinute: Aspectize.UiExtensions.GetProperty(elem, 'StepMinute'),
+                    showTime: Aspectize.UiExtensions.GetProperty(elem, 'ShowTime'),
+                    firstDay: Aspectize.UiExtensions.GetProperty(elem, 'FirstDay'),
+                    /*controlType: 'select', */
 
-                   onClose: function (dateText, inst) {
+                    onSelect: function (dateText, inst) {
 
-                       if (modeWithTime) {
+                        if (modeWithTime) return;
 
-                           var value = $(elem).datetimepicker('getDate');
+                        var value = $(elem).datepicker('getDate');
 
-                           Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
-                       }
-                   }
-               };
+                        Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+                    },
 
-               if (modeOnlyTime) options.timeOnly = true;
+                    onClose: function (dateText, inst) {
 
-               var minDate = Aspectize.UiExtensions.GetProperty(elem, 'MinDate');
+                        if (modeWithTime) {
 
-               if (minDate) {
-                   options.minDate = minDate;
+                            var value = $(elem).datetimepicker('getDate');
 
-                   if (modeWithTime) {
+                            Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+                        }
+                    }
+                };
 
-                       options.minDateTime = minDate;
-                   }
-               }
+                if (modeOnlyTime) options.timeOnly = true;
 
-               if (maxDate) {
-                   var maxDate = Aspectize.UiExtensions.GetProperty(elem, 'MaxDate');
+                var minDate = Aspectize.UiExtensions.GetProperty(elem, 'MinDate');
 
-                   options.maxDate = maxDate;
+                if (minDate) {
+                    options.minDate = minDate;
 
-                   if (modeWithTime) {
+                    if (modeWithTime) {
 
-                       options.maxDateTime = maxDate;
-                   }
-               }
+                        options.minDateTime = minDate;
+                    }
+                }
 
-               return options;
-           }
+                if (maxDate) {
+                    var maxDate = Aspectize.UiExtensions.GetProperty(elem, 'MaxDate');
 
-           var needsNewPicker = { WithTime: true, OnlyTime: true };
+                    options.maxDate = maxDate;
 
-           function newPicker(control) {
+                    if (modeWithTime) {
 
-               var options = buildOptions();
-               var value = Aspectize.UiExtensions.GetProperty(elem, 'Value');
+                        options.maxDateTime = maxDate;
+                    }
+                }
 
-               if (modeWithTime) {
+                return options;
+            }
 
-                   $(elem).datetimepicker(options);
-                   $(elem).datetimepicker('setDate', value);
+            var needsNewPicker = { WithTime: true, OnlyTime: true };
 
-               } else {
+            function newPicker(control) {
 
-                   $(elem).datepicker(options);
-                   $(elem).datepicker('setDate', value);
-               }
+                var options = buildOptions();
+                var value = Aspectize.UiExtensions.GetProperty(elem, 'Value');
 
-               var mask = Aspectize.UiExtensions.GetProperty(elem, 'Mask');
-               if (mask) {
+                if (modeWithTime) {
 
-                   $(elem).mask(mask, {
-                       completed: function () {
+                    $(elem).datetimepicker(options);
+                    $(elem).datetimepicker('setDate', value);
 
-                           //var newValue = this.val();
+                } else {
 
-                           var value = $(elem).datepicker('getDate');
+                    $(elem).datepicker(options);
+                    $(elem).datepicker('setDate', value);
+                }
 
-                           Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
-                       }
-                   });
-               }
-           }
+                var mask = Aspectize.UiExtensions.GetProperty(elem, 'Mask');
+                if (mask) {
 
-           // Special treatment : Value, MinDate, MaxDate, ShowButton, WithTime, OnlyTime, readOnly
-           function onPropertyChanged(sender, arg) {
+                    $(elem).mask(mask, {
+                        completed: function () {
 
-               var jqSetter = modeWithTime ? $(sender).datetimepicker : $(sender).datepicker;
+                            //var newValue = this.val();
 
-               if (arg.Name === 'Value') {
+                            var value = $(elem).datepicker('getDate');
 
-                   jqSetter.call($(sender), 'setDate', arg.Value);
+                            Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+                        }
+                    });
+                }
+            }
 
-               } else if (arg.Name === 'MinDate') {
+            // Special treatment : Value, MinDate, MaxDate, ShowButton, WithTime, OnlyTime, readOnly
+            function onPropertyChanged(sender, arg) {
 
-                   if (modeWithTime) {
+                var jqSetter = modeWithTime ? $(sender).datetimepicker : $(sender).datepicker;
 
-                       jqSetter.call($(sender), 'option', 'minDateTime', arg.Value);
-                   }
+                if (arg.Name === 'Value') {
 
-                   jqSetter.call($(sender), 'option', 'minDate', arg.Value);
+                    jqSetter.call($(sender), 'setDate', arg.Value);
 
-               } else if (arg.Name === 'MaxDate') {
+                } else if (arg.Name === 'MinDate') {
 
-                   if (modeWithTime) {
+                    if (modeWithTime) {
 
-                       jqSetter.call($(sender), 'option', 'maxDateTime', arg.Value);
-                   }
+                        jqSetter.call($(sender), 'option', 'minDateTime', arg.Value);
+                    }
 
-                   jqSetter.call($(sender), 'option', 'maxDate', arg.Value);
+                    jqSetter.call($(sender), 'option', 'minDate', arg.Value);
 
-               } else if (arg.Name === 'ShowButton') {
+                } else if (arg.Name === 'MaxDate') {
 
-                   var showOn = arg.Value ? 'button' : 'focus';
+                    if (modeWithTime) {
 
-                   jqSetter.call($(sender), 'option', 'showOn', showOn);
+                        jqSetter.call($(sender), 'option', 'maxDateTime', arg.Value);
+                    }
 
-               } else if (arg.Name in dynOptionMap) {
+                    jqSetter.call($(sender), 'option', 'maxDate', arg.Value);
 
-                   var option = dynOptionMap[arg.Name];
+                } else if (arg.Name === 'ShowButton') {
 
-                   jqSetter.call($(sender), 'option', option, arg.Value);
+                    var showOn = arg.Value ? 'button' : 'focus';
 
-               } else if (arg.Name.toLowerCase() === 'readonly') {
+                    jqSetter.call($(sender), 'option', 'showOn', showOn);
 
-                   sender.readOnly = Boolean(arg.Value);
+                } else if (arg.Name in dynOptionMap) {
 
-               } else {
+                    var option = dynOptionMap[arg.Name];
 
-                   Aspectize.Throw(Aspectize.formatString("JQueryDatePickerExtend: '{0}' is not a dynamically bound option !", arg.Name));
-               }
-           }
+                    jqSetter.call($(sender), 'option', option, arg.Value);
 
-           Aspectize.UiExtensions.AddMergedPropertyChangeObserver(elem, function (sender, arg) {
+                } else if (arg.Name.toLowerCase() === 'readonly') {
 
-               if (!datePickerInitialized) {
+                    sender.readOnly = Boolean(arg.Value);
 
-                   newPicker(elem); datePickerInitialized = true;
+                } else {
 
-               } else {
+                    Aspectize.Throw(Aspectize.formatString("JQueryDatePickerExtend: '{0}' is not a dynamically bound option !", arg.Name));
+                }
+            }
 
-                   var mustRebuildPicker = false;
-                   for (var p in arg) {
+            Aspectize.UiExtensions.AddMergedPropertyChangeObserver(elem, function (sender, arg) {
 
-                       if (needsNewPicker[p]) { mustRebuildPicker = true; break; }
+                if (!datePickerInitialized) {
 
-                       onPropertyChanged(elem, { Name: p, Value: arg[p] });
-                   }
+                    newPicker(elem); datePickerInitialized = true;
 
-                   if (mustRebuildPicker) {
+                } else {
 
-                       $(elem).datepicker('destroy');
-                       newPicker(elem);
-                   }
-               }
-           });
-       }
-   }
+                    var mustRebuildPicker = false;
+                    for (var p in arg) {
 
-};
+                        if (needsNewPicker[p]) { mustRebuildPicker = true; break; }
+
+                        onPropertyChanged(elem, { Name: p, Value: arg[p] });
+                    }
+
+                    if (mustRebuildPicker) {
+
+                        $(elem).datepicker('destroy');
+                        newPicker(elem);
+                    }
+                }
+            });
+        }
+    }
+});
 

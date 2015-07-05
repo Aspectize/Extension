@@ -64,9 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -102,131 +99,7 @@
     </Content>
     <Content Include="BootStrapClientService.js" />
     <Content Include="BootstrapControls.htm" />
-    <Content Include="BootstrapDatePicker.js" />
     <Content Include="BootstrapOverride.css" />
-    <Content Include="Datepicker\css\bootstrap-datetimepicker.css" />
-    <Content Include="Datepicker\css\bootstrap-datetimepicker.min.css" />
-    <Content Include="Datepicker\css\datepicker.css" />
-    <Content Include="Datepicker\js\bootstrap-datepicker.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\bootstrap-datetimepicker.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.bg.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ca.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.cs.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.da.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.de.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.el.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.es.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.fi.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.fr.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.he.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.hr.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.id.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.is.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.it.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ja.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.kr.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.lt.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.lv.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ms.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.nb.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.nl.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.pl.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.pt-BR.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.pt.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ro.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.rs-latin.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.rs.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.ru.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sk.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sl.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sv.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.sw.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.th.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.tr.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.uk.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.zh-CN.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\locales\bootstrap-datepicker.zh-TW.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Datepicker\js\moment.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="DisplayExceptionService.js" />
     <Content Include="jQuery\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="jQuery\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -260,7 +133,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -269,8 +144,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="AfterBuild">
-    <AspectizeCompileLibraryTask ProjectPath="$(ProjectPath)" TargetAppName="Bootstrap" OutputPath="$(OutputPath)">
+  <Target Name="Build">
+    <AspectizeCompileLibraryTask ProjectPath="$(MSBuildProjectFullPath)" TargetAppName="Bootstrap" OutputPath="$(OutputPath)">
     </AspectizeCompileLibraryTask>
+  </Target>
+  <Target Name="Clean">
+    <Exec Command="rd /s /q $(OutputPath)" Condition="Exists($(OutputPath))" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 </Project>

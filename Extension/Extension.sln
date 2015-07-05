@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{A703
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoPay", "Mangopay\MangoPay.csproj", "{F61E08B9-26FC-47D9-94EF-F26567DB071B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootstrapDateTimePicker", "BootstrapDateTimePicker\BootstrapDateTimePicker.csproj", "{AB13FD30-FB1E-430F-878A-E710FF2B04C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{F61E08B9-26FC-47D9-94EF-F26567DB071B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F61E08B9-26FC-47D9-94EF-F26567DB071B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F61E08B9-26FC-47D9-94EF-F26567DB071B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB13FD30-FB1E-430F-878A-E710FF2B04C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB13FD30-FB1E-430F-878A-E710FF2B04C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB13FD30-FB1E-430F-878A-E710FF2B04C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB13FD30-FB1E-430F-878A-E710FF2B04C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,6 @@ Global
 		{B0FA3DD1-1364-46D3-BFD3-AA19F264548C} = {A42273DD-5855-44A4-B5DF-861EC9350622}
 		{18A0AB5D-A252-4725-8136-BCE7AC9410FA} = {A42273DD-5855-44A4-B5DF-861EC9350622}
 		{F61E08B9-26FC-47D9-94EF-F26567DB071B} = {A7036E6F-2D62-4086-8CAD-B133E310C6CB}
+		{AB13FD30-FB1E-430F-878A-E710FF2B04C2} = {A42273DD-5855-44A4-B5DF-861EC9350622}
 	EndGlobalSection
 EndGlobal
