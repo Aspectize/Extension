@@ -25,19 +25,26 @@ Aspectize.Extend("BootstrapDateTimePicker", {
 
             if ('Value' in arg) {
                 $(sender).datetimepicker('date', arg.Value);
-            } else if ('MinDate' in arg) {
+            }
+
+            if ('MinDate' in arg) {
                 var mindate = arg.MinDate || false;
                 $(sender).data("DateTimePicker").minDate(mindate);
-            } else if ('MaxDate' in arg) {
+            }
+
+            if ('MaxDate' in arg) {
                 var maxdate = arg.MaxDate || false;
                 $(sender).data("DateTimePicker").maxDate(maxdate);
-            } else if ('Stepping' in arg) {
+            }
+
+            if ('Stepping' in arg) {
                 var stepping = arg.Stepping || 1;
                 $(sender).data("DateTimePicker").stepping(stepping);
-            } else if ('Format' in arg) {
+            }
+
+            if ('Format' in arg) {
                 var format = arg.Format || 'DD/MM/YYYY HH:mm';
                 $(sender).data("DateTimePicker").format(format);
-
             }
         });
 
