@@ -52,7 +52,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TinyMceExtensionKeyFile.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AspectizeCore">
@@ -581,7 +582,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TinyMceExtensionKeyFile.snk" />
     <None Include="tinyMCEV4\js\tinymce\langs\readme.md" />
     <None Include="tinyMCEV4\js\tinymce\skins\lightgray\AbsoluteLayout.less" />
     <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Animations.less" />

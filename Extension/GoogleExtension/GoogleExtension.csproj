@@ -52,7 +52,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>GoogleExtensionKeyFile.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AspectizeCore">
@@ -95,9 +96,6 @@
     <Content Include="GoogleTableBuilder.js" />
     <Content Include="GoogleTableControlBuilder.js" />
     <Content Include="GoogleTableVisualization.htm" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="GoogleExtensionKeyFile.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
