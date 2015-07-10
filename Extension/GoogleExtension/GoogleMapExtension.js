@@ -14,8 +14,8 @@ Aspectize.Extend("GoogleMapPlaceInput", {
             }
 
             if (place.geometry.location) {
-                Aspectize.UiExtensions.ChangeProperty(elem, 'Longitude', place.geometry.location.getLongitude());
-                Aspectize.UiExtensions.ChangeProperty(elem, 'Latitude', place.geometry.location.getLatitude());
+                Aspectize.UiExtensions.ChangeProperty(elem, 'Longitude', place.geometry.location.lng());
+                Aspectize.UiExtensions.ChangeProperty(elem, 'Latitude', place.geometry.location.lat());
             }
 
             var address = '';
