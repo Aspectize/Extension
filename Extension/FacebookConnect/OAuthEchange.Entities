@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<diagram xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="784afdb1-578b-45eb-a749-a86591ae2c75" domain="Facebook" xmlns="http://schemas.microsoft.com/dsltools/EntityDesigner">
+  <entities>
+    <entity Id="220f64f0-ac8a-4a40-acee-219c7ade3512" name="OAuthData" guid="5da1ddc7-c119-425c-a659-60e2c93ca37b" hasCustomValidators="false" hasTriggers="false">
+      <properties>
+        <entityProperty name="UserId" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="UserSecret" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" serverOnly="true" />
+        <entityProperty name="FirstName" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="LastName" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="Email" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="PhotoUrl" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="Data" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="Created" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="Updated" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+      </properties>
+    </entity>
+    <entity Id="e3e1673e-02b9-419f-a1b2-1e66c4241a19" name="OAuthProviderUser" guid="890eebcb-4d54-4e65-9228-888f9e752a0a" guidIdentifier="false" hasCustomValidators="false" hasTriggers="false">
+      <properties>
+        <entityProperty name="Id" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" identifier="Identifier" />
+        <entityProperty name="OAuthDataId" type="Guid" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+      </properties>
+    </entity>
+  </entities>
+</diagram>

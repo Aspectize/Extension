@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimalLanguageDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="OAuthEchange">
+  <diagramMoniker Id="784afdb1-578b-45eb-a749-a86591ae2c75" />
+  <nestedChildShapes>
+    <entityShape Id="1ac90740-2f5c-404b-9682-785243b4de58" absoluteBounds="5.875, 1.375, 2.375, 2.160712890625">
+      <entityMoniker Id="220f64f0-ac8a-4a40-acee-219c7ade3512" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae3b978d-9773-4e8a-90b4-458d3fb6c1dd" absoluteBounds="5.89, 1.705, 2.3449999999999998, 1.730712890625" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="0f3237f7-3d2c-4a9c-b72e-e819541a6735" absoluteBounds="1.75, 1.375, 2.625, 0.81460286458333364">
+      <entityMoniker Id="e3e1673e-02b9-419f-a1b2-1e66c4241a19" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc183adf-e03b-4e9b-96d9-81783596cb2a" absoluteBounds="1.7650000000000001, 1.705, 2.5949999999999998, 0.38460286458333331" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+  </nestedChildShapes>
+</minimalLanguageDiagram>
