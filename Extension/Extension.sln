@@ -33,9 +33,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoPay", "Mangopay\MangoP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootstrapDateTimePicker", "BootstrapDateTimePicker\BootstrapDateTimePicker.csproj", "{AB13FD30-FB1E-430F-878A-E710FF2B04C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookConnect", "D:\DriveS\AspectizeGit\Extension\Extension\FacebookConnect\FacebookConnect.csproj", "{379BC53B-3C9D-4D5F-8FB2-995F90A34D0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookConnect", "FacebookConnect\FacebookConnect.csproj", "{379BC53B-3C9D-4D5F-8FB2-995F90A34D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedInConnect", "D:\DriveS\AspectizeGit\Extension\Extension\LinkedInConnect\LinkedInConnect.csproj", "{D574AC14-F734-4040-8388-AFF5BC96A4CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedInConnect", "LinkedInConnect\LinkedInConnect.csproj", "{D574AC14-F734-4040-8388-AFF5BC96A4CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
