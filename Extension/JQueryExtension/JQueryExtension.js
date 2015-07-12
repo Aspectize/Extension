@@ -2,7 +2,7 @@
 
 Aspectize.Extend("JQueryButton", {
     Properties: {},
-    Events: [],
+    Events: ['click'],
     Init: function (elem) {
         $(elem).button();
     }

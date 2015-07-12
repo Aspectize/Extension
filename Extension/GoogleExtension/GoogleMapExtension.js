@@ -1,7 +1,7 @@
 ﻿/// <reference path="S:\Delivery\Aspectize.core\AspectizeIntellisenseLibrary.js" />
 
 Aspectize.Extend("GoogleMapPlaceInput", {
-    Properties: { Longitude: '', Latitude: '', Adress: '' },
+    Properties: { Longitude: '', Latitude: '', FullAdress: '', StreetNumber: '', Route: '', City: '', Zip: '', Country: '' },
     Events: [],
     Init: function (elem) {
         var autocomplete = new google.maps.places.Autocomplete(elem);
@@ -18,17 +18,35 @@ Aspectize.Extend("GoogleMapPlaceInput", {
                 Aspectize.UiExtensions.ChangeProperty(elem, 'Latitude', place.geometry.location.lat());
             }
 
+            Aspectize.UiExtensions.ChangeProperty(elem, 'FullAdress', place.formatted_address);
+
             var address = '';
             if (place.address_components) {
-                address = [
-                  (place.address_components[0] && place.address_components[0].short_name || ''),
-                  (place.address_components[1] && place.address_components[1].short_name || ''),
-                  (place.address_components[2] && place.address_components[2].short_name || '')
-                ].join(' ');
 
-                Aspectize.UiExtensions.ChangeProperty(elem, 'Adress', address);
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var adressElement = place.address_components[i];
+
+                    for (var j = 0; j < adressElement.types.length; j++) {
+                        var type = adressElement.types[j];
+                        var property;
+                        if (type === "postal_code") {
+                            property = "Zip";
+                        } else if (type == "country") {
+                            property = "Country";
+                        } else if (type == "locality") {
+                            property = "City";
+                        } else if (type == "street_number") {
+                            property = "StreetNumber";
+                        } else if (type == "route") {
+                            property = "Route";
+                        } else continue;
+
+                        value = adressElement.long_name;
+                        Aspectize.UiExtensions.ChangeProperty(elem, property, value);
+                        break;
+                    }
+                }
             }
         });
-
     }
 });
