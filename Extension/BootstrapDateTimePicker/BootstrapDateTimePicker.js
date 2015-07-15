@@ -6,8 +6,6 @@ Aspectize.Extend("BootstrapDateTimePicker", {
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
-        var datePickerInitialized = false;
-
         function newPicker() {
             var options = {
                 minDate: Aspectize.UiExtensions.GetProperty(elem, 'MinDate') || false,
@@ -46,6 +44,7 @@ Aspectize.Extend("BootstrapDateTimePicker", {
                 var format = arg.Format || 'DD/MM/YYYY HH:mm';
                 $(sender).data("DateTimePicker").format(format);
             }
+
         });
 
         newPicker();
