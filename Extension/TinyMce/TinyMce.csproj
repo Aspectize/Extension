@@ -296,34 +296,80 @@
     <Content Include="tinyMCEV4\js\tinymce\plugins\visualchars\plugin.min.js" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\wordcount\plugin.js" />
     <Content Include="tinyMCEV4\js\tinymce\plugins\wordcount\plugin.min.js" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.inline.min.css" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.min.css" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.dev.svg" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.eot" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.svg" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.ttf" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.woff" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.dev.svg" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.eot" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.svg" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.ttf" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.woff" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\readme.md" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\anchor.gif" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\loader.gif" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\object.gif" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\trans.gif" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\wline.gif" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.ie7.min.css" />
-    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.min.css" />
-    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.js" />
-    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.inline.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\content.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.dev.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon-small.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.dev.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\icomoon.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\fonts\readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\anchor.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\loader.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\object.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\trans.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\img\wline.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.ie7.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce\themes\modern\theme.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tinyMCEV4\js\tinymce\tinymce.dev.js" />
     <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.dev.js" />
     <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.js" />
     <Content Include="tinyMCEV4\js\tinymce\tinymce.jquery.min.js" />
     <Content Include="tinyMCEV4\js\tinymce\tinymce.js" />
-    <Content Include="tinyMCEV4\js\tinymce\tinymce.min.js" />
+    <Content Include="tinyMCEV4\js\tinymce\tinymce.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\langs\fr_FR.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -568,49 +614,135 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="tinyMCEV4\js\tinymce\langs\readme.md" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\AbsoluteLayout.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Animations.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Button.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ButtonGroup.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Checkbox.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ColorButton.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ComboBox.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Container.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Inline.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Objects.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FieldSet.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FitLayout.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FloatPanel.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FlowLayout.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.Ie7.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Iframe.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Label.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ListBox.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Menu.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuBar.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuButton.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuItem.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Mixins.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Panel.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Path.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Radio.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Reset.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ResizeHandle.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Scrollable.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Select.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Spacer.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\SplitButton.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\StackLayout.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TabPanel.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TextBox.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Throbber.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TinyMCE.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ToolTip.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Variables.less" />
-    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Window.less" />
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\AbsoluteLayout.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Animations.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Button.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ButtonGroup.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Checkbox.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ColorButton.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ComboBox.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Container.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Inline.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Content.Objects.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FieldSet.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FitLayout.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FloatPanel.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\FlowLayout.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.Ie7.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Icons.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Iframe.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Label.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ListBox.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Menu.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuBar.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuButton.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\MenuItem.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Mixins.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Panel.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Path.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Radio.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Reset.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ResizeHandle.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Scrollable.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Select.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\skin.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Spacer.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\SplitButton.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\StackLayout.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TabPanel.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TextBox.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Throbber.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\TinyMCE.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\ToolTip.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Variables.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tinyMCEV4\js\tinymce\skins\lightgray\Window.less">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="tinyMCEV4\js\tinymce_4.1.0\langs\readme.md" />
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\skins\lightgray\fonts\readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

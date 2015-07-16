@@ -2,7 +2,7 @@
 
 Aspectize.Extend("GoogleMapPlaceInput", {
     Properties: { Longitude: '', Latitude: '', FullAdress: '', StreetNumber: '', Route: '', City: '', Zip: '', Country: '' },
-    Events: [],
+    Events: ['OnLongitudeChanged', 'OnLatitudeChanged', 'OnFullAdressChanged', 'OnStreetNumberChanged', 'OnRouteChanged', 'OnCityChanged', 'OnZipChanged', 'OnCountryChanged'],
     Init: function (elem) {
         var autocomplete = new google.maps.places.Autocomplete(elem);
 
