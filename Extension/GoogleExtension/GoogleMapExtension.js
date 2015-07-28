@@ -9,7 +9,6 @@ Aspectize.Extend("GoogleMapPlaceInput", {
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();
             if (!place.geometry) {
-                //window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
 
@@ -46,6 +45,12 @@ Aspectize.Extend("GoogleMapPlaceInput", {
                         break;
                     }
                 }
+            }
+        });
+
+        Aspectize.UiExtensions.AddMergedPropertyChangeObserver(elem, function (sender, arg) {
+            if ('FullAdress' in arg) {
+                $(elem).val(arg.FullAdress);
             }
         });
     }
