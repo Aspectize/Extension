@@ -306,22 +306,22 @@ Global.GoogleMapControlBuilder = {
 
             controlInfo.aasGoogleInfo.GeoCoder = geocoder;
 
-            var infoBubble = new InfoBubble({
-                map: map,
-                shadowStyle: 1,
-                padding: 0,
-                arrowSize: 10,
-                borderWidth: 1,
-                borderColor: '#bbb',
-                disableAutoPan: false,
-                arrowPosition: 50,
-                disableAnimation: true,
-                hideCloseButton: true,
-                arrowStyle: 2,
-                minHeight: 122
-            });
+            //var infoBubble = new InfoBubble({
+            //    map: map,
+            //    shadowStyle: 1,
+            //    padding: 0,
+            //    arrowSize: 10,
+            //    borderWidth: 1,
+            //    borderColor: '#bbb',
+            //    disableAutoPan: false,
+            //    arrowPosition: 50,
+            //    disableAnimation: true,
+            //    hideCloseButton: true,
+            //    arrowStyle: 2,
+            //    minHeight: 122
+            //});
 
-            controlInfo.aasGoogleInfo.InfoBubble = infoBubble;
+            //controlInfo.aasGoogleInfo.InfoBubble = infoBubble;
 
             var addMarkerOnClick = Aspectize.UiExtensions.GetProperty(control, 'AddMarkerOnClick');
 
