@@ -27,7 +27,9 @@ Aspectize.Extend("BootstrapDateTimePicker", {
         Aspectize.UiExtensions.AddMergedPropertyChangeObserver(elem, function (sender, arg) {
 
             if ('Value' in arg) {
-                $(sender).datetimepicker('date', arg.Value);
+                //$(sender).datetimepicker('date', arg.Value);
+                var currentDate = arg.Value || new Date();
+                $(sender).data("DateTimePicker").date(currentDate);
             }
 
             if ('MinDate' in arg) {
