@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F61E08B9-26FC-47D9-94EF-F26567DB071B}</ProjectGuid>
+    <ProjectGuid>{4B5360F5-5B41-4035-A46D-7832EE6579CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mangopay</RootNamespace>
-    <AssemblyName>Mangopay</AssemblyName>
+    <RootNamespace>AspectizeMangoPay</RootNamespace>
+    <AssemblyName>AspectizeMangoPay</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -53,33 +53,81 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AspectizeCore">
-      <HintPath>..\..\..\..\Delivery\Aspectize.core\AspectizeCore.dll</HintPath>
+      <HintPath>S:\Delivery\Aspectize.core\AspectizeCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Common.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MangoPay.SDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\MangoPay.SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SmartBlocksCore">
-      <HintPath>..\..\..\..\Delivery\Aspectize.core\SmartBlocksCore.dll</HintPath>
+      <HintPath>S:\Delivery\Aspectize.core\SmartBlocksCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspectizeMangoPayService.cs" />
+    <Compile Include="MangoData.Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MangoData.Entities</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AspectizeMangoPayJS.js" />
+    <Content Include="SDK\mangopay-kit.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SDK\mangopay-kit.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MangoData.Entities">
+      <Generator>AspectizeEntitiesCodeGenerator2012</Generator>
+      <LastGenOutput>MangoData.Entities.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MangoData.Entities.diagram">
+      <DependentUpon>MangoData.Entities</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
@@ -91,7 +139,7 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <AspectizeCompileLibraryTask ProjectPath="$(ProjectPath)" TargetAppName="Mangopay" OutputPath="$(OutputPath)">
+    <AspectizeCompileLibraryTask ProjectPath="$(ProjectPath)" TargetAppName="AspectizeMangoPay" OutputPath="$(OutputPath)">
     </AspectizeCompileLibraryTask>
   </Target>
 </Project>

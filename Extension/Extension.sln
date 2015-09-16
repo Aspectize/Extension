@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{78EE9290-E7EA-4117-AFC6-5F452952E117}"
 EndProject
@@ -38,6 +38,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedInConnect", "LinkedInConnect\LinkedInConnect.csproj", "{D574AC14-F734-4040-8388-AFF5BC96A4CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootstrapSlider", "BootstrapSlider\BootstrapSlider.csproj", "{AECF9209-8582-4255-8CF3-ED9A03FA8250}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspectizeMangoPay", "AspectizeMangoPay\AspectizeMangoPay.csproj", "{4B5360F5-5B41-4035-A46D-7832EE6579CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,10 @@ Global
 		{AECF9209-8582-4255-8CF3-ED9A03FA8250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AECF9209-8582-4255-8CF3-ED9A03FA8250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AECF9209-8582-4255-8CF3-ED9A03FA8250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B5360F5-5B41-4035-A46D-7832EE6579CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B5360F5-5B41-4035-A46D-7832EE6579CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B5360F5-5B41-4035-A46D-7832EE6579CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B5360F5-5B41-4035-A46D-7832EE6579CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +126,6 @@ Global
 		{379BC53B-3C9D-4D5F-8FB2-995F90A34D0B} = {78EE9290-E7EA-4117-AFC6-5F452952E117}
 		{D574AC14-F734-4040-8388-AFF5BC96A4CC} = {78EE9290-E7EA-4117-AFC6-5F452952E117}
 		{AECF9209-8582-4255-8CF3-ED9A03FA8250} = {A42273DD-5855-44A4-B5DF-861EC9350622}
+		{4B5360F5-5B41-4035-A46D-7832EE6579CD} = {A7036E6F-2D62-4086-8CAD-B133E310C6CB}
 	EndGlobalSection
 EndGlobal

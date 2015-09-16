@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimalLanguageDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MangoData">
+  <diagramMoniker Id="8e789db8-530d-4799-9d77-55831b13b188" />
+  <nestedChildShapes>
+    <entityShape Id="fb9d2b90-2a8d-4ed1-8b56-d618b48a475e" absoluteBounds="1.125, 0.625, 1.75, 1.1992057291666667">
+      <entityMoniker Id="d9db3c64-408a-408b-afd4-639a3a824475" />
+      <nestedChildShapes>
+        <elementListCompartment Id="634bde0a-9e2d-402b-beb7-9d5c7e5bb3f1" absoluteBounds="1.14, 0.95500000000000007, 1.7200000000000002, 0.76920572916666663" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+  </nestedChildShapes>
+</minimalLanguageDiagram>
