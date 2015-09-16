@@ -7,6 +7,15 @@ Global.AspectizeMangoPayJS = {
          
    RegisterCard: function (mangoServiceName, userId, cardNumber, cardExpirationMMYY, cardCVS) {
 
+       var s = Aspectize.Host.GetService('StandardValidators');
+       var error = s.IsValidCardNumber(cardNumber);
+
+       if (error) Aspectize.Throw(error, 5000);
+
+       error = s.IsMMYYinFuture(cardExpirationMMYY);
+
+       if (error) Aspectize.Throw(error, 5000);
+
        var info = Aspectize.Host.ExecuteCommand('Server/' + mangoServiceName + '.GetRegistrationInfoForUser', userId);
 
        if (info.IsRegistered === 'yes') return;
