@@ -89,6 +89,10 @@ namespace AspectizeMangoPay {
 
         const int xlBadIBAN = 10;
 
+        const int xlFaildTransferCW = 11;
+        const int xlFaildTransferWW = 12;
+        const int xlFaildTransferWB = 13;
+
 
 
         void throwException (int level, string format, params object[] args) {
@@ -372,8 +376,12 @@ namespace AspectizeMangoPay {
 
             payIn.Tag = transactionId.ToString("N");
 
-            var r = api.PayIns.CreateCardDirect(payIn);
+            var r = api.PayIns.CreateCardDirect(payIn);            
 
+            if(r.Status != TransactionStatus.SUCCEEDED) {
+
+                throwException(xlFaildTransferCW, "{0}.TransferMoneyFromCardToWallet : PayIn did not succeed ! status = {1} : {2} euro cents transaction id = '{3}'.", svcName, r.Status.ToString(), euroCentsAmount, transactionId);
+            }
         }
 
         void IAspectizeMangoPayService.TransferMoneyFromWalletToWallet (Guid transactionId, int euroCentsAmount, Guid fromUserId, Guid toUserId, int euroCentsFees) {
@@ -399,6 +407,11 @@ namespace AspectizeMangoPay {
             t.Tag = transactionId.ToString("N");
 
             var r = api.Transfers.Create(t);
+
+            if (r.Status != TransactionStatus.SUCCEEDED) {
+
+                throwException(xlFaildTransferWW, "{0}.TransferMoneyFromWalletToWallet : Transfer did not succeed ! status = {1} : {2} euro cents with {3} fees, transaction id = '{4}'.", svcName, r.Status.ToString(), euroCentsAmount, euroCentsFees, transactionId);
+            }
         }
 
         void IAspectizeMangoPayService.TransferMoneyFromWalletToBank (Guid transactionId, int euroCentsAmount, Guid userId) {
@@ -422,26 +435,13 @@ namespace AspectizeMangoPay {
             payOut.Tag = transactionId.ToString("N");
 
             var r = api.PayOuts.CreateBankWire(payOut);
+
+            if ((r.Status != TransactionStatus.CREATED) && (r.Status != TransactionStatus.SUCCEEDED)) {
+
+                throwException(xlFaildTransferWB, "{0}.TransferMoneyFromWalletToBank : PayOut not created ! status = {1} : {2} euro cents, transaction id = '{3}'.", svcName, r.Status.ToString(), euroCentsAmount, transactionId);
+            }
         }
-
-        void IAspectizeMangoPayService.Test () {
-
-
-            // '4970100000000154', '0616', '123'
-            // 4970101122334422
-
-
-
-
-
-            //var id = Guid.NewGuid();
-
-            
-
-
-            var n = 13;
-
-        }
+        
     }
 
 }
