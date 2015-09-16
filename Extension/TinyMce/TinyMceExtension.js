@@ -42,6 +42,7 @@ Aspectize.Extend("TinyMCEv4", {
             var options = {
                 language: 'fr_FR',
                 selector: '#' + elem.id,
+                allow_script_urls: true,
                 visual_table_class: Aspectize.UiExtensions.GetProperty(elem, 'EditMode') ? 'mce-item-table' : 'my-custom-class',
                 relative_urls: Aspectize.UiExtensions.GetProperty(elem, 'RelativeUrls'),
                 remove_script_host: Aspectize.UiExtensions.GetProperty(elem, 'RelativeUrls'),
@@ -49,7 +50,7 @@ Aspectize.Extend("TinyMCEv4", {
                 inline: Aspectize.UiExtensions.GetProperty(elem, 'Inline'),
                 plugins: ["spellchecker pagebreak layer save directionality noneditable visualchars nonbreaking template advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table contextmenu paste textcolor" + ((Aspectize.UiExtensions.GetProperty(elem, 'WordCount')) ? ' wordcount' : '')],
                 readonly: !Aspectize.UiExtensions.GetProperty(elem, 'EditMode'),
-                extended_valid_elements: "a[*]",
+                valid_elements: '*[*]',
                 toolbar_items_size: 'small',
                 toolbar: (!Aspectize.UiExtensions.GetProperty(elem, 'EditMode')) ? false : 'bold italic underline strikethrough | removeformat | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect | cut copy paste pastetext pasteword | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink ' + ((Aspectize.UiExtensions.GetProperty(elem, 'CustomLink')) ? 'customlinkbutton ' : '') + ((Aspectize.UiExtensions.GetProperty(elem, 'CustomImage')) ? 'customimagebutton ' : '') + 'image ' + ((Aspectize.UiExtensions.GetProperty(elem, 'DisableIFrame')) ? ' ' : 'media ') + 'code | anchor | forecolor backcolor | table | hr | selectall visualblocks | sub sup | charmap | preview print',
                 setup: function (editor) {
