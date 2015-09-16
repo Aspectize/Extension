@@ -63,8 +63,6 @@ namespace AspectizeMangoPay {
         void TransferMoneyFromCardToWallet (Guid transactionId, int euroCentsAmount, Guid fromUserId, Guid toUserId);
         void TransferMoneyFromWalletToWallet (Guid transactionId, int euroCentsAmount, Guid fromUserId, Guid toUserId, int euroCentsFees);
         void TransferMoneyFromWalletToBank (Guid transactionId, int euroCentsAmount, Guid userId);
-
-        void Test ();
     }
 
     [Service(Name = "AspectizeMangoPayService")]
@@ -347,7 +345,7 @@ namespace AspectizeMangoPay {
             if (fromUserId == Guid.Empty) throwException(xlMissingUserId, "{0}.TransferMoneyFromCardToWallet : Missing fromUserId", svcName);
             if (toUserId == Guid.Empty) throwException(xlMissingUserId, "{0}.TransferMoneyFromCardToWallet : Missing toUserId", svcName);
 
-            if (euroCentsAmount < 100) throwException(xlMinimumOneEuro, "{}.TransferMoneyFromCardToWallet: Can not transfert {1} cents from '{2}' to {3}! Minimum One Euro.", svcName, euroCentsAmount, fromUserId, toUserId);
+            if (euroCentsAmount < 100) throwException(xlMinimumOneEuro, "{0}.TransferMoneyFromCardToWallet: Can not transfert {1} cents from '{2}' to {3}! Minimum One Euro.", svcName, euroCentsAmount, fromUserId, toUserId);
 
             IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
@@ -383,8 +381,8 @@ namespace AspectizeMangoPay {
             if (fromUserId == Guid.Empty) throwException(xlMissingUserId, "{0}.TransferMoneyFromWalletToWallet : Missing fromUserId", svcName);
             if (toUserId == Guid.Empty) throwException(xlMissingUserId, "{0}.TransferMoneyFromWalletToWallet : Missing toUserId", svcName);
 
-            if (euroCentsAmount < 100) throwException(xlMinimumOneEuro, "{}.TransferMoneyFromWalletToWallet: Can not transfert {1} cents from '{2}' to {3}! Minimum One Euro.", svcName, euroCentsAmount, fromUserId, toUserId);
-            if (euroCentsFees < 0) throwException(xlNegativeFee, "{}.TransferMoneyFromWalletToWallet: Fees can not be negative {1} cents from '{2}' to {3}!", svcName, euroCentsFees, fromUserId, toUserId);
+            if (euroCentsAmount < 100) throwException(xlMinimumOneEuro, "{0}.TransferMoneyFromWalletToWallet: Can not transfert {1} cents from '{2}' to {3}! Minimum One Euro.", svcName, euroCentsAmount, fromUserId, toUserId);
+            if (euroCentsFees < 0) throwException(xlNegativeFee, "{0}.TransferMoneyFromWalletToWallet: Fees can not be negative {1} cents from '{2}' to {3}!", svcName, euroCentsFees, fromUserId, toUserId);
 
             IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
@@ -407,7 +405,7 @@ namespace AspectizeMangoPay {
 
             if (userId == Guid.Empty) throwException(xlMissingUserId, "{0}.TransferMoneyFromWalletToBank : Missing userId", svcName);
 
-            if (euroCentsAmount < 100) throwException(xlMinimumOneEuro, "{}.TransferMoneyFromWalletToBank: Can not transfert {1} cents from '{2}'! Minimum One Euro.", svcName, euroCentsAmount, userId);
+            if (euroCentsAmount < 100) throwException(xlMinimumOneEuro, "{0}.TransferMoneyFromWalletToBank: Can not transfert {1} cents from '{2}'! Minimum One Euro.", svcName, euroCentsAmount, userId);
 
             IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
@@ -438,30 +436,7 @@ namespace AspectizeMangoPay {
 
             //var id = Guid.NewGuid();
 
-            var idFredy = new Guid("FFFF3222-0C2F-4F03-8A26-DD534D5B7AEC");
-            var bdFredy = new Date("1959-12-22");
-
-            var idNico = new Guid("AAAF3222-0C2F-4F03-8A26-DD534D5B7AEC");
-            var bdNico = new Date("1965-06-01");
-
-            var idHobiwi = new Guid("BBBF3222-0C2F-4F03-8A26-DD534D5B7AEC");
-            var bdHobiwi = new Date("1969-10-18");
-            /*
-                        This.CreateUserAsCustomer(idFredy, "fredy@gmail.com", "fredy", "fadel", bdFredy, "FR", "FR");
-                        This.CreateUserAsCustomer(idNico, "nico@gmail.com", "nicolas", "roux", bdNico, "FR", "FR");
-                        This.CreateUserAsCustomer(idHobiwi, "hobiwi@gmail.com", "alex", "hobiwi", bdHobiwi, "FR", "FR");
-
-                        This.SetBankAccountForUser(idFredy, "Fredy Fadel", "FR7630003035470005070837472");
-            */
-
-            var v1 = IBAN.Check("FR7630003035470005070837472");
-            var v2 = IBAN.Check("FR7630003034470005070837472");
-            var v3 = IBAN.Check("F87630003035470005070837472");
-
-            //var tId = Guid.NewGuid();
-            //This.TransferMoneyFromCardToWallet(tId, 5000, idNico, idHobiwi);
-            //This.TransferMoneyFromWalletToWallet(tId, 5000, idHobiwi, idFredy, 1200);
-            //This.TransferMoneyFromWalletToBank(tId, 3000, idFredy);
+            
 
 
             var n = 13;
