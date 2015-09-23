@@ -105,17 +105,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AspectizeMangoPayJS.js" />
-    <Content Include="SDK\Common.Logging.Core.dll" />
-    <Content Include="SDK\Common.Logging.dll" />
+    <None Include="SDK\Common.Logging.Core.dll" />
+    <None Include="SDK\Common.Logging.dll" />
     <Content Include="SDK\mangopay-kit.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SDK\mangopay-kit.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SDK\MangoPay.SDK.dll" />
-    <Content Include="SDK\Newtonsoft.Json.dll" />
-    <Content Include="SDK\RestSharp.dll" />
+    <None Include="SDK\MangoPay.SDK.dll" />
+    <None Include="SDK\Newtonsoft.Json.dll" />
+    <None Include="SDK\RestSharp.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MangoData.Entities">

@@ -20,7 +20,9 @@ Aspectize.Extend("BootstrapDateTimePicker", {
             }
 
             $(elem).datetimepicker(options).on('dp.change', function (e) {
-                Aspectize.UiExtensions.ChangeProperty(elem, 'Value', e.date.toDate());
+                var value = null;
+                if (e.date) { value = e.date.toDate(); }
+                Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
             });
         }
 
