@@ -58,23 +58,23 @@
     </Reference>
     <Reference Include="Common.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\Common.Logging.dll</HintPath>
+      <HintPath>D:\DriveS\AspectizeGit\Extension\Extension\AspectizeMangoPay\SDK\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\Common.Logging.Core.dll</HintPath>
+      <HintPath>D:\DriveS\AspectizeGit\Extension\Extension\AspectizeMangoPay\SDK\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="MangoPay.SDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\MangoPay.SDK.dll</HintPath>
+      <HintPath>D:\DriveS\AspectizeGit\Extension\Extension\AspectizeMangoPay\SDK\MangoPay.SDK.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\DriveS\AspectizeGit\Extension\Extension\AspectizeMangoPay\SDK\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Mango\MangoPay.SDK\bin\Debug\RestSharp.dll</HintPath>
+      <HintPath>D:\DriveS\AspectizeGit\Extension\Extension\AspectizeMangoPay\SDK\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SmartBlocksCore">
       <HintPath>S:\Delivery\Aspectize.core\SmartBlocksCore.dll</HintPath>
@@ -105,12 +105,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AspectizeMangoPayJS.js" />
+    <Content Include="SDK\Common.Logging.Core.dll" />
+    <Content Include="SDK\Common.Logging.dll" />
     <Content Include="SDK\mangopay-kit.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SDK\mangopay-kit.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SDK\MangoPay.SDK.dll" />
+    <Content Include="SDK\Newtonsoft.Json.dll" />
+    <Content Include="SDK\RestSharp.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MangoData.Entities">
