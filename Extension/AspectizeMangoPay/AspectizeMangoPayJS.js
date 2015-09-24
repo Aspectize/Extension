@@ -42,7 +42,7 @@ Global.AspectizeMangoPayJS = {
            var code = r.ResultCode;
            var message = r.ResultMessage;
 
-           Aspectize.Throw('mangoPay cardRegistration error : ' + code + ' ' + message, 5001);
+           Aspectize.Throw('MangoPay cardRegistration error : ' + code + ' ' + message, 5001);
        };
 
        mangoPay.cardRegistration.registerCard(card, OnSuccess, OnError);

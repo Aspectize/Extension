@@ -30,7 +30,7 @@ Aspectize.Extend("BootstrapDateTimePicker", {
 
             if ('Value' in arg) {
                 //$(sender).datetimepicker('date', arg.Value);
-                var currentDate = arg.Value || new Date();
+                var currentDate = arg.Value; // || new Date();
                 $(sender).data("DateTimePicker").date(currentDate);
             }
 

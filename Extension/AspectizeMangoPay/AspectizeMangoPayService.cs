@@ -53,8 +53,10 @@ namespace AspectizeMangoPay {
 
     public interface IAspectizeMangoPayService {
 
-        void CreateUserAsCustomer (Guid id, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry);
-        void CreateUserAsBusiness (Guid id, string businessName, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry);
+        bool ExistUser(Guid id);
+        void CreateUser(Guid id, string businessName, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry);
+        //void CreateUserAsCustomer(Guid id, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry);
+        //void CreateUserAsBusiness (Guid id, string businessName, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry);
 
         Dictionary<string, string> GetRegistrationInfoForUser (Guid id);
         void SetCardIdForUser (Guid id, string cardId);
@@ -250,8 +252,21 @@ namespace AspectizeMangoPay {
             dm.SaveTransactional();
         }
 
-        void IAspectizeMangoPayService.CreateUserAsCustomer (Guid id, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry) {
+        bool IAspectizeMangoPayService.ExistUser(Guid userId)
+        {
+            if (userId == Guid.Empty) throwException(xlMissingUserId, "{0}.ExistUser : MissingUserId", svcName);
 
+            IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+
+            var mangoUser = dm.GetEntity<MangoData.MangoUser>(userId);
+
+            if (mangoUser == null) return false;
+
+            return true;
+        }
+
+        void IAspectizeMangoPayService.CreateUser(Guid id, string businessName, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry)
+        {
             CountryIso nationality, residence;
             var validNationality = Enum.TryParse<CountryIso>(isoNationality, out nationality);
             var validResidence = Enum.TryParse<CountryIso>(isoResidenceCountry, out residence);
@@ -268,81 +283,154 @@ namespace AspectizeMangoPay {
             mango = em.CreateInstance<MangoData.MangoUser>();
             mango.Id = id;
 
-            var user = new UserNaturalPostDTO(eMail, firstName, lastName, birthday, nationality, residence);
+            string userTag = string.Empty; string uId = string.Empty;
 
-            user.Tag = id.ToString("N");
+            if (!string.IsNullOrEmpty(businessName))
+            {
+                var user = new UserLegalPostDTO(eMail, businessName, LegalPersonType.BUSINESS, firstName, lastName, birthday, nationality, residence);
 
-            var a = user.Address = new MangoPay.SDK.Entities.Address();
+                user.Tag = userTag = id.ToString("N");
 
-            a.AddressLine1 = "xxx";
-            a.City = "xxx";
-            a.PostalCode = "xxx";
-            a.Country = CountryIso.FR;
+                var a1 = user.LegalRepresentativeAddress = new MangoPay.SDK.Entities.Address();
 
-            var u = api.Users.Create(user);
+                a1.AddressLine1 = "xxx";
+                a1.City = "xxx";
+                a1.PostalCode = "xxx";
+                a1.Country = CountryIso.FR;
 
-            var owner = new List<string>(); owner.Add(u.Id);
+                var a2 = user.HeadquartersAddress = new MangoPay.SDK.Entities.Address();
+
+                a2.AddressLine1 = "xxx";
+                a2.City = "xxx";
+                a2.PostalCode = "xxx";
+                a2.Country = CountryIso.FR;
+
+                var u = api.Users.Create(user);
+                uId = u.Id;
+            }
+            else
+            {
+                var user = new UserNaturalPostDTO(eMail, firstName, lastName, birthday, nationality, residence);
+
+                user.Tag = id.ToString("N");
+
+                var a = user.Address = new MangoPay.SDK.Entities.Address();
+
+                a.AddressLine1 = "xxx";
+                a.City = "xxx";
+                a.PostalCode = "xxx";
+                a.Country = CountryIso.FR;
+
+                var u = api.Users.Create(user);
+
+            }
+
+            var owner = new List<string>(); owner.Add(uId);
             var wallet = new WalletPostDTO(owner, "Économie Collaborative", CurrencyIso.EUR);
-            wallet.Tag = user.Tag;
+            wallet.Tag = userTag;
 
             var w = api.Wallets.Create(wallet);
 
-            mango.UserId = u.Id;
+            mango.UserId = uId;
             mango.WalletId = w.Id;
 
             dm.SaveTransactional();
         }
 
-        void IAspectizeMangoPayService.CreateUserAsBusiness (Guid id, string businessName, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry) {
+        //void IAspectizeMangoPayService.CreateUserAsCustomer(Guid id, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry)
+        //{
 
-            CountryIso nationality, residence;
-            var validNationality = Enum.TryParse<CountryIso>(isoNationality, out nationality);
-            var validResidence = Enum.TryParse<CountryIso>(isoResidenceCountry, out residence);
+        //    CountryIso nationality, residence;
+        //    var validNationality = Enum.TryParse<CountryIso>(isoNationality, out nationality);
+        //    var validResidence = Enum.TryParse<CountryIso>(isoResidenceCountry, out residence);
 
-            if (!validNationality) throw new SmartException(1, "{0}.CreateUser : Bad ISO Country code '{1}' for parameter isoNationality !", svcName, isoNationality);
-            if (!validResidence) throw new SmartException(1, "{0}.CreateUser : Bad ISO Country code '{1}' for parameter isoResidenceCountry !", svcName, isoResidenceCountry);
+        //    if (!validNationality) throw new SmartException(1, "{0}.CreateUser : Bad ISO Country code '{1}' for parameter isoNationality !", svcName, isoNationality);
+        //    if (!validResidence) throw new SmartException(1, "{0}.CreateUser : Bad ISO Country code '{1}' for parameter isoResidenceCountry !", svcName, isoResidenceCountry);
 
-            IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
-            var em = dm as IEntityManager;
+        //    IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+        //    var em = dm as IEntityManager;
 
-            var mango = dm.GetEntity<MangoData.MangoUser>(id);
-            if (mango != null) return;
+        //    var mango = dm.GetEntity<MangoData.MangoUser>(id);
+        //    if (mango != null) return;
 
-            mango = em.CreateInstance<MangoData.MangoUser>();
-            mango.Id = id;
+        //    mango = em.CreateInstance<MangoData.MangoUser>();
+        //    mango.Id = id;
 
-            var user = new UserLegalPostDTO(eMail, businessName, LegalPersonType.BUSINESS, firstName, lastName, birthday, nationality, residence);
+        //    var user = new UserNaturalPostDTO(eMail, firstName, lastName, birthday, nationality, residence);
 
-            user.Tag = id.ToString("N");
+        //    user.Tag = id.ToString("N");
 
-            var a1 = user.LegalRepresentativeAddress = new MangoPay.SDK.Entities.Address();
+        //    var a = user.Address = new MangoPay.SDK.Entities.Address();
 
-            a1.AddressLine1 = "xxx";
-            a1.City = "xxx";
-            a1.PostalCode = "xxx";
-            a1.Country = CountryIso.FR;
+        //    a.AddressLine1 = "xxx";
+        //    a.City = "xxx";
+        //    a.PostalCode = "xxx";
+        //    a.Country = CountryIso.FR;
 
-            var a2 = user.HeadquartersAddress = new MangoPay.SDK.Entities.Address();
+        //    var u = api.Users.Create(user);
 
-            a2.AddressLine1 = "xxx";
-            a2.City = "xxx";
-            a2.PostalCode = "xxx";
-            a2.Country = CountryIso.FR;
+        //    var owner = new List<string>(); owner.Add(u.Id);
+        //    var wallet = new WalletPostDTO(owner, "Économie Collaborative", CurrencyIso.EUR);
+        //    wallet.Tag = user.Tag;
+
+        //    var w = api.Wallets.Create(wallet);
+
+        //    mango.UserId = u.Id;
+        //    mango.WalletId = w.Id;
+
+        //    dm.SaveTransactional();
+        //}
+
+        //void IAspectizeMangoPayService.CreateUserAsBusiness (Guid id, string businessName, string eMail, string firstName, string lastName, Date birthday, string isoNationality, string isoResidenceCountry) {
+
+        //    CountryIso nationality, residence;
+        //    var validNationality = Enum.TryParse<CountryIso>(isoNationality, out nationality);
+        //    var validResidence = Enum.TryParse<CountryIso>(isoResidenceCountry, out residence);
+
+        //    if (!validNationality) throw new SmartException(1, "{0}.CreateUser : Bad ISO Country code '{1}' for parameter isoNationality !", svcName, isoNationality);
+        //    if (!validResidence) throw new SmartException(1, "{0}.CreateUser : Bad ISO Country code '{1}' for parameter isoResidenceCountry !", svcName, isoResidenceCountry);
+
+        //    IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+        //    var em = dm as IEntityManager;
+
+        //    var mango = dm.GetEntity<MangoData.MangoUser>(id);
+        //    if (mango != null) return;
+
+        //    mango = em.CreateInstance<MangoData.MangoUser>();
+        //    mango.Id = id;
+
+        //    var user = new UserLegalPostDTO(eMail, businessName, LegalPersonType.BUSINESS, firstName, lastName, birthday, nationality, residence);
+
+        //    user.Tag = id.ToString("N");
+
+        //    var a1 = user.LegalRepresentativeAddress = new MangoPay.SDK.Entities.Address();
+
+        //    a1.AddressLine1 = "xxx";
+        //    a1.City = "xxx";
+        //    a1.PostalCode = "xxx";
+        //    a1.Country = CountryIso.FR;
+
+        //    var a2 = user.HeadquartersAddress = new MangoPay.SDK.Entities.Address();
+
+        //    a2.AddressLine1 = "xxx";
+        //    a2.City = "xxx";
+        //    a2.PostalCode = "xxx";
+        //    a2.Country = CountryIso.FR;
 
 
-            var u = api.Users.Create(user);
+        //    var u = api.Users.Create(user);
 
-            var owner = new List<string>(); owner.Add(u.Id);
-            var wallet = new WalletPostDTO(owner, "Économie Collaborative", CurrencyIso.EUR);
-            wallet.Tag = user.Tag;
+        //    var owner = new List<string>(); owner.Add(u.Id);
+        //    var wallet = new WalletPostDTO(owner, "Économie Collaborative", CurrencyIso.EUR);
+        //    wallet.Tag = user.Tag;
 
-            var w = api.Wallets.Create(wallet);
+        //    var w = api.Wallets.Create(wallet);
 
-            mango.UserId = u.Id;
-            mango.WalletId = w.Id;
+        //    mango.UserId = u.Id;
+        //    mango.WalletId = w.Id;
 
-            dm.SaveTransactional();
-        }
+        //    dm.SaveTransactional();
+        //}
 
         void IAspectizeMangoPayService.TransferMoneyFromCardToWallet (Guid transactionId, int euroCentsAmount, Guid fromUserId, Guid toUserId) {
 

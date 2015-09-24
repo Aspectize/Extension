@@ -7,6 +7,8 @@ Global.BootStrapClientService = {
     DisplayValidator: function (control, message) {
         var controlName = control.name;
 
+        if (!controlName) controlName = $(control).attr('aas-name');
+
         var formGroupSelector = '.form-group-' + controlName;
         var errorControlSelector = '.error-' + controlName;
 
