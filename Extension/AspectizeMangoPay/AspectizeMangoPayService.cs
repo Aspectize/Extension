@@ -322,7 +322,7 @@ namespace AspectizeMangoPay {
                 a.Country = CountryIso.FR;
 
                 var u = api.Users.Create(user);
-
+                uId = u.Id;
             }
 
             var owner = new List<string>(); owner.Add(uId);
