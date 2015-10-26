@@ -2,7 +2,7 @@
 /* Build with http://eonasdan.github.io/bootstrap-datetimepicker */
 
 Aspectize.Extend("BootstrapDateTimePicker", {
-    Properties: { Value: null, MinDate: null, MaxDate: null, Stepping: 1, Format: '', Inline: false },
+    Properties: { Value: null, MinDate: null, MaxDate: null, Stepping: 1, Format: '', Inline: false, ViewMode: 'days' },
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
@@ -12,7 +12,8 @@ Aspectize.Extend("BootstrapDateTimePicker", {
                 maxDate: Aspectize.UiExtensions.GetProperty(elem, 'MaxDate') || false,
                 stepping: Aspectize.UiExtensions.GetProperty(elem, 'Stepping') || 1,
                 format: Aspectize.UiExtensions.GetProperty(elem, 'Format') || 'DD/MM/YYYY HH:mm',
-                inline: Aspectize.UiExtensions.GetProperty(elem, 'Inline') || false
+                inline: Aspectize.UiExtensions.GetProperty(elem, 'Inline') || false,
+                viewMode: Aspectize.UiExtensions.GetProperty(elem, 'ViewMode') || 'days'
             };
 
             if ($(elem).data("DateTimePicker")) {
@@ -56,6 +57,10 @@ Aspectize.Extend("BootstrapDateTimePicker", {
 
             if ('Inline' in arg) {
                 $(sender).data("DateTimePicker").inline(arg.Inline || false);
+            }
+
+            if ('ViewMode' in arg) {
+                $(sender).data("DateTimePicker").viewMode(arg.Inline || 'days');
             }
 
             newPicker();
