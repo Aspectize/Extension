@@ -2,7 +2,7 @@
 /* Build with http://eonasdan.github.io/bootstrap-datetimepicker */
 
 Aspectize.Extend("BootstrapDateTimePicker", {
-    Properties: { Value: null, MinDate: null, MaxDate: null, Stepping: 1, Format: '', Inline: false, ViewMode: 'days' },
+    Properties: { Value: null, MinDate: null, MaxDate: null, Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: false },
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
@@ -13,7 +13,9 @@ Aspectize.Extend("BootstrapDateTimePicker", {
                 stepping: Aspectize.UiExtensions.GetProperty(elem, 'Stepping') || 1,
                 format: Aspectize.UiExtensions.GetProperty(elem, 'Format') || 'DD/MM/YYYY HH:mm',
                 inline: Aspectize.UiExtensions.GetProperty(elem, 'Inline') || false,
-                viewMode: Aspectize.UiExtensions.GetProperty(elem, 'ViewMode') || 'days'
+                viewMode: Aspectize.UiExtensions.GetProperty(elem, 'ViewMode') || 'days',
+                useCurrent: Aspectize.UiExtensions.GetProperty(elem, 'UseCurrent') || true,
+                defaultDate: Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate') || false
             };
 
             if ($(elem).data("DateTimePicker")) {
@@ -60,10 +62,17 @@ Aspectize.Extend("BootstrapDateTimePicker", {
             }
 
             if ('ViewMode' in arg) {
-                $(sender).data("DateTimePicker").viewMode(arg.Inline || 'days');
+                $(sender).data("DateTimePicker").viewMode(arg.ViewMode || 'days');
             }
 
-            newPicker();
+            if ('UseCurrent' in arg) {
+                $(sender).data("DateTimePicker").useCurrent(arg.UseCurrent || true);
+            }
+
+            if ('DefaultDate' in arg) {
+                $(sender).data("DateTimePicker").defaultDate(arg.DefaultDate || false);
+            }
+
         });
 
         newPicker();
