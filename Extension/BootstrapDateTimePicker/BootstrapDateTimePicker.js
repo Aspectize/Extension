@@ -2,7 +2,7 @@
 /* Build with http://eonasdan.github.io/bootstrap-datetimepicker */
 
 Aspectize.Extend("BootstrapDateTimePicker", {
-    Properties: { Value: null, MinDate: null, MaxDate: null, Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: false },
+    Properties: { Value: null, MinDate: false, MaxDate: false, Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: new Date(0) },
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
@@ -70,7 +70,9 @@ Aspectize.Extend("BootstrapDateTimePicker", {
             }
 
             if ('DefaultDate' in arg) {
-                $(sender).data("DateTimePicker").defaultDate(arg.DefaultDate || false);
+                var defaultDate = arg.DefaultDate;
+                if (arg.DefaultDate === null || arg.DefaultDate.valueOf() === 0) defaultDate = false;
+                $(sender).data("DateTimePicker").defaultDate(defaultDate);
             }
 
         });
