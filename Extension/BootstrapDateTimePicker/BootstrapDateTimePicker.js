@@ -72,7 +72,7 @@ Aspectize.Extend("BootstrapDateTimePicker", {
             if ('DefaultDate' in arg) {
                 var defaultDate = arg.DefaultDate;
                 if (arg.DefaultDate === null || arg.DefaultDate.valueOf() === 0) defaultDate = false;
-                $(sender).data("DateTimePicker").defaultDate(defaultDate);
+                $(sender).data("DateTimePicker").date(defaultDate);
             }
 
         });
