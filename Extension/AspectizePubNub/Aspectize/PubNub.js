@@ -35,19 +35,33 @@ function AspectizePubNub(name) {
     }   
 }
 
+var initPubNubService = (function () {
+
+    var svcManager = {};
+
+    return function (name) {
+
+        if (!svcManager[name]) {
+
+            svcManager[name] = new AspectizePubNub(name);
+        }
+
+        return svcManager[name];
+    };
+}) ();
+
 Global.PubNub = {
 
    aasService:'PubNubJS',
-   aasPublished:true,
-     
-   svcManager: {},
+   aasPublished:true,        
 
-   Initialize: function (pubnubServiceName) {
+   SendChannelMessage: function (pubnubServiceName, channel, message) {
 
-       if (!svcManager[pubnubServiceName]) {
+       var apn = initPubNubService(pubnubServiceName);
 
-           svcManager[pubnubServiceName] = new AspectizePubNub(pubnubServiceName);
-       }       
+       apn.pubnub.publish(channel, message);
    }
+
+   
 };
 
