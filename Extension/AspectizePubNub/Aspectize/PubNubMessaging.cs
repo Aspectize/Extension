@@ -61,7 +61,7 @@ namespace AspectizePubNub.Aspectize {
             return null;
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
+       // [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
         Dictionary<string, object>  IPubNubMessaging.GetInfo () {
 
             var info = new Dictionary<string, object>();

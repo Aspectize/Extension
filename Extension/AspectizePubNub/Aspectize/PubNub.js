@@ -6,7 +6,7 @@ function PubNubChannel (name) {
 
 PubNubChannel.prototype.Receive = function (m) {
 
-    alert(m.Value);
+    alert(m);
 };
 
 function AspectizePubNub(name) {
@@ -58,8 +58,11 @@ Global.PubNub = {
    SendChannelMessage: function (pubnubServiceName, channel, message) {
 
        var apn = initPubNubService(pubnubServiceName);
-
-       apn.pubnub.publish(channel, message);
+      
+       var obj = {}; 
+       obj.channel = channel;
+       obj.message = message;
+       apn.pubnub.publish(obj);
    }
 
    
