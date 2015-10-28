@@ -2,20 +2,20 @@
 /* Build with http://eonasdan.github.io/bootstrap-datetimepicker */
 
 Aspectize.Extend("BootstrapDateTimePicker", {
-    Properties: { Value: null, MinDate: false, MaxDate: false, Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: new Date(0) },
+    Properties: { Value: null, MinDate: new Date(0), MaxDate: new Date(0), Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: new Date(0) },
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
         function newPicker() {
             var options = {
-                minDate: Aspectize.UiExtensions.GetProperty(elem, 'MinDate') || false,
-                maxDate: Aspectize.UiExtensions.GetProperty(elem, 'MaxDate') || false,
+                minDate: false,
+                maxDate: false,
                 stepping: Aspectize.UiExtensions.GetProperty(elem, 'Stepping') || 1,
                 format: Aspectize.UiExtensions.GetProperty(elem, 'Format') || 'DD/MM/YYYY HH:mm',
                 inline: Aspectize.UiExtensions.GetProperty(elem, 'Inline') || false,
                 viewMode: Aspectize.UiExtensions.GetProperty(elem, 'ViewMode') || 'days',
                 useCurrent: Aspectize.UiExtensions.GetProperty(elem, 'UseCurrent') || true,
-                defaultDate: Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate') || false
+                defaultDate: false
             };
 
             if ($(elem).data("DateTimePicker")) {
@@ -37,13 +37,25 @@ Aspectize.Extend("BootstrapDateTimePicker", {
                 $(sender).data("DateTimePicker").date(currentDate);
             }
 
+            if ('UseCurrent' in arg) {
+                $(sender).data("DateTimePicker").useCurrent(arg.UseCurrent || true);
+            }
+
+            if ('DefaultDate' in arg) {
+                var defaultDate = arg.DefaultDate;
+                if (arg.DefaultDate === null || arg.DefaultDate.valueOf() === 0) defaultDate = false;
+                $(sender).data("DateTimePicker").defaultDate(defaultDate);
+            }
+
             if ('MinDate' in arg) {
-                var mindate = arg.MinDate || false;
+                var mindate = arg.MinDate;
+                if (arg.MinDate === null || arg.MinDate.valueOf() === 0) mindate = false;
                 $(sender).data("DateTimePicker").minDate(mindate);
             }
 
             if ('MaxDate' in arg) {
-                var maxdate = arg.MaxDate || false;
+                var maxdate = arg.MaxDate
+                if (arg.MaxDate === null || arg.MaxDate.valueOf() === 0) maxdate = false;
                 $(sender).data("DateTimePicker").maxDate(maxdate);
             }
 
@@ -63,16 +75,6 @@ Aspectize.Extend("BootstrapDateTimePicker", {
 
             if ('ViewMode' in arg) {
                 $(sender).data("DateTimePicker").viewMode(arg.ViewMode || 'days');
-            }
-
-            if ('UseCurrent' in arg) {
-                $(sender).data("DateTimePicker").useCurrent(arg.UseCurrent || true);
-            }
-
-            if ('DefaultDate' in arg) {
-                var defaultDate = arg.DefaultDate;
-                if (arg.DefaultDate === null || arg.DefaultDate.valueOf() === 0) defaultDate = false;
-                $(sender).data("DateTimePicker").date(defaultDate);
             }
 
         });
