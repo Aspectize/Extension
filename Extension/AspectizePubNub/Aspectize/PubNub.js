@@ -42,11 +42,11 @@ function PubNubChannel(name, mergeData, handler) {
         
     } else if (mergeData) this.Receive = mergeAspectizeData;
 
-    this.Connect = function (m) { this.Receive({ Type: 'Connect', Message: m }); };
-    this.Disconnect = function (m) { this.Receive({ Type: 'Disconnect', Message: m }); };
-    this.Reconnect = function (m) { this.Receive({ Type: 'Reconnect', Message: m }); };
-    this.Presence = function (m) { this.Receive({ Type: 'Presence', Message: m }); };
-    this.Error = function (m) { this.Receive({ Type: 'Error', Message: m }); };        
+    //this.Connect = function (m) { this.Receive({ Type: 'Connect', Message: m }); };
+    //this.Disconnect = function (m) { this.Receive({ Type: 'Disconnect', Message: m }); };
+    //this.Reconnect = function (m) { this.Receive({ Type: 'Reconnect', Message: m }); };
+    //this.Presence = function (m) { this.Receive({ Type: 'Presence', Message: m }); };
+    //this.Error = function (m) { this.Receive({ Type: 'Error', Message: m }); };        
 }
 
 function getSubscriptionParams(channelName, mergeData, handler) {
