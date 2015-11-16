@@ -429,6 +429,9 @@ Global.GoogleMapControlBuilder = {
                         Aspectize.UiExtensions.Notify(controlMarker, 'OnDragEnd', { 'marker': marker, 'item': item });
                     });
                 }
+            } else {
+
+                controlMarker.aasMarkerInfo = data.Marker;
             }
         };
 
