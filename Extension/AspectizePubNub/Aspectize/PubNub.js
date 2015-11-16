@@ -38,12 +38,30 @@ function PubNubChannel(name, mergeData, handler) {
 
         } else Aspectize.Throw(1, 'AspectizePubNub extension : bad handler type ' + type + " expected string or function. Check PubNubJS.InitializeReceive's second parameter !");
 
-        if (mergeData) this.Receive = both;
-
-    } else if (mergeData) this.Receive = mergeAspectizeData;
+        if (mergeData) this.Receive = both;       
         
+    } else if (mergeData) this.Receive = mergeAspectizeData;
+
+    this.Connect = function (m) { this.Receive({ Type: 'Connect', Message: m }); };
+    this.Disconnect = function (m) { this.Receive({ Type: 'Disconnect', Message: m }); };
+    this.Reconnect = function (m) { this.Receive({ Type: 'Reconnect', Message: m }); };
+    this.Presence = function (m) { this.Receive({ Type: 'Presence', Message: m }); };
+    this.Error = function (m) { this.Receive({ Type: 'Error', Message: m }); };        
 }
 
+function getSubscriptionParams(channelName, mergeData, handler) {
+
+    var channel = new PubNubChannel(channelName, mergeData, handler);
+    var params = { channel: channel.Name, message: channel.Receive };
+
+    if (channel.Connect) params.connect = channel.Connect;
+    if (channel.Disconnect) params.disconnect = channel.Disconnect;
+    if (channel.Reconnect) params.reconnect = channel.Reconnect;
+    if (channel.Presence) params.presence = channel.Presence;
+    if (channel.Error) params.error = channel.Error;
+
+    return params;
+}
 
 function AspectizePubNub(name, mergeData, handler) {
 
@@ -65,9 +83,9 @@ function AspectizePubNub(name, mergeData, handler) {
         if(mergeData || handler) {
 
             for(var n = 0; n < info.autoChannels.length; n++) {
-            
-                var channel = new PubNubChannel(info.autoChannels[n], mergeData, handler);
-                this.pubnub.subscribe ({ channel: channel.Name, message : channel.Receive });            
+                                        
+                var params = getSubscriptionParams(info.autoChannels[n], mergeData, handler);
+                this.pubnub.subscribe(params);
             }
         }
     }   
@@ -96,6 +114,21 @@ Global.PubNub = {
    InitializeReceive: function (pubnubServiceName, mergeData, customHandlerOrCommand) {
 
        initPubNubService(pubnubServiceName, mergeData, customHandlerOrCommand);
+   },
+
+   SubscribeChannel : function (pubnubServiceName, channel, mergeData, customHandlerOrCommand) {
+
+       var apn = initPubNubService(pubnubServiceName);
+
+       var params = getSubscriptionParams(channel, mergeData, customHandlerOrCommand);
+       apn.pubnub.subscribe(params);
+   },
+
+   UnsubscribeChannel: function (pubnubServiceName, channel) {
+
+       var apn = initPubNubService(pubnubServiceName);
+
+       apn.pubnub.unsubscribe({ channel: channel });
    },
 
    SendChannelMessage: function (pubnubServiceName, channel, message) {
