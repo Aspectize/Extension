@@ -75,7 +75,7 @@ namespace AspectizeMangoPay {
 
         const string secureModeReturnUrl = "http://google.com";
         #region exceptions
-        const int exceptionOffset = 5000;
+        const int exceptionOffset = -5000;
 
         const int xlNullOrEmpty = 1;
 
