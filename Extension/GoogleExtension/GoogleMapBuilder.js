@@ -244,8 +244,7 @@ Global.GoogleMapControlBuilder = {
 
         function gotoPosition(map, position) {
             map.setOptions({
-                center: position,
-                zoom: 14
+                center: position
             });
         }
 

@@ -1,5 +1,13 @@
 ﻿/// <reference path="S:\Delivery\Aspectize.core\AspectizeIntellisenseLibrary.js" />
 
+Aspectize.Extend("Autosize", {
+    Properties: {},
+    Events: [],
+    Init: function (elem) {
+        autosize($(elem));
+    }
+});
+
 Aspectize.Extend("JQueryButton", {
     Properties: {},
     Events: ['click'],

@@ -71,6 +71,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Autosize\autosize.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Autosize\autosize.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Autosize\jquery.autosize.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\date_add.png" />
     <Content Include="jQuery-Mask-Plugin-master\jquery.mask.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
