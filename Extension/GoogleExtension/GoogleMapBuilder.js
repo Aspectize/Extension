@@ -43,14 +43,22 @@ Global.GoogleMapService = {
         }
     },
 
-    GotoMyPosition: function (controlMap) {
+    GotoPosition: function (controlMap, lat, lng, zoom) {
+        var googleInfo = getGoogleInfo(controlMap);
+        if (googleInfo) {
+            var location = new google.maps.LatLng(lat, lng);
+            googleInfo.GotoPosition(location, zoom);
+        }
+    },
+
+    GotoMyPosition: function (controlMap, zoom) {
         var googleInfo = getGoogleInfo(controlMap);
         if (googleInfo) {
             if (typeof (navigator.geolocation) != 'undefined') {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     //googleInfo.GotoPosition(position);
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    googleInfo.GotoPosition(initialLocation);
+                    googleInfo.GotoPosition(initialLocation, zoom);
                 });
             }
         }
@@ -92,6 +100,13 @@ Global.GoogleMapService = {
         if (googleInfo) {
             var zoom = googleInfo.Map.getZoom();
             zoom--;
+            googleInfo.Map.setZoom(zoom);
+        }
+    },
+
+    Zoom: function (controlMap, zoom) {
+        var googleInfo = getGoogleInfo(controlMap);
+        if (googleInfo) {
             googleInfo.Map.setZoom(zoom);
         }
     },
@@ -167,8 +182,8 @@ Global.GoogleMapControlBuilder = {
             InfoWindow: null,
             InfoBubble: null,
             AutoComplete: null,
-            GotoPosition: function (position) {
-                gotoPosition(this.Map, position);
+            GotoPosition: function (position, zoom) {
+                gotoPosition(this.Map, position, zoom);
             },
             GotoAdress: function (adress) {
                 gotoAdress(this.Map, this.GeoCoder, adress);
@@ -242,10 +257,17 @@ Global.GoogleMapControlBuilder = {
             });
         }
 
-        function gotoPosition(map, position) {
-            map.setOptions({
+        function gotoPosition(map, position, zoom) {
+            var option = {
                 center: position
-            });
+            };
+
+            if (zoom) {
+                map.setZoom(zoom);
+            }
+
+            //map.setOptions(option);
+            map.panTo(position);
         }
 
         controlInfo.InitGrid = function (control) {
