@@ -415,11 +415,11 @@ Global.GoogleMapControlBuilder = {
 
                 if (urlIcon) {
 
-                    if (Aspectize.Host.MobileMode) {
-                        var parts = Aspectize.Host.MobileUrl.split('/');
-                        parts[parts.length - 1] = '';
-                        urlIcon = parts.join('/') + urlIcon;
-                    }
+                    //if (Aspectize.Host.MobileMode) {
+                    //    var parts = Aspectize.Host.MobileUrl.split('/');
+                    //    parts[parts.length - 1] = '';
+                    //    urlIcon = parts.join('/') + urlIcon;
+                    //}
 
                     var image = new google.maps.MarkerImage(urlIcon, new google.maps.Size(32, 32), new google.maps.Point(0, 0),
 
