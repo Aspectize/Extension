@@ -4,7 +4,7 @@
     <entity Id="d9db3c64-408a-408b-afd4-639a3a824475" name="MangoUser" guid="efd9b730-8814-4427-83ad-b38a9735882b" hasCustomValidators="false" hasTriggers="false">
       <properties>
         <entityProperty name="UserId" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
-        <entityProperty name="WalletId" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="WalletId" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="CardToken" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="BankId" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
       </properties>

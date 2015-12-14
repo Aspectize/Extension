@@ -58,7 +58,7 @@ namespace MangoData
 			set { setValue<string>("UserId", value); }
 		}
 
-		[Data]
+		[Data(IsNullable = true)]
 		public string WalletId
 		{
 			get { return getValue<string>("WalletId"); }
