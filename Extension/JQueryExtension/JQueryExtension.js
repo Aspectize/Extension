@@ -9,7 +9,7 @@ Aspectize.Extend("Autosize", {
 });
 
 Aspectize.Extend("JQueryButton", {
-    Properties: {},
+    Properties: {value:'', disabled:false},
     Events: ['click'],
     Init: function (elem) {
         $(elem).button();
@@ -375,7 +375,7 @@ Aspectize.Extend("JQueryDatePicker", {
 
             } else {
 
-                Aspectize.Throw(Aspectize.formatString("JQueryDatePickerExtend: '{0}' is not a dynamically bound option !", arg.Name));
+                Aspectize.Throw(Aspectize.formatString("JQueryDatePicker: '{0}' is not a dynamically bound option !", arg.Name));
             }
         }
 
