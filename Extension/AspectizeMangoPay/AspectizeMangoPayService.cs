@@ -70,6 +70,7 @@ namespace AspectizeMangoPay {
         void SetCardIdForUser (Guid id, string cardId);
         void SetBankAccountForUser (Guid id, string ownerName, string IBAN, Address ownerAddress);
         void CreateWalletForUser (Guid id, string walletDescription);
+        int GetWalletBalance(Guid id);
 
         void TransferMoneyFromCardToWallet (Guid transactionId, int euroCentsAmount, Guid fromUserId, Guid toUserId);
         void TransferMoneyFromWalletToWallet (Guid transactionId, int euroCentsAmount, Guid fromUserId, Guid toUserId, int euroCentsFees);
@@ -291,6 +292,30 @@ namespace AspectizeMangoPay {
                 dm.SaveTransactional();
             }
         }
+
+        int IAspectizeMangoPayService.GetWalletBalance(Guid id)
+        {
+            if (id == Guid.Empty) throwException(xlMissingUserId, "{0}.GetWalletBalance : MissingUserId", svcName);
+
+            IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+
+            var mango = dm.GetEntity<MangoData.MangoUser>(id);
+
+            if (mango == null) throwException(xlUnknownUserId, "{0}.GetWalletBalance : Unknown MangoUser id '{1}'", svcName, id);
+
+            if (!String.IsNullOrEmpty(mango.WalletId))
+            {
+                var w = api.Wallets.Get(mango.WalletId);
+
+                var m = w.Balance;
+
+                return m.Amount;
+            }
+            else throwException(xlMissingUserId, "{0}.GetWalletBalance : Unknown Wallet id '{1}'", svcName, mango.WalletId);
+
+            return 0;
+        }
+
 
         bool IAspectizeMangoPayService.ExistUser(Guid userId)
         {
