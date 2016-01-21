@@ -289,6 +289,8 @@ Global.GoogleMapControlBuilder = {
 
             var mapOptions = {
                 center: location,
+                disableDoubleClickZoom: Aspectize.UiExtensions.GetProperty(control, 'DisableDoubleClickZoom'),
+                scrollwheel: Aspectize.UiExtensions.GetProperty(control, 'Scrollwheel'),
                 zoom: Aspectize.UiExtensions.GetProperty(control, 'Zoom'),
                 disableDefaultUI: Aspectize.UiExtensions.GetProperty(control, 'DisableDefaultUI'),
                 zoomControl: false
