@@ -599,7 +599,7 @@
     <Content Include="tinyMCEV4\js\tinymce_4.1.0\tinymce.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="tinyMCEV4\js\tinymce_4.1.9\langs\fr_FR.js" >
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\langs\fr_FR.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="tinyMCEV4\js\tinymce_4.1.9\license.txt" />
@@ -989,12 +989,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="tinyMCEV4\js\tinymce_4.1.9\langs\readme.md" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce-small.eot" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce-small.ttf" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce-small.woff" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce.eot" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce.ttf" />
-    <None Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce-small.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce-small.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce-small.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="tinyMCEV4\js\tinymce_4.1.9\skins\lightgray\fonts\tinymce.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Aspectize\Aspectize.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
