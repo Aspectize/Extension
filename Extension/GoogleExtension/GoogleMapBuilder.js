@@ -520,6 +520,52 @@ Global.GoogleMapControlMarkerBuilder = {
 
         controlInfo.InitCell = function (cell) {
 
+            Aspectize.UiExtensions.AddMergedPropertyChangeObserver(cell, function (sender, arg) {
+
+                var marker = cell.aasMarkerInfo;
+
+                if (marker) {
+                    if ('UrlIcon' in arg) {
+                        var urlIcon = arg.UrlIcon;
+
+                        if (Aspectize.Host.MobileMode) {
+                            var parts = Aspectize.Host.MobileUrl.split('/');
+                            parts.splice(0, parts.length);
+                            urlIcon = parts.join('/') + urlIcon;
+                        }
+
+                        var iconWidth = ('IconWidth' in arg) ? arg.IconWidth : 32;
+                        var iconHeight = ('IconHeight' in arg) ? arg.IconHeight : 32;
+                        var iconOriginX = ('IconOriginX' in arg) ? arg.IconOriginX : 0;
+                        var iconOriginY = ('IconOriginY' in arg) ? arg.IconOriginY : 0;
+                        var iconAnchorX = ('IconAnchorX' in arg) ? arg.IconAnchorX : 16;
+                        var iconAnchorY = ('IconAnchorY' in arg) ? arg.IconAnchorY : 32;
+
+                        var image = new google.maps.MarkerImage(arg.Value,
+                            new google.maps.Size(iconWidth, iconHeight),
+                            new google.maps.Point(iconOriginX, iconOriginY),
+
+                            new google.maps.Point(iconAnchorX, iconAnchorY)); // The anchor for this image is the base of the flagpole.
+
+                        marker.setIcon(image);
+                    }
+
+                    if ('Title' in arg) {
+                        marker.setTitle(arg.Title);
+                    }
+
+                    if ('Longitude' in arg || 'Latitude' in arg) {
+                        var currentPosition = marker.getPosition();
+                        var longitude = ('Longitude' in arg) ? arg.Longitude : currentPosition.lng();
+                        var latitude = ('Latitude' in arg) ? arg.Latitude : currentPosition.lat();
+
+                        var newPosition = new google.maps.LatLng(latitude, longitude);
+                        marker.setPosition(newPosition);
+                    }
+                }
+            });
+
+            /*
             Aspectize.UiExtensions.AddPropertyChangeObserver(cell, function (sender, arg) {
 
                 var marker = cell.aasMarkerInfo;
@@ -562,7 +608,7 @@ Global.GoogleMapControlMarkerBuilder = {
                     }
                 }
             });
-
+            */
         };
 
     }
