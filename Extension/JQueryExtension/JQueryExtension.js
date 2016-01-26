@@ -13,6 +13,7 @@ Aspectize.Extend("JQueryButton", {
     Events: ['click'],
     Init: function (elem) {
         $(elem).button();
+        $(elem).on('click', function (e) { Aspectize.UiExtensions.Notify(elem, 'click', e); });
     }
 });
 

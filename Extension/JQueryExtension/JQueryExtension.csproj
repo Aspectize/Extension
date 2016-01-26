@@ -87,6 +87,21 @@
     <Content Include="jQuery-Mask-Plugin-master\jquery.mask.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="jquery-miniColors\images\circle.gif" />
+    <Content Include="jquery-miniColors\images\gradient.png" />
+    <Content Include="jquery-miniColors\images\line.gif" />
+    <Content Include="jquery-miniColors\images\rainbow.png" />
+    <Content Include="jquery-miniColors\images\trigger.png" />
+    <Content Include="jquery-miniColors\jquery.miniColors.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jquery-miniColors\jquery.miniColors.js" />
+    <Content Include="jquery-miniColors\jquery.miniColors.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jquery-miniColors\V2.1\jquery.minicolors.css" />
+    <Content Include="jquery-miniColors\V2.1\jquery.minicolors.min.js" />
+    <Content Include="jquery-miniColors\V2.1\jquery.minicolors.png" />
     <Content Include="jQuery-Timepicker-Addon-master\jquery-ui-sliderAccess.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

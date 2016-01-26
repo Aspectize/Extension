@@ -139,7 +139,11 @@ Global.DhtmlxChartBuilder = {
 
                 var columnInfo = columnInfos[n];
 
-                switch (columnInfo.typeName) {
+                var typeNameParts = columnInfo.typeName.split('.');
+
+                var typeName = typeNameParts[typeNameParts.length - 1];
+
+                switch (typeName) {
 
                     case 'DhtmlxChartXAxis': xAxis = columnInfo.name; break;
                     case 'DhtmlxChartYAxis':
