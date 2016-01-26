@@ -541,7 +541,7 @@ Global.GoogleMapControlMarkerBuilder = {
                         var iconAnchorX = ('IconAnchorX' in arg) ? arg.IconAnchorX : 16;
                         var iconAnchorY = ('IconAnchorY' in arg) ? arg.IconAnchorY : 32;
 
-                        var image = new google.maps.MarkerImage(arg.Value,
+                        var image = new google.maps.MarkerImage(urlIcon,
                             new google.maps.Size(iconWidth, iconHeight),
                             new google.maps.Point(iconOriginX, iconOriginY),
 
