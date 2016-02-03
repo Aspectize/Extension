@@ -2,12 +2,13 @@
 /* Build with http://eonasdan.github.io/bootstrap-datetimepicker */
 
 Aspectize.Extend("BootstrapDateTimePicker", {
-    Properties: { Value: null, MinDate: new Date(0), MaxDate: new Date(0), Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: new Date(0) },
+    Properties: { Value: null, MinDate: new Date(0), MaxDate: new Date(0), Stepping: 1, Format: '', Inline: false, ViewMode: 'days', UseCurrent: true, DefaultDate: new Date(0), Debug: false },
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
         function newPicker() {
             var options = {
+                debug: Aspectize.UiExtensions.GetProperty(elem, 'Debug') || false, /* Use debug = true to keep picker open and inspect control */
                 minDate: false,
                 maxDate: false,
                 stepping: Aspectize.UiExtensions.GetProperty(elem, 'Stepping') || 1,
@@ -45,6 +46,11 @@ Aspectize.Extend("BootstrapDateTimePicker", {
                 var defaultDate = arg.DefaultDate;
                 if (arg.DefaultDate === null || arg.DefaultDate.valueOf() === 0) defaultDate = false;
                 $(sender).data("DateTimePicker").defaultDate(defaultDate);
+            }
+
+            if (('MinDate' in arg) && ('MaxDate' in arg)) {
+                $(sender).data("DateTimePicker").minDate(false);
+                $(sender).data("DateTimePicker").maxDate(false);
             }
 
             if ('MinDate' in arg) {

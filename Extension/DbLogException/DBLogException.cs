@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using Aspectize.Core;
+using System.IO;
 
 namespace DBLogException
 {
@@ -11,6 +12,9 @@ namespace DBLogException
     {
         [Parameter(Optional = false)]
         string DataServiceName = "";
+
+        [Parameter(Optional = true)]
+        string FileServiceName = "";
 
         [Parameter(Optional = true)]
         string MailServiceName = "";
@@ -28,12 +32,14 @@ namespace DBLogException
 
                 if (!ExecutingContext.CurrentHostUrl.ToLower().StartsWith(@"http://localhost"))
                 {
+                    bool messageTooLong = traceInfo.Message.Length > 32000;
+
                     LogException logException = em.CreateInstance<LogException>();
 
                     logException.ApplicationName = traceInfo.ApplicationName;
                     logException.CommandName = traceInfo.CommandName;
                     logException.InfoTypeName = traceInfo.InfoTypeName;
-                    logException.Message = traceInfo.Message;
+                    logException.Message = (messageTooLong) ? "" : traceInfo.Message;
                     logException.ServiceName = traceInfo.ServiceName;
                     logException.DateException = traceInfo.Received;
                     logException.UserAgent = (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Request != null) ? System.Web.HttpContext.Current.Request.UserAgent : "";
@@ -47,6 +53,25 @@ namespace DBLogException
                     else
                     {
                         logException.UserName = "Unknow user";
+                    }
+
+                    if (messageTooLong && !string.IsNullOrEmpty(FileServiceName))
+                    {
+                        IFileService fs = ExecutingContext.GetService<IFileService>(FileServiceName);
+
+                        Guid fileId = Guid.NewGuid();
+
+                        string fileName = string.Format("Trace/{0}.txt", fileId);
+
+                        logException.Message = string.Format("Message Exception is too long to be saved in entity, and is saved in file {0}", fileName);
+
+                        MemoryStream stream = new MemoryStream();
+                        StreamWriter writer = new StreamWriter(stream);
+                        writer.Write(traceInfo.Message);
+                        writer.Flush();
+                        stream.Position = 0;
+
+                        fs.Write(fileName, stream);
                     }
 
                     dm.SaveTransactional();
@@ -69,6 +94,12 @@ namespace DBLogException
                         sb.AppendFormat("Host: {0}", ExecutingContext.CurrentHostUrl);
                         sb.AppendLine("<br />");
                         sb.AppendLine();
+                        if (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Request != null)
+                        {
+                            sb.AppendFormat("Url: {0}", System.Web.HttpContext.Current.Request.Url.AbsoluteUri);
+                            sb.AppendLine("<br />");
+                            sb.AppendLine();
+                        }
                         sb.AppendFormat("UserAgent: {0}", logException.UserAgent);
                         sb.AppendLine("<br />");
                         sb.AppendLine();
