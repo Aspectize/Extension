@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DBLogException
 {
-    [Service(Name = "DBLogException")]
+    [Service(Name = "DBLogException", ConfigurationRequired = true)]
     public class DBLogException : ILog //, IInitializable, ISingleton
     {
         [Parameter(Optional = false)]

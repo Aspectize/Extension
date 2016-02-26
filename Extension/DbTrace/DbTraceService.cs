@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DbTrace
 {
-    [Service(Name = "AzureTraceService")]
+    [Service(Name = "AzureTraceService", ConfigurationRequired = true)]
     public class AzureTraceService : ITrace //, IInitializable, ISingleton
     {
         [Parameter(Optional = false)]
@@ -34,8 +34,9 @@ namespace DbTrace
             trace.UserHost = traceInfo.UserHost;
             trace.UserAgent = (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Request != null) ? System.Web.HttpContext.Current.Request.UserAgent : "";
 
+            bool messageTooLong = traceInfo.Message.Length > 32000;
 
-            if (traceInfo.Message.Length > 10000)
+            if (messageTooLong)
             {
                 IFileService fs = ExecutingContext.GetService<IFileService>(FileServiceName);
 
