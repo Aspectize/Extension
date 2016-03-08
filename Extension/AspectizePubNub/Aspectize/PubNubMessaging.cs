@@ -6,7 +6,7 @@ using Aspectize.Core;
 using System.Security.Permissions;
 using PubNubMessaging.Core;
 
-namespace AspectizePubNub.Aspectize {
+namespace AspectizePubNub {
 
     public interface IPubNubMessaging {
 
