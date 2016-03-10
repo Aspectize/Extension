@@ -101,7 +101,16 @@ namespace AspectizePubNub {
 
         void IPubNubMessaging.SendChannelMessage (string channel, object message) {
 
-            pubnub.Publish(channel, message, onOk, onError);
+            var formattedMessage = message;
+
+            if (message.GetType() == typeof(DataSet)) {
+
+                var jsonData = String.Format ("({0})", JsonSerializer.Serialize(message));
+                 
+                formattedMessage = new { Type="DataSet", Message = jsonData };
+            }
+
+            pubnub.Publish(channel, formattedMessage, onOk, onError);
         }
 
         void IPubNubMessaging.SubscribeChannelMessage (string channel) {
