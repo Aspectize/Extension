@@ -11,10 +11,9 @@ function PubNubChannel(name, mergeData, handler) {
     
     function both(m) {
 
-        if (!mergeAspectizeData(m)) {
+        mergeAspectizeData(m)
 
-            executeCall(m);
-        }
+        executeCall(m);        
     }
 
     this.Name = name;
