@@ -50,6 +50,13 @@ Aspectize.Extend("JQueryAutoComplete", {
             }
 
             $(function () {
+                var jqVersion = jQuery.fn.jquery;
+                var attribute = "autocomplete";
+
+                if (jqVersion >= "1.9") {
+                    attribute = "uiAutocomplete";
+                }
+
                 if (multiValue) {
                     $(elem).autocomplete({
                         source: function (request, response) {
@@ -83,9 +90,15 @@ Aspectize.Extend("JQueryAutoComplete", {
                             }
                         }
 
-                    });
+                    }).data(attribute)._renderItem = function (ul, item) {
+                        return $('<li class="ui-menu-item" role="presentation"></li>')
+                            .data("item.autocomplete", item)
+                            .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+                            .appendTo(ul);
+                    };
 
                 } else {
+
                     $(elem).autocomplete({
                         source: url,
                         select: function (event, ui) {
@@ -102,7 +115,12 @@ Aspectize.Extend("JQueryAutoComplete", {
                                 Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
                             }
                         }
-                    });
+                    }).data(attribute)._renderItem = function (ul, item) {
+                        return $('<li class="ui-menu-item" role="presentation"></li>')
+                            .data("item.autocomplete", item)
+                            .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+                            .appendTo(ul);
+                    };
                 }
             });
         });

@@ -69,9 +69,11 @@ Global.DhtmlxChartService = {
 
             var currentWidth = graphControl.parentNode.clientWidth;
 
+            graphControl.style.width = graphControl.parentNode.clientWidth + 'px';
+
             var pointWidth = graphControl.aasChartProperties.XAxis.PointWidth;
 
-            if (currentWidth < rowCount * pointWidth) {
+            if (currentWidth <= rowCount * pointWidth) {
                 graphControl.style.width = rowCount * pointWidth + 'px';
             }
             else {
