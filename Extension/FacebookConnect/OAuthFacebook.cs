@@ -236,6 +236,7 @@ namespace Aspectize.OAuth {
 
                     if (Authenticated) {
 
+                        info.Add("Id", d.Id);
                         info.Add("Created", d.Created);
                         info.Add("FirstName", d.FirstName);
                         info.Add("LastName", d.LastName);
