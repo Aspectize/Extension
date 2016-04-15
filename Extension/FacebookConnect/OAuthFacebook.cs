@@ -91,7 +91,7 @@ namespace Aspectize.OAuth {
 
                     dm.SaveTransactional();
 
-                    var url = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state, "email");
+                    var url = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state, "public_profile,email");
 
                     ExecutingContext.RedirectUrl = url;
                 } 

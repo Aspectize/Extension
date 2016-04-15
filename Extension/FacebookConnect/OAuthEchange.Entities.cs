@@ -65,42 +65,42 @@ namespace Facebook
 		}
 
 		[Data(ServerOnly = true)]
-[System.Xml.Serialization.XmlIgnore]
+		[System.Xml.Serialization.XmlIgnore]
 		public string UserSecret
 		{
 			get { return getValue<string>("UserSecret"); }
 			set { setValue<string>("UserSecret", value); }
 		}
 
-		[Data]
+		[Data(IsNullable = true)]
 		public string FirstName
 		{
 			get { return getValue<string>("FirstName"); }
 			set { setValue<string>("FirstName", value); }
 		}
 
-		[Data]
+		[Data(IsNullable = true)]
 		public string LastName
 		{
 			get { return getValue<string>("LastName"); }
 			set { setValue<string>("LastName", value); }
 		}
 
-		[Data]
+		[Data(IsNullable = true)]
 		public string Email
 		{
 			get { return getValue<string>("Email"); }
 			set { setValue<string>("Email", value); }
 		}
 
-		[Data]
+		[Data(IsNullable = true)]
 		public string PhotoUrl
 		{
 			get { return getValue<string>("PhotoUrl"); }
 			set { setValue<string>("PhotoUrl", value); }
 		}
 
-		[Data]
+		[Data(IsNullable = true)]
 		public string Data
 		{
 			get { return getValue<string>("Data"); }
