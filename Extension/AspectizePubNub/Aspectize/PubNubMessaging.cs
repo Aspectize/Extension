@@ -15,7 +15,7 @@ namespace AspectizePubNub {
         void SubscribeChannelMessage (string channel);
     }
 
-    [Service(Name = "PubNubMessaging")]
+    [Service(Name = "PubNubMessaging", ConfigurationRequired = true)]
     public class PubNubMessaging : IPubNubMessaging, IMustValidate, IServiceName, IInitializable, ISingleton
     {
         // PAM : PubNub Acces Manager
@@ -69,7 +69,7 @@ namespace AspectizePubNub {
             if (ClientCanPublish) info.Add("pubKey", PublishKey);
             if (ClientCanSubscribe) info.Add("subKey", SubscribeKey);
 
-            if(!String.IsNullOrEmpty (ClientAutoSubscribeChannels.Trim())) {
+            if(ClientAutoSubscribeChannels !=null && !String.IsNullOrEmpty (ClientAutoSubscribeChannels.Trim())) {
 
                 var channels = ClientAutoSubscribeChannels.Split(',');
                 
