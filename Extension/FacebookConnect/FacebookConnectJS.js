@@ -46,11 +46,11 @@ Global.FacebookConnectJS = {
 
                        if (r.status === 'connected') {
 
-                           Aspectize.HttpForm('GET', cmdUrl, { action: 'create' });
+                           Aspectize.HttpForm('GET', cmdUrl, { action: 'create' }, function (r) { });
                        }
                    });
 
-               } else Aspectize.HttpForm('GET', cmdUrl, { action: 'create' });
+               } else Aspectize.HttpForm('GET', cmdUrl, { action: 'create' }, function (r) { });
 
            });
                      
@@ -70,7 +70,7 @@ Global.FacebookConnectJS = {
                if (r.status === 'connected') {
 
                    var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
-                   Aspectize.HttpForm('GET', cmdUrl, { action: 'login' });
+                   Aspectize.HttpForm('GET', cmdUrl, { action: 'login' }, function (r) { });
 
                    FB.api('/me', 'get', { fields:'id,email' }, function (r) {
 
