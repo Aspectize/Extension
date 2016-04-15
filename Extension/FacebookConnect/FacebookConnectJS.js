@@ -15,7 +15,7 @@ Global.FacebookConnectJS = {
            var key = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionApiKey');
 
            window.fbAsyncInit = function () {
-               FB.init({ appId: key, xfbml: true, version: 'v2.5'});
+               FB.init({ appId: key, xfbml: true, version: 'v2.6'});
            };           
 
            (function (d, id) {
