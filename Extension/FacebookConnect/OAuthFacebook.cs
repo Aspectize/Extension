@@ -6,8 +6,25 @@ using FacebookConnect;
 
 namespace Aspectize.OAuth {
 
+    
+    public interface IFacebookOAuth {
+
+        string GetApplictionApiKey ();
+
+        [Command(Bindable = false)]
+        void OAuth (string code, string state, string error, string error_description);
+
+        void RedirectToOAuthProvider (string action);
+    }
+
+    public interface IFacebook {
+
+        [Command(Bindable = false)]
+        Dictionary<string, object> Authenticate (string userId, string secret, string chalenge);
+    }
+
     [Service(Name = "FacebookConnect")]
-    public class FacebookConnect : IOAuth, IMustValidate, IServiceName {
+    public class FacebookConnect : IFacebook, IFacebookOAuth, IMustValidate, IServiceName {
         const string FacebookAuthorizationUrl = "https://www.facebook.com/dialog/oauth";
         const string FacebookAccessTokenUrl = "https://graph.facebook.com/v2.3/oauth/access_token";
         const string FacebookDataUrl = "https://graph.facebook.com/v2.3/me";
@@ -28,6 +45,9 @@ namespace Aspectize.OAuth {
 
         string OAuthProviderDataUrl = FacebookDataUrl;
 
+        const string ActionCreateUser = "create";
+        const string ActionLoginUser = "login";
+
         #region IServiceName Members
 
         string svcName;
@@ -47,110 +67,141 @@ namespace Aspectize.OAuth {
             }
         }
 
-        #region IOAuth Members
+        #region IFacebookOAuth Members
 
-         void IOAuth.RedirectToOAuthProvider () {
+        string IFacebookOAuth.GetApplictionApiKey() { return OAuthClientApplictionApiKey; }
 
-            IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
-            var em = dm as IEntityManager;
+        void IFacebookOAuth.RedirectToOAuthProvider (string action) {
 
-            var oauthData = em.CreateInstance<Facebook.OAuthData>();
+            if (!String.IsNullOrEmpty(action)) {
 
-            oauthData.Created = oauthData.Updated = DateTime.UtcNow;
-            oauthData.UserId = oauthData.UserSecret = oauthData.FirstName = oauthData.LastName = oauthData.Email = oauthData.PhotoUrl = oauthData.Data = String.Empty;
+                action = action.ToLower();
 
-            var state = oauthData.Id.ToString("N");
-
-            dm.SaveTransactional();
-
-            var url = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state, "email");
-
-            ExecutingContext.RedirectUrl = url;
-        }
-
-        void IOAuth.OAuth (string code, string state, string error, string error_description) {
-
-            
-            if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
-
-                Guid id;
-
-                if (Guid.TryParse(state, out id)) {
+                if ((action == ActionCreateUser) || (action == ActionLoginUser)) {
 
                     IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+                    var em = dm as IEntityManager;
 
-                    var oauthData = dm.GetEntity<Facebook.OAuthData>(id);
+                    var oauthData = em.CreateInstance<Facebook.OAuthData>();
 
-                    if (oauthData != null) { // This call was requested by calling  GetAuthorizationUrl ()
+                    oauthData.Created = oauthData.Updated = DateTime.UtcNow;
+                    oauthData.UserId = oauthData.UserSecret = oauthData.FirstName = oauthData.LastName = oauthData.Email = oauthData.PhotoUrl = oauthData.Data = String.Empty;
 
-                        var jsObj = OAuthHelper.GetAccessToken(OAuthProviderAccessTokenUrl, code, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, OAuthClientApplictionApiSecret);
-                        var aToken = jsObj.SafeGetValue<string>("access_token");
+                    var state = action + oauthData.Id.ToString("N");
 
-                        var data = OAuthHelper.GetData(OAuthProviderDataUrl, aToken, OAuthClientApplictionApiSecret);
-                        var jsData = JsonSerializer.Eval(data) as JsonObject;
+                    dm.SaveTransactional();
 
-                        var providerId = jsData.SafeGetValue<string>("id");
+                    var url = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state, "email");
 
-                        var rxId = new Regex(String.Format(@"\b{0}\b", providerId));
-                        data = rxId.Replace(data, "xxx");
+                    ExecutingContext.RedirectUrl = url;
+                } 
+            }
+        }
 
+        static Regex rxState = new Regex ("^(?<action>(login|create))(?<sid>[A-F0-9]{32})$", RegexOptions.IgnoreCase);
 
-                        var email = jsData.SafeGetValue<string>("email");
-                        var externalUserId = String.Format("{0}@facebook", email).ToLower();
-                        var internalUserId = String.Format("{0}@@{1}", email, svcName).ToLower();
-
-                        var fName = jsData.SafeGetValue<string>("first_name");
-                        var lName = jsData.SafeGetValue<string>("last_name");
-
-                        var photoUrl = String.Format("{0}/{1}/picture?type=large", FacebookGraph, providerId);
+        void IFacebookOAuth.OAuth (string code, string state, string error, string error_description) {
 
 
-                        // hashed providerId used to prevent duplicate account creation !
-                        var uniqueName = String.Format("{0}@{1}", providerId, svcName);
-                        var uniqueId = PasswordHasher.ComputeHash(uniqueName, HashHelper.Algorithm.SHA256Managed);
+            if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
 
-                        var existingUser = dm.GetEntity<Facebook.OAuthProviderUser>(uniqueId);
+                var m = rxState.Match(state);
 
-                        if (existingUser != null) {
+                if (m.Success) {
 
-                            var existingUserId = existingUser.OAuthDataId;
+                    var action = m.Groups["action"].Value;
+                    var sid = m.Groups["sid"].Value;
 
-                            Facebook.OAuthData existingData;
+                    Guid id;
 
-                            if (existingUserId != id) {
+                    if (Guid.TryParse(sid, out id)) {
 
-                                oauthData.Delete();
+                        IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
-                                existingData = dm.GetEntity<Facebook.OAuthData>(existingUserId);
+                        var oauthData = dm.GetEntity<Facebook.OAuthData>(id);
 
-                            } else existingData = oauthData;
+                        if (oauthData != null) { 
 
-                            existingData.UserId = internalUserId;
-                            existingData.FirstName = fName; existingData.LastName = lName;
-                            existingData.Email = email; existingData.PhotoUrl = photoUrl;
-                            existingData.Data = data;
-                            existingData.Updated = DateTime.UtcNow;
+                            #region This call was requested by calling  GetAuthorizationUrl ()
 
-                        } else {
+                            var jsObj = OAuthHelper.GetAccessToken(OAuthProviderAccessTokenUrl, code, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, OAuthClientApplictionApiSecret);
+                            var aToken = jsObj.SafeGetValue<string>("access_token");
 
-                            var em = dm as IEntityManager;
+                            var data = OAuthHelper.GetData(OAuthProviderDataUrl, aToken, OAuthClientApplictionApiSecret);
+                            var jsData = JsonSerializer.Eval(data) as JsonObject;
 
-                            var uniqueUser = em.CreateInstance<Facebook.OAuthProviderUser>();
+                            var providerId = jsData.SafeGetValue<string>("id");
 
-                            uniqueUser.Id = uniqueId;
-                            uniqueUser.OAuthDataId = id;
+                            var rxId = new Regex(String.Format(@"\b{0}\b", providerId));
+                            data = rxId.Replace(data, "xxx");
 
-                            oauthData.UserId = internalUserId;
 
-                            oauthData.UserSecret = PasswordHasherEx.ComputeHashForStorage(providerId, externalUserId); // providerId used as password !
+                            var email = jsData.SafeGetValue<string>("email");
+                            var externalUserId = String.Format("{0}@facebook", email).ToLower();
+                            var internalUserId = String.Format("{0}@@{1}", email, svcName).ToLower();
 
-                            oauthData.FirstName = fName; oauthData.LastName = lName;
-                            oauthData.Email = email; oauthData.PhotoUrl = photoUrl;
-                            oauthData.Data = data;
-                            oauthData.Updated = DateTime.UtcNow;
+                            var fName = jsData.SafeGetValue<string>("first_name");
+                            var lName = jsData.SafeGetValue<string>("last_name");
+
+                            var photoUrl = String.Format("{0}/{1}/picture?type=large", FacebookGraph, providerId);
+
+                            // hashed providerId used to prevent duplicate account creation !
+                            var uniqueName = String.Format("{0}@{1}", providerId, svcName);
+                            var uniqueId = PasswordHasher.ComputeHash(uniqueName, HashHelper.Algorithm.SHA256Managed);
+
+                            var existingUser = dm.GetEntity<Facebook.OAuthProviderUser>(uniqueId);
+
+                            if (existingUser != null) {
+
+                                var existingUserId = existingUser.OAuthDataId;
+
+                                Facebook.OAuthData existingData;
+
+                                if (existingUserId != id) {
+
+                                    oauthData.Delete();
+
+                                    existingData = dm.GetEntity<Facebook.OAuthData>(existingUserId);
+
+                                } else existingData = oauthData;
+
+                                if (action == ActionCreateUser) {
+
+                                    // in fact updating user
+                                    existingData.UserId = internalUserId;
+                                    existingData.FirstName = fName; existingData.LastName = lName;
+                                    existingData.Email = email; existingData.PhotoUrl = photoUrl;
+                                    existingData.Data = data;
+                                    existingData.Updated = DateTime.UtcNow;
+
+                                } else if (action == ActionLoginUser) {
+
+                                    existingData.Updated = DateTime.UtcNow;
+                                }                                
+
+                            } else if(action == ActionCreateUser) {
+
+                                var em = dm as IEntityManager;
+
+                                var uniqueUser = em.CreateInstance<Facebook.OAuthProviderUser>();
+
+                                uniqueUser.Id = uniqueId;
+                                uniqueUser.OAuthDataId = id;
+
+                                oauthData.UserId = internalUserId;
+
+                                oauthData.UserSecret = PasswordHasherEx.ComputeHashForStorage(providerId, externalUserId); // providerId used as password !
+
+                                oauthData.FirstName = fName; oauthData.LastName = lName;
+                                oauthData.Email = email; oauthData.PhotoUrl = photoUrl;
+                                oauthData.Data = data;
+                                oauthData.Updated = DateTime.UtcNow;
+                            }
+
+                            dm.SaveTransactional();
+
+                            #endregion
                         }
-
-                        dm.SaveTransactional();
                     }
                 }
             }
@@ -158,7 +209,7 @@ namespace Aspectize.OAuth {
 
         static Regex rxFacebook = new Regex("@facebook", RegexOptions.IgnoreCase);
 
-        Dictionary<string, object> IOAuth.Authenticate (string userId, string secret, string chalenge) {
+        Dictionary<string, object> IFacebook.Authenticate (string userId, string secret, string chalenge) {
 
             var Authenticated = false;
             var info = new Dictionary<string, object>();
@@ -177,17 +228,22 @@ namespace Aspectize.OAuth {
                 var d = data[0];
                 var userSecret = d.UserSecret;
 
-                Authenticated = PasswordHasherEx.CheckResponse(userSecret, chalenge, secret);
+                var delta = Math.Abs((DateTime.UtcNow - d.Updated).TotalMinutes);
 
-                if (Authenticated) {
+                if (delta < 1) {
 
-                    info.Add("Created", d.Created);
-                    info.Add("FirstName", d.FirstName);
-                    info.Add("LastName", d.LastName);
-                    info.Add("Email", d.Email);
-                    info.Add("PhotoUrl", d.PhotoUrl);
-                    info.Add("Updated", d.Updated);
-                    info.Add("RawData", d.Data);
+                    Authenticated = PasswordHasherEx.CheckResponse(userSecret, chalenge, secret);
+
+                    if (Authenticated) {
+
+                        info.Add("Created", d.Created);
+                        info.Add("FirstName", d.FirstName);
+                        info.Add("LastName", d.LastName);
+                        info.Add("Email", d.Email);
+                        info.Add("PhotoUrl", d.PhotoUrl);
+                        info.Add("Updated", d.Updated);
+                        info.Add("RawData", d.Data);
+                    }
                 }
             }
 

@@ -8,9 +8,22 @@ using LinkedInConnect;
 
 namespace Aspectize.OAuth {
 
+    public interface ILinkedInOAuth {
+
+        [Command(Bindable = false)]
+        void OAuth (string code, string state, string error, string error_description);
+
+        void RedirectToOAuthProvider ();
+    }
+
+    public interface ILinkedIn {
+
+        [Command(Bindable = false)]
+        Dictionary<string, object> Authenticate (string userId, string secret, string chalenge);
+    }
 
     [Service(Name = "LinkedInConnect")]
-    public class LinkedInConnect : IOAuth, IMustValidate, IServiceName {
+    public class LinkedInConnect : ILinkedIn, ILinkedInOAuth, IMustValidate, IServiceName {
 
         const string LinkedInAuthorizationUrl = "https://www.linkedin.com/uas/oauth2/authorization";
         const string LinkedInAccessTokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
@@ -50,9 +63,9 @@ namespace Aspectize.OAuth {
             }
         }
 
-        #region IOAuth Members
+        #region ILinkedInOAuth Members
 
-        void IOAuth.RedirectToOAuthProvider () {
+        void ILinkedInOAuth.RedirectToOAuthProvider () {
 
             IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
             var em = dm as IEntityManager;
@@ -69,7 +82,7 @@ namespace Aspectize.OAuth {
             ExecutingContext.RedirectUrl = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state);
         }
 
-        void IOAuth.OAuth (string code, string state, string error, string error_description) {
+        void ILinkedInOAuth.OAuth (string code, string state, string error, string error_description) {
 
             if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
 
@@ -168,7 +181,7 @@ namespace Aspectize.OAuth {
 
         static Regex rxLinkedin = new Regex("@linkedin$", RegexOptions.IgnoreCase);
 
-        Dictionary<string, object> IOAuth.Authenticate (string userId, string secret, string chalenge) {
+        Dictionary<string, object> ILinkedIn.Authenticate (string userId, string secret, string chalenge) {
 
             var Authenticated = false;
             var info = new Dictionary<string, object>();
