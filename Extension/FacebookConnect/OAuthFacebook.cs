@@ -26,8 +26,8 @@ namespace Aspectize.OAuth {
     [Service(Name = "FacebookConnect")]
     public class FacebookConnect : IFacebook, IFacebookOAuth, IMustValidate, IServiceName {
         const string FacebookAuthorizationUrl = "https://www.facebook.com/dialog/oauth";
-        const string FacebookAccessTokenUrl = "https://graph.facebook.com/v2.3/oauth/access_token";
-        const string FacebookDataUrl = "https://graph.facebook.com/v2.3/me";
+        const string FacebookAccessTokenUrl = "https://graph.facebook.com/v2.6/oauth/access_token";
+        const string FacebookDataUrl = "https://graph.facebook.com/v2.6/me";
         const string FacebookGraph = "https://graph.facebook.com";
 
         [ParameterAttribute(DefaultValue = null)]

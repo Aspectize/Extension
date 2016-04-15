@@ -68,6 +68,7 @@ namespace FacebookConnect {
           
             var parameters = new Dictionary<string, object>();
             parameters.Add("appsecret_proof", h);
+            parameters.Add("fields", "id,first_name,last_name,email");            
 
             return AspectizeHttpClient.Get(oauthProviderRequest, parameters, headers);
         }       
