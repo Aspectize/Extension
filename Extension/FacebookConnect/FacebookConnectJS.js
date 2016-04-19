@@ -6,16 +6,23 @@ Global.FacebookConnectJS = {
    
    serviceName: null,
 
-   Init : function (configuredServiceName) {
+   Init : function (configuredServiceName, params) {
 
        if (configuredServiceName) {
+
+           if (window.fbAsyncInit) return;
 
            this.serviceName = configuredServiceName;
 
            var key = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionApiKey');
 
            window.fbAsyncInit = function () {
-               FB.init({ appId: key, xfbml: true, version: 'v2.6'});
+
+               var p = params || { version: 'v2.6', cookie:true };
+
+               p.appId = key;
+
+               FB.init(p);
            };           
 
            (function (d, id) {
@@ -70,15 +77,17 @@ Global.FacebookConnectJS = {
                if (r.status === 'connected') {
 
                    var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
-                   Aspectize.HttpForm('GET', cmdUrl, { action: 'login' }, function (r) { });
+                   Aspectize.HttpForm('GET', cmdUrl, { action: 'login' }, function (r) {
 
-                   FB.api('/me', 'get', { fields:'id,email' }, function (r) {
+                       FB.api('/me', 'get', { fields: 'id,email' }, function (r) {
 
-                       if (r.email && r.id) {
+                           if (r.email && r.id) {
 
-                           svc.Authenticate(r.email + '@Facebook', r.id, true);
-                       }
-                   });
+                               svc.Authenticate(r.email + '@Facebook', r.id, true);
+                           }
+                       });
+
+                   });                   
                }
            });
 
