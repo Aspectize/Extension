@@ -64,7 +64,7 @@ Global.FacebookConnectJS = {
        } else Aspectize.Throw('FacebookConnectJS.CreateAccount :  Init with configuredServiceName was not called !', -1);
    },
 
-   Authenticate: function () {
+   Authenticate: function (rememberMe) {
 
        if (this.serviceName) {
 
@@ -83,7 +83,7 @@ Global.FacebookConnectJS = {
 
                            if (r.email && r.id) {
 
-                               svc.Authenticate(r.email + '@Facebook', r.id, true);
+                               svc.Authenticate(r.email + '@Facebook', r.id, rememberMe);
                            }
                        });
 
