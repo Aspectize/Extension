@@ -2,107 +2,98 @@
 
 Global.FacebookConnectJS = {
 
-   aasService:'FacebookConnectJS',
-   
-   serviceName: null,
+    aasService: 'FacebookConnectJS',
 
-   Init : function (configuredServiceName, params) {
+    serviceName: null,
 
-       if (configuredServiceName) {
+    Init: function (configuredServiceName, params) {
 
-           if (window.fbAsyncInit) return;
+        if (configuredServiceName) {
 
-           this.serviceName = configuredServiceName;
+            if (window.fbAsyncInit) return;
 
-           var key = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionApiKey');
+            this.serviceName = configuredServiceName;
 
-           window.fbAsyncInit = function () {
+            var key = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionApiKey');
 
-               var p = params || { version: 'v2.6', cookie:true };
+            window.fbAsyncInit = function () {
 
-               p.appId = key;
+                var p = params || { version: 'v2.6', cookie: true };
 
-               FB.init(p);
-           };           
+                p.appId = key;
 
-           (function (d, id) {
+                FB.init(p);
+            };
 
-               if (d.getElementById(id)) return;
+            (function (d, id) {
 
-               var js = d.createElement('script'); js.id = id;               
-               js.src = "//connect.facebook.net/en_US/sdk.js";
+                if (d.getElementById(id)) return;
 
-               d.head.appendChild(js);
+                var js = d.createElement('script'); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
 
-           }(document, 'facebook-jssdk'));
-       }
-   },
+                d.head.appendChild(js);
 
-   CreateAccount: function () {
+            }(document, 'facebook-jssdk'));
+        }
+    },
 
-       if (this.serviceName) {
-           
-           var configuredServiceName = this.serviceName;
-           var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
+    Connect: function (login, rememberMe) {        
 
-           FB.getLoginStatus(function (r) {
-               
-               if (r.status !== 'connected') {
+        if (this.serviceName) {
 
-                   FB.login(function (r) {
+            var configuredServiceName = this.serviceName;
+            var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
 
-                       if (r.status === 'connected') {
+            var doJob = function () {
 
-                           Aspectize.HttpForm('GET', cmdUrl, { action: 'create' }, function (r) { });
-                       }
-                   });
+                if (login) {
 
-               } else Aspectize.HttpForm('GET', cmdUrl, { action: 'create' }, function (r) { });
+                    var svc = Aspectize.Host.GetService('SecurityServices');
 
-           });
-                     
-       } else Aspectize.Throw('FacebookConnectJS.CreateAccount :  Init with configuredServiceName was not called !', -1);
-   },
+                    FB.api('/me', 'get', { fields: 'id,email' }, function (r) {
 
-   Authenticate: function (rememberMe) {
+                        if (r.email && r.id) {
 
-       if (this.serviceName) {
+                            Aspectize.HttpForm('GET', cmdUrl, null, function (data) {
 
-           var configuredServiceName = this.serviceName;
+                                svc.Authenticate(r.email + '@Facebook', r.id, rememberMe);
+                            });
+                        }                        
+                    });                    
 
-           var svc = Aspectize.Host.GetService('SecurityServices');
+                } else {
 
-           FB.login(function (r) {
+                    Aspectize.HttpForm('GET', cmdUrl, null, function (r) { });
+                }                
+            };
 
-               if (r.status === 'connected') {
+            FB.getLoginStatus(function (r) {
 
-                   var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
-                   Aspectize.HttpForm('GET', cmdUrl, { action: 'login' }, function (r) {
+                var fbConnected = (r.status === 'connected');
 
-                       FB.api('/me', 'get', { fields: 'id,email' }, function (r) {
+                if (!fbConnected) {
 
-                           if (r.email && r.id) {
+                    FB.login(function (r) {
 
-                               svc.Authenticate(r.email + '@Facebook', r.id, rememberMe);
-                           }
-                       });
+                        if (r.status === 'connected') doJob();
+                    });
 
-                   });                   
-               }
-           });
+                } else doJob();                               
+            });
 
-       } else Aspectize.Throw('FacebookConnectJS.Authenticate :  Init with configuredServiceName was not called !', -1);
-   },
+        } else Aspectize.Throw('FacebookConnectJS.Connect :  Init with configuredServiceName was not called !', -1);
+    },
 
-   SignOut: function (logOutFromFacebookAlso) {
+    SignOut: function (logOutFromFacebookAlso) {
 
-       var svc = Aspectize.Host.GetService('SecurityServices');
-       svc.SignOut();
+        var svc = Aspectize.Host.GetService('SecurityServices');
+        svc.SignOut();
 
-       if (logOutFromFacebookAlso) {
+        if (logOutFromFacebookAlso) {
 
-           FB.logout(function (r) {  });
-       }
-   }
+            FB.logout(function (r) { });
+        }
+    }
 };
 
