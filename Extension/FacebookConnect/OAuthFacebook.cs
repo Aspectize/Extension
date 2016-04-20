@@ -9,7 +9,7 @@ namespace Aspectize.OAuth {
 
     public interface IFacebookOAuth {
 
-        string GetApplictionApiKey ();
+        Dictionary<string, object> GetApplictionInfo ();
 
         [Command(Bindable = false)]
         void OAuth (string code, string state, string error, string error_description);
@@ -38,6 +38,9 @@ namespace Aspectize.OAuth {
 
         [ParameterAttribute(DefaultValue = null)]
         string DataBaseServiceName = null;
+
+        [ParameterAttribute(Optional = true, DefaultValue = false)]
+        bool AutoLogin = false;
 
         [ParameterAttribute(Optional = true, DefaultValue = false)]
         bool LogEnabled = false;
@@ -77,7 +80,16 @@ namespace Aspectize.OAuth {
 
         #region IFacebookOAuth Members
 
-        string IFacebookOAuth.GetApplictionApiKey () { return OAuthClientApplictionApiKey; }
+        Dictionary<string, object> IFacebookOAuth.GetApplictionInfo () {
+
+            var info = new Dictionary<string, object>();
+
+            info.Add("ApiKey", OAuthClientApplictionApiKey);
+            
+            info.Add("AutoLogin", AutoLogin && !ExecutingContext.CurrentUser.IsAuthenticated);
+
+            return info;
+        }
 
         void IFacebookOAuth.RedirectToOAuthProvider () {
 

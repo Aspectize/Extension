@@ -13,16 +13,35 @@ Global.FacebookConnectJS = {
             if (window.fbAsyncInit) return;
 
             this.serviceName = configuredServiceName;
-
-            var key = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionApiKey');
+            var This = this;
+            var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
 
             window.fbAsyncInit = function () {
 
                 var p = params || { version: 'v2.6', cookie: true };
 
-                p.appId = key;
+                p.appId = info.ApiKey;
 
                 FB.init(p);
+                
+                if (info.AutoLogin) {
+                    
+                    FB.getLoginStatus(function (r) {
+
+                        if (r.status === 'connected') {
+                            
+                            var svc = Aspectize.Host.GetService('SecurityServices');
+
+                            FB.api('/me', 'get', { fields: 'id,email' }, function (r) {
+
+                                if (r.email && r.id) {
+
+                                    svc.Authenticate(r.email + '@Facebook', r.id, false);
+                                }
+                            });
+                        }
+                    });
+                }
             };
 
             (function (d, id) {
