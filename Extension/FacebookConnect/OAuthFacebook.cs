@@ -14,7 +14,7 @@ namespace Aspectize.OAuth {
         [Command(Bindable = false)]
         void OAuth (string code, string state, string error, string error_description);
 
-        void RedirectToOAuthProvider ();
+        void RedirectToOAuthProvider (string action);
     }
 
     public interface IFacebook {
@@ -91,21 +91,32 @@ namespace Aspectize.OAuth {
             return info;
         }
 
-        void IFacebookOAuth.RedirectToOAuthProvider () {
+        const string validateUser = "validateUser";
+
+        void IFacebookOAuth.RedirectToOAuthProvider (string action) {
 
             logMessage("Enter {0}.RedirectToOAuthProvider", svcName);
 
-            IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
-            var em = dm as IEntityManager;
+            string state;
 
-            var oauthData = em.CreateInstance<Facebook.OAuthData>();
+            if (action == validateUser) {
 
-            oauthData.Created = oauthData.Updated = DateTime.UtcNow;
-            oauthData.UserId = oauthData.UserSecret = oauthData.FirstName = oauthData.LastName = oauthData.Email = oauthData.PhotoUrl = oauthData.Data = String.Empty;
+                state = Guid.Empty.ToString("N");
 
-            var state = oauthData.Id.ToString("N");
+            } else {
 
-            dm.SaveTransactional();
+                IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+                var em = dm as IEntityManager;
+
+                var oauthData = em.CreateInstance<Facebook.OAuthData>();
+
+                oauthData.Created = oauthData.Updated = DateTime.UtcNow;
+                oauthData.UserId = oauthData.UserSecret = oauthData.FirstName = oauthData.LastName = oauthData.Email = oauthData.PhotoUrl = oauthData.Data = String.Empty;
+
+                state = oauthData.Id.ToString("N");
+
+                dm.SaveTransactional();
+            }                       
 
             var url = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state, "public_profile,email");
 
@@ -126,11 +137,13 @@ namespace Aspectize.OAuth {
 
                     if (Guid.TryParse(state, out id)) {
 
+                        var validateUserCallFromFacebook = (id == Guid.Empty);
+
                         IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
-                        var oauthData = dm.GetEntity<Facebook.OAuthData>(id);
+                        var oauthData = validateUserCallFromFacebook ? null : dm.GetEntity<Facebook.OAuthData>(id);
 
-                        if (oauthData != null) {
+                        if (validateUserCallFromFacebook || (oauthData != null)) {
 
                             #region This call was requested by calling  GetAuthorizationUrl ()
 
@@ -174,7 +187,11 @@ namespace Aspectize.OAuth {
 
                                 Facebook.OAuthData existingData;
 
-                                if (existingUserId != id) {
+                                if(validateUserCallFromFacebook) {
+
+                                    existingData = dm.GetEntity<Facebook.OAuthData>(existingUserId);
+
+                                } else if (existingUserId != id) {
 
                                     oauthData.Delete();
 
@@ -188,7 +205,7 @@ namespace Aspectize.OAuth {
                                 existingData.Data = data;
                                 existingData.Updated = DateTime.UtcNow;
 
-                            } else {
+                            } else if (!validateUserCallFromFacebook) {
 
                                 var em = dm as IEntityManager;
 

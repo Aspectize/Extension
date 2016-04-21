@@ -5,6 +5,7 @@ Global.FacebookConnectJS = {
     aasService: 'FacebookConnectJS',
 
     serviceName: null,
+    cmdUrl: null,
 
     Init: function (configuredServiceName, params) {
 
@@ -13,6 +14,8 @@ Global.FacebookConnectJS = {
             if (window.fbAsyncInit) return;
 
             this.serviceName = configuredServiceName;
+            this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
+
             var This = this;
             var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
 
@@ -36,7 +39,10 @@ Global.FacebookConnectJS = {
 
                                 if (r.email && r.id) {
 
-                                    svc.Authenticate(r.email + '@Facebook', r.id, false);
+                                    Aspectize.HttpForm('GET', This.cmdUrl, { action: 'validateUser' }, function (data) {
+
+                                        svc.Authenticate(r.email + '@Facebook', r.id, false);
+                                    });
                                 }
                             });
                         }
@@ -62,7 +68,7 @@ Global.FacebookConnectJS = {
         if (this.serviceName) {
 
             var configuredServiceName = this.serviceName;
-            var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
+            var cmdUrl = this.cmdUrl;
 
             var doJob = function () {
 
