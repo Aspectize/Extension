@@ -84,7 +84,12 @@ Global.FacebookConnectJS = {
 
                                 svc.Authenticate(r.email + '@Facebook', r.id, rememberMe);
                             });
-                        }                        
+
+                        } else {
+
+                            if (!r.email) Aspectize.Throw('Missing email from Facebook in ' + configuredServiceName, -1);
+                            if (!r.id) Aspectize.Throw('Missing id from Facebook in ' + configuredServiceName, -1);
+                        }
                     });                    
 
                 } else {
