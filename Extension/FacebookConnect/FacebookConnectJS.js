@@ -76,20 +76,14 @@ Global.FacebookConnectJS = {
 
                     var svc = Aspectize.Host.GetService('SecurityServices');
 
-                    FB.api('/me', 'get', { fields: 'id,email' }, function (r) {
+                    FB.api('/me', 'get', { fields: 'id,email' }, function (r) {                        
 
-                        if (r.email && r.id) {
+                       Aspectize.HttpForm('GET', cmdUrl, null, function (data) {
 
-                            Aspectize.HttpForm('GET', cmdUrl, null, function (data) {
-
-                                svc.Authenticate(r.email + '@Facebook', r.id, rememberMe);
-                            });
-
-                        } else {
-
-                            if (!r.email) Aspectize.Throw('Missing email from Facebook in ' + configuredServiceName, -1);
-                            if (!r.id) Aspectize.Throw('Missing id from Facebook in ' + configuredServiceName, -1);
-                        }
+                           var email = r.email || '404';
+                           var fbId = r.id || null;
+                           svc.Authenticate(email + '@Facebook', fbId, rememberMe);
+                       });                        
                     });                    
 
                 } else {
