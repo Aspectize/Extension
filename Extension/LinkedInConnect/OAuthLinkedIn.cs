@@ -8,6 +8,27 @@ using LinkedInConnect;
 
 namespace Aspectize.OAuth {
 
+    class MyGuid {
+
+        static Regex rxGuid = new Regex("^[0-9A-F]{32}$");
+        static internal bool TryParse (string s, out Guid g) {
+
+            if (!String.IsNullOrEmpty(s)) {
+
+                s = s.ToUpper();
+
+                if (rxGuid.IsMatch(s)) {
+
+                    g = new Guid(s);
+                    return true;
+                }
+            }
+
+            g = Guid.Empty;
+            return false;
+        }
+    }
+
     public interface ILinkedInOAuth {
 
         [Command(Bindable = false)]
@@ -88,7 +109,7 @@ namespace Aspectize.OAuth {
 
                 Guid id;
 
-                if (Guid.TryParse(state, out id)) {
+                if (MyGuid.TryParse(state, out id)) {
 
                     IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
