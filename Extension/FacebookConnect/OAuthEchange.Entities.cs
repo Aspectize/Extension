@@ -65,7 +65,7 @@ namespace Facebook
 		}
 
 		[Data(ServerOnly = true)]
-		[System.Xml.Serialization.XmlIgnore]
+[System.Xml.Serialization.XmlIgnore]
 		public string UserSecret
 		{
 			get { return getValue<string>("UserSecret"); }
