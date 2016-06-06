@@ -4,36 +4,88 @@ Global.LinkedInConnectJS = {
 
    aasService:'LinkedInConnectJS',
    
-   CreateAccount: function (configuredServiceName) {
+   serviceName: null,
+   cmdUrl: null,
+   Init: function (configuredServiceName, params) {
 
        if (configuredServiceName) {
 
-           IN.User.authorize(function () {
+           if (window.lnAspectizeInit) return;
 
-               var cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
+           this.serviceName = configuredServiceName;
+           this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
+           
+           var This = this;
+           var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
 
-               Aspectize.HttpForm('GET', cmdUrl, null, function (r) { });
+           window.lnAspectizeInit = function () {
 
-           }, this);
+               if (info.AutoLogin) {
 
-       } else Aspectize.Throw('LinkedInConnectJS.CreateAccount :  missing configuredServiceName', -1);
+                   This.Connect(true, false);
+               }
+           };
+
+           (function (d) {
+
+               var initData = "\napi_key:" + info.ApiKey;
+               initData += "\nonLoad:lnAspectizeInit\n"
+               initData += "\nauthorize:" + (info.AutoLogin ? "true\n" : "false\n");
+
+               var js = d.createElement('script');;
+               js.src = "//platform.linkedin.com/in.js";
+               js.innerHTML = initData;
+
+               d.head.appendChild(js);
+
+           })(document);
+           
+       }
    },
 
-   Authenticate: function () {
+   Connect: function (login, rememberMe) {
 
-       var svc = Aspectize.Host.GetService('SecurityServices');
+       if (this.serviceName) {
 
-       IN.User.authorize(function () {
+           var configuredServiceName = this.serviceName;
+           var cmdUrl = this.cmdUrl;
 
-           IN.API.Raw('/people/~:(id,email-address)?scope=r_basicprofile+r_emailaddress').method('GET').result(function (r) {
-               
-               if(r.emailAddress && r.id) {
+           var doJob = function () {
 
-                   svc.Authenticate (r.emailAddress + '@LinkedIn', r.id, true);
+               if (login) {
+
+                   var svc = Aspectize.Host.GetService('SecurityServices');
+
+                   IN.API.Raw('/people/~:(id,email-address)?scope=r_basicprofile+r_emailaddress').method('GET').result(function (r) {
+
+                       if (r.emailAddress && r.id) {
+
+                           var email = r.emailAddress || '404';
+                           var lnId = r.id || null;
+                           svc.Authenticate(email + '@LinkedIn', lnId, rememberMe);
+                       }
+                   });                   
+
+               } else {
+
+                   Aspectize.HttpForm('GET', cmdUrl, null, function (r) { });
                }
-           });
+           };
 
-       }, this);            
+           if (IN.User.isAuthorized()) {
+
+               doJob();
+
+           } else {
+
+               IN.User.authorize(function () {
+
+                   doJob();
+
+               }, this);
+           }          
+
+       } else Aspectize.Throw('LinkedInConnectJS.Connect :  Init with configuredServiceName was not called !', -1);
    },
 
    SignOut: function (logOutFromLinkedInAlso) {

@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Data;
 using Aspectize.Core;
 using System.Text.RegularExpressions;
 using LinkedInConnect;
@@ -31,10 +29,12 @@ namespace Aspectize.OAuth {
 
     public interface ILinkedInOAuth {
 
+        Dictionary<string, object> GetApplictionInfo ();
+
         [Command(Bindable = false)]
         void OAuth (string code, string state, string error, string error_description);
 
-        void RedirectToOAuthProvider ();
+        void RedirectToOAuthProvider (string action);
     }
 
     public interface ILinkedIn {
@@ -58,6 +58,20 @@ namespace Aspectize.OAuth {
 
         [ParameterAttribute(DefaultValue = null)]
         string DataBaseServiceName = null;
+
+        [ParameterAttribute(Optional = true, DefaultValue = false)]
+        bool AutoLogin = false;
+
+        [ParameterAttribute(Optional = true, DefaultValue = false)]
+        bool LogEnabled = false;
+
+        void logMessage (string format, params object[] args) {
+
+            if (LogEnabled) {
+
+                Context.Log(InfoType.Information, format, args);
+            }
+        }
 
         string OAuthProviderAuthorizationUrl = LinkedInAuthorizationUrl;
 
@@ -86,7 +100,20 @@ namespace Aspectize.OAuth {
 
         #region ILinkedInOAuth Members
 
-        void ILinkedInOAuth.RedirectToOAuthProvider () {
+        Dictionary<string, object> ILinkedInOAuth.GetApplictionInfo () {
+
+            var info = new Dictionary<string, object>();
+
+            info.Add("ApiKey", OAuthClientApplictionApiKey);
+
+            info.Add("AutoLogin", AutoLogin && !ExecutingContext.CurrentUser.IsAuthenticated);
+
+            return info;
+        }
+
+        const string validateUser = "validateUser";
+
+        void ILinkedInOAuth.RedirectToOAuthProvider (string action) {
 
             IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
             var em = dm as IEntityManager;
