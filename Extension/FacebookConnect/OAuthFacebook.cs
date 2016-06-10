@@ -165,7 +165,7 @@ namespace Aspectize.OAuth {
 
                         if (validateUserCallFromFacebook || (oauthData != null)) {
 
-                            #region This call was requested by calling  GetAuthorizationUrl ()
+                            #region This call was requested by calling  RedirectToOAuthProvider ()
 
                             var jsObj = OAuthHelper.GetAccessToken(OAuthProviderAccessTokenUrl, code, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, OAuthClientApplictionApiSecret);
                             var aToken = jsObj.SafeGetValue<string>("access_token");

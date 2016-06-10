@@ -115,115 +115,146 @@ namespace Aspectize.OAuth {
 
         void ILinkedInOAuth.RedirectToOAuthProvider (string action) {
 
-            IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
-            var em = dm as IEntityManager;
 
-            var oauthData = em.CreateInstance<LinkedIn.OAuthData>();
 
-            oauthData.Created = oauthData.Updated = DateTime.UtcNow;
-            oauthData.UserId = oauthData.UserSecret = oauthData.FirstName = oauthData.LastName = oauthData.Email = oauthData.PhotoUrl = oauthData.Data = String.Empty;
+            string state;
 
-            var state = oauthData.Id.ToString("N");
+            if (action == validateUser) {
 
-            dm.SaveTransactional();
+                state = Guid.Empty.ToString("N");
 
-            ExecutingContext.RedirectUrl = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state);
+            } else {
+
+                IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+                var em = dm as IEntityManager;
+
+                var oauthData = em.CreateInstance<LinkedIn.OAuthData>();
+
+                oauthData.Created = oauthData.Updated = DateTime.UtcNow;
+                oauthData.UserId = oauthData.UserSecret = oauthData.FirstName = oauthData.LastName = oauthData.Email = oauthData.PhotoUrl = oauthData.Data = String.Empty;
+
+                state = oauthData.Id.ToString("N");
+
+                dm.SaveTransactional();
+            }
+
+            var url = OAuthHelper.GetAuthorizationDemandUrl(OAuthProviderAuthorizationUrl, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, state);
+
+            ExecutingContext.RedirectUrl = url;
+
+
         }
 
         void ILinkedInOAuth.OAuth (string code, string state, string error, string error_description) {
 
-            if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
+            try {
 
-                Guid id;
+                if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
 
-                if (MyGuid.TryParse(state, out id)) {
+                    Guid id;
 
-                    IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
+                    if (MyGuid.TryParse(state, out id)) {
 
-                    var oauthData = dm.GetEntity<LinkedIn.OAuthData>(id);
+                        var validateUserCallFromLinkedIn = (id == Guid.Empty);
 
-                    if (oauthData != null) { // This call was requested by calling  GetAuthorizationUrl ()
+                        IDataManager dm = EntityManager.FromDataBaseService(DataBaseServiceName);
 
-                        var jsObj = OAuthHelper.PostAccessToken(OAuthProviderAccessTokenUrl, code, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, OAuthClientApplictionApiSecret);
-                        var aToken = jsObj.SafeGetValue<string>("access_token");
+                        var oauthData = validateUserCallFromLinkedIn ? null : dm.GetEntity<LinkedIn.OAuthData>(id);
 
-                        var data = OAuthHelper.GetData(OAuthProviderDataUrl, aToken);
+                        if (validateUserCallFromLinkedIn || (oauthData != null)) {
 
-                        var jsData = JsonSerializer.Eval(data) as JsonObject;
+                            #region This call was requested by calling  RedirectToOAuthProvider ()
 
-                        var providerId = jsData.SafeGetValue<string>("id");
+                            var jsObj = OAuthHelper.PostAccessToken(OAuthProviderAccessTokenUrl, code, OAuthClientApplictionApiKey, OAuthClientApplictionCallBackUrl, OAuthClientApplictionApiSecret);
+                            var aToken = jsObj.SafeGetValue<string>("access_token");
 
-                        var rxId = new Regex(String.Format(@"\b{0}\b", providerId));
-                        data = rxId.Replace(data, "xxx");
+                            var data = OAuthHelper.GetData(OAuthProviderDataUrl, aToken);
+                            var jsData = JsonSerializer.Eval(data) as JsonObject;
 
-                        var email = jsData.SafeGetValue<string>("emailAddress");
-                        var externalUserId = String.Format("{0}@linkedin", email).ToLower();
+                            var providerId = jsData.SafeGetValue<string>("id");
 
-                        var internalUserId = String.Format("{0}@@{1}", email, svcName).ToLower();
+                            var rxId = new Regex(String.Format(@"\b{0}\b", providerId));
+                            data = rxId.Replace(data, "xxx");
 
-                        var pictureUrls = jsData.SafeGetValue<JsonObject>("pictureUrls");
-                        var count = pictureUrls.SafeGetValue<int>("_total");
-                        var photoUrl = String.Empty;
 
-                        if (count > 0) {
+                            var email = jsData.SafeGetValue<string>("emailAddress");
+                            var externalUserId = String.Format("{0}@linkedin", email).ToLower();
+                            var internalUserId = String.Format("{0}@@{1}", email, svcName).ToLower();
 
-                            var urls = pictureUrls.SafeGetValue<JsonObject>("values");
+                            var pictureUrls = jsData.SafeGetValue<JsonObject>("pictureUrls");
+                            var count = pictureUrls.SafeGetValue<int>("_total");
+                            var photoUrl = String.Empty;
 
-                            photoUrl = urls.SafeGetValue<string>(0);
+                            if (count > 0) {
+
+                                var urls = pictureUrls.SafeGetValue<JsonObject>("values");
+
+                                photoUrl = urls.SafeGetValue<string>(0);
+                            }
+
+                            var fName = jsData.SafeGetValue<string>("firstName");
+                            var lName = jsData.SafeGetValue<string>("lastName");
+
+
+                            // hashed providerId used to prevent duplicate account creation !
+                            var uniqueName = String.Format("{0}@{1}", providerId, svcName);
+                            var uniqueId = PasswordHasher.ComputeHash(uniqueName, HashHelper.Algorithm.SHA256Managed);
+
+                            var existingUser = dm.GetEntity<LinkedIn.OAuthProviderUser>(uniqueId);
+
+                            if (existingUser != null) {
+
+                                var existingUserId = existingUser.OAuthDataId;
+
+                                LinkedIn.OAuthData existingData;
+
+                                if (validateUserCallFromLinkedIn) {
+
+                                    existingData = dm.GetEntity<LinkedIn.OAuthData>(existingUserId);
+
+                                } else if (existingUserId != id) {
+
+                                    oauthData.Delete();
+
+                                    existingData = dm.GetEntity<LinkedIn.OAuthData>(existingUserId);
+
+                                } else existingData = oauthData;
+
+                                existingData.UserId = internalUserId;
+                                existingData.FirstName = fName; existingData.LastName = lName;
+                                existingData.Email = email; existingData.PhotoUrl = photoUrl;
+                                existingData.Data = data;
+                                existingData.Updated = DateTime.UtcNow;
+
+                            } else if (!validateUserCallFromLinkedIn) {
+
+                                var em = dm as IEntityManager;
+
+                                var uniqueUser = em.CreateInstance<LinkedIn.OAuthProviderUser>();
+
+                                uniqueUser.Id = uniqueId;
+                                uniqueUser.OAuthDataId = id;
+
+                                oauthData.UserId = internalUserId;
+
+                                oauthData.UserSecret = PasswordHasherEx.ComputeHashForStorage(providerId, externalUserId); // providerId used as password !
+
+                                oauthData.FirstName = fName; oauthData.LastName = lName;
+                                oauthData.Email = email; oauthData.PhotoUrl = photoUrl;
+                                oauthData.Data = data;
+                                oauthData.Updated = DateTime.UtcNow;
+                            }
+
+                            dm.SaveTransactional();
+
+                            #endregion
                         }
-
-                        var fName = jsData.SafeGetValue<string>("firstName");
-                        var lName = jsData.SafeGetValue<string>("lastName");
-
-
-                        // hashed providerId used to prevent duplicate account creation !
-                        var uniqueName = String.Format("{0}@{1}", providerId, svcName);
-                        var uniqueId = PasswordHasher.ComputeHash(uniqueName, HashHelper.Algorithm.SHA256Managed);
-
-                        var existingUser = dm.GetEntity<LinkedIn.OAuthProviderUser>(uniqueId);
-
-                        if (existingUser != null) {
-
-                            var existingUserId = existingUser.OAuthDataId;
-
-                            LinkedIn.OAuthData existingData;
-
-                            if (existingUserId != id) {
-
-                                oauthData.Delete();
-
-                                existingData = dm.GetEntity<LinkedIn.OAuthData>(existingUserId);
-
-                            } else existingData = oauthData;
-
-                            existingData.UserId = internalUserId;
-                            existingData.FirstName = fName; existingData.LastName = lName;
-                            existingData.Email = email; existingData.PhotoUrl = photoUrl;
-                            existingData.Data = data;
-                            existingData.Updated = DateTime.UtcNow;
-
-                        } else {
-
-                            var em = dm as IEntityManager;
-
-                            var uniqueUser = em.CreateInstance<LinkedIn.OAuthProviderUser>();
-
-                            uniqueUser.Id = uniqueId;
-                            uniqueUser.OAuthDataId = id;
-
-                            oauthData.UserId = internalUserId;
-
-                            oauthData.UserSecret = PasswordHasherEx.ComputeHashForStorage(providerId, externalUserId); // providerId used as password !
-
-                            oauthData.FirstName = fName; oauthData.LastName = lName;
-                            oauthData.Email = email; oauthData.PhotoUrl = photoUrl;
-                            oauthData.Data = data;
-                            oauthData.Updated = DateTime.UtcNow;
-                        }
-
-                        dm.SaveTransactional();
                     }
                 }
+
+            } catch (Exception x) {
+
+                Context.LogException(x);
             }
         }
 
@@ -248,17 +279,23 @@ namespace Aspectize.OAuth {
                 var d = data[0];
                 var userSecret = d.UserSecret;
 
-                Authenticated = PasswordHasherEx.CheckResponse(userSecret, chalenge, secret);
+                var delta = Math.Abs((DateTime.UtcNow - d.Updated).TotalMinutes);
 
-                if (Authenticated) {
+                if (delta < 1) {
 
-                    info.Add("Created", d.Created);
-                    info.Add("FirstName", d.FirstName);
-                    info.Add("LastName", d.LastName);
-                    info.Add("Email", d.Email);
-                    info.Add("PhotoUrl", d.PhotoUrl);
-                    info.Add("Updated", d.Updated);
-                    info.Add("RawData", d.Data);
+                    Authenticated = PasswordHasherEx.CheckResponse(userSecret, chalenge, secret);
+
+                    if (Authenticated) {
+
+                        info.Add("Id", d.Id);
+                        info.Add("Created", d.Created);
+                        info.Add("FirstName", d.FirstName);
+                        info.Add("LastName", d.LastName);
+                        info.Add("Email", d.Email);
+                        info.Add("PhotoUrl", d.PhotoUrl);
+                        info.Add("Updated", d.Updated);
+                        info.Add("RawData", d.Data);
+                    }
                 }
             }
 

@@ -2,118 +2,114 @@
 
 Global.LinkedInConnectJS = {
 
-   aasService:'LinkedInConnectJS',
-   
-   serviceName: null,
-   cmdUrl: null,
-   Init: function (configuredServiceName, params) {
+    aasService: 'LinkedInConnectJS',
 
-       if (configuredServiceName) {
+    serviceName: null,
+    cmdUrl: null,
+    autoLogin: false,
 
-           if (window.lnAspectizeInit) return;
+    Init: function (configuredServiceName, params) {
 
-           this.serviceName = configuredServiceName;
-           this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
-           
-           var This = this;
-           var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
+        if (configuredServiceName) {
 
-           window.lnAspectizeInit = function () {
+            if (window.lnAspectizeInit) return;
 
-               if (info.AutoLogin) {
+            this.serviceName = configuredServiceName;
+            this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
+            
+            var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
 
-                   This.Connect(true, false);
-               }
-           };
+            var This = this;
+            window.lnAspectizeInit = function () {
 
-           (function (d) {
+                if (info.AutoLogin) {
+                    
+                    This.Connect(false, true);
+                }
+            };
 
-               var initData = "\napi_key:" + info.ApiKey;
-               initData += "\nonLoad:lnAspectizeInit\n"
-               initData += "\nauthorize:" + (info.AutoLogin ? "true\n" : "false\n");
+            (function (d) {
 
-               var js = d.createElement('script');;
-               js.src = "//platform.linkedin.com/in.js";
-               js.innerHTML = initData;
+                var initData = "\napi_key:" + info.ApiKey;
+                initData += "\nonLoad:lnAspectizeInit\n"
+                initData += "\nauthorize:" + (info.AutoLogin ? "true\n" : "false\n");
 
-               d.head.appendChild(js);
+                var js = d.createElement('script');;
+                js.src = "//platform.linkedin.com/in.js";
+                js.innerHTML = initData;
 
-           })(document);
-           
-       }
-   },
+                d.head.appendChild(js);
 
-   Connect: function (login, rememberMe) {
+            })(document);
 
-       if (this.serviceName) {
+        }
+    },
 
-           var configuredServiceName = this.serviceName;
-           var cmdUrl = this.cmdUrl;
+    Connect: function (rememberMe, automatic) {
 
-           var doJob = function () {
+        if (this.serviceName) {
 
-               if (login) {
+            var configuredServiceName = this.serviceName;
+            var cmdUrl = this.cmdUrl;
 
-                   var svc = Aspectize.Host.GetService('SecurityServices');
+            var doJob = function () {
 
-                   IN.API.Raw('/people/~:(id,email-address)?scope=r_basicprofile+r_emailaddress').method('GET').result(function (r) {
+                var svc = Aspectize.Host.GetService('SecurityServices');
 
-                       if (r.emailAddress && r.id) {
+                IN.API.Raw('/people/~:(id,email-address)?scope=r_basicprofile+r_emailaddress').method('GET').result(function (r) {
 
-                           var email = r.emailAddress || '404';
-                           var lnId = r.id || null;
-                           svc.Authenticate(email + '@LinkedIn', lnId, rememberMe);
-                       }
-                   });                   
+                    if (r.emailAddress && r.id) {
 
-               } else {
+                        var params = automatic ? { action: 'validateUser' } : null;
 
-                   Aspectize.HttpForm('GET', cmdUrl, null, function (r) { });
-               }
-           };
+                        Aspectize.HttpForm('GET', cmdUrl, params, function (data) {
 
-           if (IN.User.isAuthorized()) {
+                            var email = r.emailAddress || '404';
+                            var lnId = r.id || null;
+                            svc.Authenticate(email + '@LinkedIn', lnId, rememberMe);
+                        });
+                    }
+                });
+            };
 
-               doJob();
+            if (IN.User.isAuthorized()) {
 
-           } else {
+                doJob();
 
-               IN.User.authorize(function () {
+            } else if (!automatic) {
 
-                   doJob();
+                IN.User.authorize(doJob);
+            }
 
-               }, this);
-           }          
+        } else Aspectize.Throw('LinkedInConnectJS.Connect :  Init with configuredServiceName was not called !', -1);
+    },
 
-       } else Aspectize.Throw('LinkedInConnectJS.Connect :  Init with configuredServiceName was not called !', -1);
-   },
+    SignOut: function (logOutFromLinkedInAlso) {
 
-   SignOut: function (logOutFromLinkedInAlso) {
+        var svc = Aspectize.Host.GetService('SecurityServices');
+        svc.SignOut();
 
-       var svc = Aspectize.Host.GetService('SecurityServices');
-       svc.SignOut();
+        if (logOutFromLinkedInAlso) {
 
-       if (logOutFromLinkedInAlso === 'true') {
-
-           IN.User.logout(function () {  }, this);
-       }
-   }
+            IN.User.logout(function () { });
+        }
+    }
 };
 
 
 Aspectize.Extend("SignInButton", {
 
-    Properties: { },
+    Properties: {},
     Events: ['Click'],
 
     Init: function (elem) {
 
         elem.className = "LinkedInConnect";
         elem.innerHTML = '<a style=""> </a>';
-        
+
         Aspectize.AddHandler(elem, "click", function () {
 
-            Global.LinkedInConnectJS.Authenticate();
+            Global.LinkedInConnectJS.Connect(true, false);
 
             Aspectize.UiExtensions.Notify(elem, 'Click', { Html: elem.innerHTML });
         });
