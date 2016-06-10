@@ -45,10 +45,13 @@ Global.LinkedInConnectJS = {
         }
     },
 
-    Connect: function (rememberMe, automatic) {
+    Connect: function (rememberMe) {
+
+        // Automatically called from Init
+        var automaticCall = arguments.length > this.Connect.length;
 
         if (this.serviceName) {
-
+            
             var configuredServiceName = this.serviceName;
             var cmdUrl = this.cmdUrl;
 
@@ -60,7 +63,7 @@ Global.LinkedInConnectJS = {
 
                     if (r.emailAddress && r.id) {
 
-                        var params = automatic ? { action: 'validateUser' } : null;
+                        var params = automaticCall ? { action: 'validateUser' } : null;
 
                         Aspectize.HttpForm('GET', cmdUrl, params, function (data) {
 
@@ -76,7 +79,7 @@ Global.LinkedInConnectJS = {
 
                 doJob();
 
-            } else if (!automatic) {
+            } else if (!automaticCall) {
 
                 IN.User.authorize(doJob);
             }
