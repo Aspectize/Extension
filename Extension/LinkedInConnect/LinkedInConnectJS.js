@@ -16,14 +16,14 @@ Global.LinkedInConnectJS = {
 
             this.serviceName = configuredServiceName;
             this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
-            
+
             var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
 
             var This = this;
             window.lnAspectizeInit = function () {
 
                 if (info.AutoLogin) {
-                    
+
                     This.Connect(false, true);
                 }
             };
@@ -51,7 +51,7 @@ Global.LinkedInConnectJS = {
         var automaticCall = arguments.length > this.Connect.length;
 
         if (this.serviceName) {
-            
+
             var configuredServiceName = this.serviceName;
             var cmdUrl = this.cmdUrl;
 
@@ -61,17 +61,14 @@ Global.LinkedInConnectJS = {
 
                 IN.API.Raw('/people/~:(id,email-address)?scope=r_basicprofile+r_emailaddress').method('GET').result(function (r) {
 
-                    if (r.emailAddress && r.id) {
+                    var params = automaticCall ? { action: 'validateUser' } : null;
 
-                        var params = automaticCall ? { action: 'validateUser' } : null;
+                    Aspectize.HttpForm('GET', cmdUrl, params, function (data) {
 
-                        Aspectize.HttpForm('GET', cmdUrl, params, function (data) {
-
-                            var email = r.emailAddress || '404';
-                            var lnId = r.id || null;
-                            svc.Authenticate(email + '@LinkedIn', lnId, rememberMe);
-                        });
-                    }
+                        var email = r.emailAddress || '404';
+                        var lnId = r.id || null;
+                        svc.Authenticate(email + '@LinkedIn', lnId, rememberMe);
+                    });
                 });
             };
 
