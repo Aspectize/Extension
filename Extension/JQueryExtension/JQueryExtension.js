@@ -286,7 +286,7 @@ Aspectize.Extend("JQueryDatePicker", {
                         Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
                     }
                 }
-            };
+            };           
 
             if (modeOnlyTime) options.timeOnly = true;
 
@@ -312,6 +312,19 @@ Aspectize.Extend("JQueryDatePicker", {
                     options.maxDateTime = maxDate;
                 }
             }
+
+            $(elem).on('change', function (e) {
+
+                var f = modeWithTime ? 'datetimepicker' : 'datepicker';
+                var value = $(elem)[f]('getDate');
+
+                var v = value.valueOf();
+
+                if ( (!minDate && !maxDate) ||
+                     (minDate && (minDate.valueOf() <= v)) ||
+                     (maxDate && (maxDate.valueOf() >= v))
+                ) Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+            });
 
             return options;
         }
