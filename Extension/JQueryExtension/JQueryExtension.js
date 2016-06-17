@@ -301,8 +301,9 @@ Aspectize.Extend("JQueryDatePicker", {
                 }
             }
 
+            var maxDate = Aspectize.UiExtensions.GetProperty(elem, 'MaxDate');
+
             if (maxDate) {
-                var maxDate = Aspectize.UiExtensions.GetProperty(elem, 'MaxDate');
 
                 options.maxDate = maxDate;
 
