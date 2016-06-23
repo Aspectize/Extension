@@ -320,10 +320,26 @@ Aspectize.Extend("JQueryDatePicker", {
 
                 var v = value.valueOf();
 
-                if ( (!minDate && !maxDate) ||
+                if ((!minDate && !maxDate) ||
                      (minDate && (minDate.valueOf() <= v)) ||
                      (maxDate && (maxDate.valueOf() >= v))
-                ) Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+                ) {
+
+                    Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+
+                } else {
+
+                    var errMessage = ""; 
+
+                    if (minDate) {
+
+                        errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be greater than {1:yyyy-MM-dd}", value, minDate);
+
+                    } else if (maxDate) {
+
+                        errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be less than {1:yyyy-MM-dd}", value, maxDate);
+                    }
+                }
             });
 
             return options;

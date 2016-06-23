@@ -6,7 +6,7 @@ Global.LinkedInConnectJS = {
 
     serviceName: null,
     cmdUrl: null,
-    autoLogin: false,
+    callBackCmd: null,
 
     Init: function (configuredServiceName, params) {
 
@@ -18,6 +18,8 @@ Global.LinkedInConnectJS = {
             this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
 
             var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
+
+            this.callBackCmd = info.AuthenticationCallback || null;
 
             var This = this;
             window.lnAspectizeInit = function () {
@@ -54,6 +56,12 @@ Global.LinkedInConnectJS = {
 
             var configuredServiceName = this.serviceName;
             var cmdUrl = this.cmdUrl;
+            var callBackCmd = this.callBackCmd;
+
+            var callBack = function () {
+
+                if (callBackCmd) Aspectize.Host.ExecuteCommand(callBackCmd);
+            };
 
             var doJob = function () {
 
@@ -68,6 +76,8 @@ Global.LinkedInConnectJS = {
                         var email = r.emailAddress || '404';
                         var lnId = r.id || null;
                         svc.Authenticate(email + '@LinkedIn', lnId, rememberMe);
+
+                        callBack();
                     });
                 });
             };

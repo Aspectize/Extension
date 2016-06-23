@@ -6,6 +6,7 @@ Global.FacebookConnectJS = {
 
     serviceName: null,
     cmdUrl: null,
+    callBackCmd: null,
 
     Init: function (configuredServiceName, params) {
 
@@ -18,6 +19,8 @@ Global.FacebookConnectJS = {
 
             var This = this;
             var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
+
+            this.callBackCmd = info.AuthenticationCallback || null;
 
             window.fbAsyncInit = function () {
 
@@ -55,6 +58,12 @@ Global.FacebookConnectJS = {
 
             var configuredServiceName = this.serviceName;
             var cmdUrl = this.cmdUrl;
+            var callBackCmd = this.callBackCmd;
+
+            var callBack = function () {
+
+                if (callBackCmd) Aspectize.Host.ExecuteCommand(callBackCmd);
+            };
 
             var doJob = function () {
                 
@@ -69,6 +78,8 @@ Global.FacebookConnectJS = {
                         var email = r.email || '404';
                         var fbId = r.id || null;
                         svc.Authenticate(email + '@Facebook', fbId, rememberMe);
+
+                        callBack();
                     });
                 });
             };

@@ -65,6 +65,9 @@ namespace Aspectize.OAuth {
         [ParameterAttribute(Optional = true, DefaultValue = false)]
         bool LogEnabled = false;
 
+        [ParameterAttribute(DefaultValue = null)]
+        string ClientAuthenticationCallback = null;
+
         void logMessage (string format, params object[] args) {
 
             if (LogEnabled) {
@@ -108,6 +111,9 @@ namespace Aspectize.OAuth {
 
             info.Add("AutoLogin", AutoLogin && !ExecutingContext.CurrentUser.IsAuthenticated);
 
+            if (!String.IsNullOrEmpty(ClientAuthenticationCallback)) {
+                info.Add("AuthenticationCallback", ClientAuthenticationCallback);
+            }
             return info;
         }
 
