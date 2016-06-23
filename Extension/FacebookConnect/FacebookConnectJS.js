@@ -18,7 +18,7 @@ Global.FacebookConnectJS = {
             this.cmdUrl = 'Server/' + configuredServiceName + '.RedirectToOAuthProvider.json.cmd.ashx';
 
             var This = this;
-            var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplictionInfo');
+            var info = Aspectize.Host.ExecuteCommand('Server/' + configuredServiceName + '.GetApplicationInfo');
 
             this.callBackCmd = info.AuthenticationCallback || null;
 

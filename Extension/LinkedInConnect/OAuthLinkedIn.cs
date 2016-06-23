@@ -29,7 +29,7 @@ namespace Aspectize.OAuth {
 
     public interface ILinkedInOAuth {
 
-        Dictionary<string, object> GetApplictionInfo ();
+        Dictionary<string, object> GetApplicationInfo ();
 
         [Command(Bindable = false)]
         void OAuth (string code, string state, string error, string error_description);
@@ -65,7 +65,7 @@ namespace Aspectize.OAuth {
         [ParameterAttribute(Optional = true, DefaultValue = false)]
         bool LogEnabled = false;
 
-        [ParameterAttribute(DefaultValue = null)]
+        [ParameterAttribute(DefaultValue = null, Optional = true)]
         string ClientAuthenticationCallback = null;
 
         void logMessage (string format, params object[] args) {
@@ -103,7 +103,7 @@ namespace Aspectize.OAuth {
 
         #region ILinkedInOAuth Members
 
-        Dictionary<string, object> ILinkedInOAuth.GetApplictionInfo () {
+        Dictionary<string, object> ILinkedInOAuth.GetApplicationInfo () {
 
             var info = new Dictionary<string, object>();
 
