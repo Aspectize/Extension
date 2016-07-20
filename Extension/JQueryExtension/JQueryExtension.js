@@ -318,26 +318,33 @@ Aspectize.Extend("JQueryDatePicker", {
                 var f = modeWithTime ? 'datetimepicker' : 'datepicker';
                 var value = $(elem)[f]('getDate');
 
-                var v = value.valueOf();
+                if (value === null) {
 
-                if ((!minDate && !maxDate) ||
-                     (minDate && (minDate.valueOf() <= v)) ||
-                     (maxDate && (maxDate.valueOf() >= v))
-                ) {
-
-                    Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
+                    Aspectize.UiExtensions.ChangeProperty(elem, 'Value', null);
 
                 } else {
 
-                    var errMessage = ""; 
+                    var v = value.valueOf();
 
-                    if (minDate) {
+                    if ((!minDate && !maxDate) ||
+                         (minDate && (minDate.valueOf() <= v)) ||
+                         (maxDate && (maxDate.valueOf() >= v))
+                    ) {
 
-                        errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be greater than {1:yyyy-MM-dd}", value, minDate);
+                        Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
 
-                    } else if (maxDate) {
+                    } else {
 
-                        errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be less than {1:yyyy-MM-dd}", value, maxDate);
+                        var errMessage = "";
+
+                        if (minDate) {
+
+                            errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be greater than {1:yyyy-MM-dd}", value, minDate);
+
+                        } else if (maxDate) {
+
+                            errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be less than {1:yyyy-MM-dd}", value, maxDate);
+                        }
                     }
                 }
             });

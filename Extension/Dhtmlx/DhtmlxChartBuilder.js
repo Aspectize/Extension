@@ -18,7 +18,7 @@
 
 function getGraphEnd(minValue, maxValue) {
     var step = getGraphStep(minValue, maxValue);
-    
+
     var max = 0;
 
     while (max < maxValue) {
@@ -83,6 +83,31 @@ Global.DhtmlxChartService = {
             Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.refresh);
             Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.resize);
         }
+    },
+
+    SetChartProperties: function (graphControlId, dhtmlxProperties) {
+
+        var graphControl = document.getElementById(graphControlId);
+
+        if (graphControl && graphControl.aasDxChart) {
+
+            for (var k in dhtmlxProperties) {
+
+                Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.define, k, dhtmlxProperties[k]);
+            }
+
+            Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.refresh);
+        }
+    },
+
+    SetChartData: function (graphControlId, data) {
+
+        var graphControl = document.getElementById(graphControlId);
+
+        if (graphControl && graphControl.aasDxChart) {
+           
+            Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.parse, data, 'json');
+        }
     }
 
 };
@@ -96,7 +121,7 @@ Global.DhtmlxChartBuilder = {
 
     Build: function (controlInfo) {
 
-        var ChartTypes = { Area: { View: 'area' }, Bar: { View: 'bar' }, StackedBar: { View: 'stackedBar' }, Line: { View: 'line' }, Spline: { View: 'spline' }, Pie: { View: 'pie'} };
+        var ChartTypes = { Area: { View: 'area' }, Bar: { View: 'bar' }, StackedBar: { View: 'stackedBar' }, Line: { View: 'line' }, Spline: { View: 'spline' }, Pie: { View: 'pie' }, Radar: { View: 'radar' } };
 
         controlInfo.CreateInstance = function (ownerWindow, id) {
 
@@ -128,6 +153,7 @@ Global.DhtmlxChartBuilder = {
                 case 'DhtmlxLineChart': chartType = ChartTypes.Line; break;
                 case 'DhtmlxSplineChart': chartType = ChartTypes.Spline; break;
                 case 'DhtmlxPieChart': chartType = ChartTypes.Pie; break;
+                case 'DhtmlxRadarChart': chartType = ChartTypes.Radar; break;
                 default: chartType = ChartTypes.Line; break;
             }
 
@@ -168,7 +194,7 @@ Global.DhtmlxChartBuilder = {
                 }
             }
 
-            if (!dhtmlXChart) throw new Error('Missing DHTMLX integration scripts in the app.ashx file ?');
+            if (!window.dhtmlXChart) throw new Error('Missing DHTMLX integration scripts in the app.ashx file ?');
 
             var chart = new dhtmlXChart({
                 view: chartType.View,
@@ -194,8 +220,8 @@ Global.DhtmlxChartBuilder = {
                     value: '#' + otherYAxis[i] + '#',
                     label: '#' + otherYAxis[i] + 'LabelValue#',
                     color: "#2FA783",
-                    item:{  radius: 1, borderColor: '#2FA783', color: '#2FA783', borderWidth: 1 },
-                    line: { color: "#2FA783", width:3 }
+                    item: { radius: 1, borderColor: '#2FA783', color: '#2FA783', borderWidth: 1 },
+                    line: { color: "#2FA783", width: 3 }
                 });
             }
 
@@ -273,28 +299,24 @@ Global.DhtmlxChartBuilder = {
 
                     data.push(chartItem);
 
-                    if (min == null) min = Number(chartItem[field]);
-                    if (Number(chartItem[field]) < min) min = Number(chartItem[field]);
+                    var fv = Number(chartItem[field]);
 
-                    if (max == null) max = Number(chartItem[field]);
-                    if (Number(chartItem[field]) > max) max = Number(chartItem[field]);
+                    if (min == null) min = fv;
+                    if (fv < min) min = fv;
+
+                    if (max == null) max = fv;
+                    if (fv > max) max = fv;
                 }
             }
 
+            var start = control.aasChartProperties.YAxis[control.aasDxChartYAxis].Start;
+            if (!start) start = getGraphBegin(min, max);
+
             var step = control.aasChartProperties.YAxis[control.aasDxChartYAxis].Step;
-            if (!control.aasChartProperties.YAxis[control.aasDxChartYAxis].Step) {
-                step = getGraphStep(min, max);
-            }
+            if (!step) step = getGraphStep(min, max);            
 
             var end = control.aasChartProperties.YAxis[control.aasDxChartYAxis].End;
-            if (!control.aasChartProperties.YAxis[control.aasDxChartYAxis].End) {
-                end = getGraphEnd(min, max);
-            }
-
-            var start = control.aasChartProperties.YAxis[control.aasDxChartYAxis].Start;
-            if (!control.aasChartProperties.YAxis[control.aasDxChartYAxis].Start) {
-                start = getGraphBegin(min, max);
-            }
+            if (!end) end = getGraphEnd(min, max);            
 
             control.aasDxChart.define('yAxis', {
                 start: start,
@@ -341,6 +363,33 @@ Global.DhtmlxChartAxisBuilder = {
 
     Build: function (controlInfo) {
 
+        function translateToObjectProperty(p) {
+
+            var obj = null;
+            var property = null;
+
+            if (p.indexOf('Line') === 0) obj = 'line';
+            else if (p.indexOf('Item') === 0) obj = 'item';
+            else obj = 'yAxis';
+
+            switch (obj) {
+
+                case 'line':
+                case 'item': {
+
+                    var stripedObj = p.substring(4);
+                    property = stripedObj[0].toLowerCase() + stripedObj.substring(1);
+                }
+
+                case 'yAxis': {
+
+                    property = (p === 'ShowLine') ? 'lines' : p.toLowerCase();
+                }
+            }
+
+            return { Obj: obj, Property: property };
+        }
+
         controlInfo.CreateInstance = function (ownerWindow, id) {
 
             var control = Aspectize.createElement('div', ownerWindow);
@@ -360,6 +409,8 @@ Global.DhtmlxChartAxisBuilder = {
             };
 
             controlInfo.ChangePropertyValue = function (property, newValue) {
+
+                if(property === 'LabelValue') return;
 
                 controlInfo.PropertyBag[property] = newValue;
 
@@ -419,25 +470,31 @@ Global.DhtmlxChartAxisBuilder = {
 
                             control.aasChartProperties.YAxis[control.aasColumnName][property] = newValue;
 
-                            control.aasDxChart.define('yAxis', {
-                                title: control.aasChartProperties.YAxis[control.aasColumnName].Title,
-                                start: control.aasChartProperties.YAxis[control.aasColumnName].Start,
-                                end: control.aasChartProperties.YAxis[control.aasColumnName].End,
-                                step: control.aasChartProperties.YAxis[control.aasColumnName].Step,
-                                lines: control.aasChartProperties.YAxis[control.aasColumnName].ShowLine
-                            });
+                            var t = translateToObjectProperty(property);
 
-                            control.aasDxChart.define('item', {
-                                borderColor: control.aasChartProperties.YAxis[control.aasColumnName].ItemBorderColor,
-                                color: control.aasChartProperties.YAxis[control.aasColumnName].ItemColor,
-                                borderWidth: control.aasChartProperties.YAxis[control.aasColumnName].ItemBorderWidth,
-                                radius: control.aasChartProperties.YAxis[control.aasColumnName].ItemRadius
-                            });
+                            var o = {}; o[t.Property] = newValue;
+                            
+                            control.aasDxChart.define(t.Obj, o);
 
-                            control.aasDxChart.define('line', {
-                                color: control.aasChartProperties.YAxis[control.aasColumnName].LineColor,
-                                width: control.aasChartProperties.YAxis[control.aasColumnName].LineWidth
-                            });
+                            //control.aasDxChart.define('yAxis', {
+                            //    title: control.aasChartProperties.YAxis[control.aasColumnName].Title,
+                            //    start: control.aasChartProperties.YAxis[control.aasColumnName].Start,
+                            //    end: control.aasChartProperties.YAxis[control.aasColumnName].End,
+                            //    step: control.aasChartProperties.YAxis[control.aasColumnName].Step,
+                            //    lines: control.aasChartProperties.YAxis[control.aasColumnName].ShowLine
+                            //});
+
+                            //control.aasDxChart.define('item', {
+                            //    borderColor: control.aasChartProperties.YAxis[control.aasColumnName].ItemBorderColor,
+                            //    color: control.aasChartProperties.YAxis[control.aasColumnName].ItemColor,
+                            //    borderWidth: control.aasChartProperties.YAxis[control.aasColumnName].ItemBorderWidth,
+                            //    radius: control.aasChartProperties.YAxis[control.aasColumnName].ItemRadius
+                            //});
+
+                            //control.aasDxChart.define('line', {
+                            //    color: control.aasChartProperties.YAxis[control.aasColumnName].LineColor,
+                            //    width: control.aasChartProperties.YAxis[control.aasColumnName].LineWidth
+                            //});
 
                             //                            if (!control.aasChartProperties.YAxis.LabelValue) {
                             //                                control.aasDxChart.define('label', '');
