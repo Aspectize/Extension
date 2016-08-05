@@ -9,7 +9,7 @@ Aspectize.Extend("Autosize", {
 });
 
 Aspectize.Extend("JQueryButton", {
-    Properties: {value:'', disabled:false},
+    Properties: { value: '', disabled: false },
     Events: ['click'],
     Init: function (elem) {
         $(elem).button();
@@ -18,9 +18,10 @@ Aspectize.Extend("JQueryButton", {
 });
 
 Aspectize.Extend("JQueryAutoComplete", {
-    Properties: { Url: '', value: '', Custom: false, MultiValue: false, MultiValueSeparator: ';', FillSelected: true },
+    Properties: { Url: '', value: '', Custom: false, MultiValue: false, MultiValueSeparator: ',', FillSelected: true },
     Events: ['OnSelectItem', 'OnSelectNewItem'],
     Init: function (elem) {
+
         $(elem).autocomplete({
             minLength: 0,
             focus: function () {
@@ -28,28 +29,48 @@ Aspectize.Extend("JQueryAutoComplete", {
                 return false;
             }
         });
-        function split(val) {
-            return val.split(/,\s*/);
+
+        function buildSeparatorSplit(s) {
+
+            var rx = new RegExp(s + '\\s*');
+
+            return function (v) { return v.split(rx); };
         }
+
+        var split = buildSeparatorSplit(',');
+
         function extractLast(term) {
             return split(term).pop();
         }
-        Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
+
+
+        Aspectize.UiExtensions.AddMergedPropertyChangeObserver(elem, function (sender, arg) {
+
             var url = Aspectize.UiExtensions.GetProperty(elem, 'Url');
             var multiValue = Aspectize.UiExtensions.GetProperty(elem, 'MultiValue');
             var fillSelected = Aspectize.UiExtensions.GetProperty(elem, 'FillSelected');
 
-            if (arg.Name === 'Url') {
-                url = arg.Value;
-            } else if (arg.Name === 'MultiValue') {
-                multiValue = arg.Value;
-            } else if (arg.Name === 'FillSelected') {
-                fillSelected = arg.Value;
-            } else if (arg.Name === 'value') {
-                $(sender).val(arg.Value);
+            var reInit = false;
+            for (var p in arg) {
+
+                switch (p) {
+
+                    case 'Url':
+                    case 'MultiValue':
+                    case 'FillSelected': reInit = true; break;
+
+                    case 'value': $(sender).val(arg[p]); break;
+
+                    case 'MultiValueSeparator':
+
+                        if (arg[p] !== ',') {
+                            split = buildSeparatorSplit(arg[p]);
+                        }
+                }
             }
 
-            $(function () {
+            if (reInit) {
+
                 var jqVersion = jQuery.fn.jquery;
                 var attribute = "autocomplete";
 
@@ -57,81 +78,172 @@ Aspectize.Extend("JQueryAutoComplete", {
                     attribute = "uiAutocomplete"; //ui-autocomplete ?
                 }
 
-                if (multiValue) {
-                    var results = $(elem).autocomplete({
-                        source: function (request, response) {
-                            $.getJSON(url, {
-                                term: extractLast(request.term)
-                            }, response);
-                        },
-                        select: function (event, ui) {
-                            if (fillSelected) {
-                                var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
-                                var terms = split(currentValue);
-                                // remove the current input
-                                terms.pop();
-                                terms.push(ui.item.label);
+                var options = {};
 
-                                // add placeholder to get the comma-and-space at the end
-                                terms.push("");
-                                var newValue = terms.join(", ");
-                                Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
-                                $(elem).val(newValue);
-                                //event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
-                            Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
-                            return false;
-                        },
-                        change: function (event, ui) {
-                            if (ui.item == null) {
-                                Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
-                            }
-                        }
-
-                    });
-                    
-                    if (jqVersion >= "1.9") {
-                        results.data(attribute)._renderItem = function (ul, item) {
-                            return $('<li class="ui-menu-item" role="presentation"></li>')
-                                .data("item.autocomplete", item)
-                                .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
-                                .appendTo(ul);
-                        };
+                options.change = function (event, ui) {
+                    if (ui.item == null) {
+                        Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
                     }
+                };
+
+                if (multiValue) {
+
+                    options.source = function (request, response) {
+                        $.getJSON(url, {
+                            term: extractLast(request.term)
+                        }, response);
+                    };
+
+                    options.select = function (event, ui) {
+
+                        if (fillSelected) {
+                            var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
+                            var terms = split(currentValue);
+                            // remove the current input
+                            terms.pop();
+                            terms.push(ui.item.label);
+
+                            // add placeholder to get the comma-and-space at the end
+                            terms.push("");
+                            var s = Aspectize.UiExtensions.GetProperty(elem, 'MultiValueSeparator') + ' ';
+
+                            var newValue = terms.join(s);
+                            Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
+                            $(elem).val(newValue);
+                            //event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        //Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
+                        Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
+                        return false;
+                    };
 
                 } else {
 
-                    var results = $(elem).autocomplete({
-                        source: url,
-                        select: function (event, ui) {
-                            if (fillSelected) {
-                                Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
-                                $(elem).val(ui.item.label);
-                            }
-                            Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
-                            Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
-                            return false;
-                        },
-                        change: function (event, ui) {
-                            if (ui.item == null) {
-                                Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
-                            }
+                    options.source = url;
+
+                    options.select = function (event, ui) {
+                        if (fillSelected) {
+                            Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
+                            $(elem).val(ui.item.label);
                         }
-                    });
-                    
-                    if (jqVersion >= "1.9") {
-                        results.data(attribute)._renderItem = function (ul, item) {
-                            return $('<li class="ui-menu-item" role="presentation"></li>')
-                                .data("item.autocomplete", item)
-                                .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
-                                .appendTo(ul);
-                        };
-                    }
+                        //Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
+                        Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
+                        return false;
+                    };
                 }
-            });
+
+                var ac = $(elem).autocomplete(options);
+
+                if (jqVersion >= "1.9") {
+                    ac.data(attribute)._renderItem = function (ul, item) {
+                        return $('<li class="ui-menu-item" role="presentation"></li>')
+                            .data("item.autocomplete", item)
+                            .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+                            .appendTo(ul);
+                    };
+                }
+            }
         });
+
+        //Aspectize.UiExtensions.AddPropertyChangeObserver(elem, function (sender, arg) {
+        //    var url = Aspectize.UiExtensions.GetProperty(elem, 'Url');
+        //    var multiValue = Aspectize.UiExtensions.GetProperty(elem, 'MultiValue');
+        //    var fillSelected = Aspectize.UiExtensions.GetProperty(elem, 'FillSelected');
+
+        //    if (arg.Name === 'Url') {
+        //        url = arg.Value;
+        //    } else if (arg.Name === 'MultiValue') {
+        //        multiValue = arg.Value;
+        //    } else if (arg.Name === 'FillSelected') {
+        //        fillSelected = arg.Value;
+        //    } else if (arg.Name === 'value') {
+        //        $(sender).val(arg.Value);
+        //    }
+
+        //    $(function () {
+        //        var jqVersion = jQuery.fn.jquery;
+        //        var attribute = "autocomplete";
+
+        //        if (jqVersion >= "1.9") {
+        //            attribute = "uiAutocomplete"; //ui-autocomplete ?
+        //        }
+
+        //        if (multiValue) {
+        //            var results = $(elem).autocomplete({
+        //                source: function (request, response) {
+        //                    $.getJSON(url, {
+        //                        term: extractLast(request.term)
+        //                    }, response);
+        //                },
+        //                select: function (event, ui) {
+        //                    if (fillSelected) {
+        //                        var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
+        //                        var terms = split(currentValue);
+        //                        // remove the current input
+        //                        terms.pop();
+        //                        terms.push(ui.item.label);
+
+        //                        // add placeholder to get the comma-and-space at the end
+        //                        terms.push("");
+        //                        var newValue = terms.join(", ");
+        //                        Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
+        //                        $(elem).val(newValue);
+        //                        //event.preventDefault();
+        //                        event.stopPropagation();
+        //                    }
+        //                    Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
+        //                    Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
+        //                    return false;
+        //                },
+        //                change: function (event, ui) {
+        //                    if (ui.item == null) {
+        //                        Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
+        //                    }
+        //                }
+
+        //            });
+
+        //            if (jqVersion >= "1.9") {
+        //                results.data(attribute)._renderItem = function (ul, item) {
+        //                    return $('<li class="ui-menu-item" role="presentation"></li>')
+        //                        .data("item.autocomplete", item)
+        //                        .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+        //                        .appendTo(ul);
+        //                };
+        //            }
+
+        //        } else {
+
+        //            var results = $(elem).autocomplete({
+        //                source: url,
+        //                select: function (event, ui) {
+        //                    if (fillSelected) {
+        //                        Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
+        //                        $(elem).val(ui.item.label);
+        //                    }
+        //                    Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', false);
+        //                    Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
+        //                    return false;
+        //                },
+        //                change: function (event, ui) {
+        //                    if (ui.item == null) {
+        //                        Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
+        //                    }
+        //                }
+        //            });
+
+        //            if (jqVersion >= "1.9") {
+        //                results.data(attribute)._renderItem = function (ul, item) {
+        //                    return $('<li class="ui-menu-item" role="presentation"></li>')
+        //                        .data("item.autocomplete", item)
+        //                        .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+        //                        .appendTo(ul);
+        //                };
+        //            }
+        //        }
+        //    });
+        //});
 
         $(elem).keyup(function () {
             var newValue = $(elem).val();
@@ -294,7 +406,7 @@ Aspectize.Extend("JQueryDatePicker", {
                         Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
                     }
                 }
-            };           
+            };
 
             if (modeOnlyTime) options.timeOnly = true;
 
