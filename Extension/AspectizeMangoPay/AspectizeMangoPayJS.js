@@ -18,7 +18,7 @@ Global.AspectizeMangoPayJS = {
 
        var info = Aspectize.Host.ExecuteCommand('Server/' + mangoServiceName + '.GetRegistrationInfoForUser', userId);
 
-       if (info.IsRegistered === 'yes') return;
+       //if (info.IsRegistered === 'yes') return;
 
        mangoPay.cardRegistration.baseURL = info.MangoUrl;
        mangoPay.cardRegistration.clientId = info.ClientId;

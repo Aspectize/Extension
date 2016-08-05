@@ -12,8 +12,6 @@ Aspectize.Extend("GoogleMapPlaceInput", {
                 return;
             }
 
-            Aspectize.UiExtensions.ChangeProperty(elem, 'FullAdress', place.formatted_address);
-
             if (place.geometry.location) {
                 Aspectize.UiExtensions.ChangeProperty(elem, 'Longitude', place.geometry.location.lng());
                 Aspectize.UiExtensions.ChangeProperty(elem, 'Latitude', place.geometry.location.lat());
@@ -46,6 +44,8 @@ Aspectize.Extend("GoogleMapPlaceInput", {
                     }
                 }
             }
+
+            Aspectize.UiExtensions.ChangeProperty(elem, 'FullAdress', place.formatted_address);
         });
 
         Aspectize.UiExtensions.AddMergedPropertyChangeObserver(elem, function (sender, arg) {

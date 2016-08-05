@@ -9,6 +9,15 @@ Global.BootStrapClientService = {
 
         if (!controlName) controlName = $(control).attr('aas-name');
 
+        if (!controlName) {
+            var controlId = $(control).attr('id');
+
+            if (controlId) {
+                var parts = controlId.split('-');
+                controlName = parts[parts.length - 1];
+            }
+        }
+
         var formGroupSelector = '.form-group-' + controlName;
         var errorControlSelector = '.error-' + controlName;
 

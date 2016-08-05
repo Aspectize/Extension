@@ -190,7 +190,7 @@ namespace AspectizeMangoPay {
 
             data.Add("IsRegistered", isRegistered ? "yes" : "no");
 
-            if (isRegistered) return data;
+            //if (isRegistered) return data;
 
             var registration = new CardRegistrationPostDTO(mangoUserId, CurrencyIso.EUR);
             registration.Tag = id.ToString("N");

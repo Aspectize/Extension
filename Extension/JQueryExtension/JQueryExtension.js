@@ -54,11 +54,11 @@ Aspectize.Extend("JQueryAutoComplete", {
                 var attribute = "autocomplete";
 
                 if (jqVersion >= "1.9") {
-                    attribute = "uiAutocomplete";
+                    attribute = "uiAutocomplete"; //ui-autocomplete ?
                 }
 
                 if (multiValue) {
-                    $(elem).autocomplete({
+                    var results = $(elem).autocomplete({
                         source: function (request, response) {
                             $.getJSON(url, {
                                 term: extractLast(request.term)
@@ -90,16 +90,20 @@ Aspectize.Extend("JQueryAutoComplete", {
                             }
                         }
 
-                    }).data(attribute)._renderItem = function (ul, item) {
-                        return $('<li class="ui-menu-item" role="presentation"></li>')
-                            .data("item.autocomplete", item)
-                            .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
-                            .appendTo(ul);
-                    };
+                    });
+                    
+                    if (jqVersion >= "1.9") {
+                        results.data(attribute)._renderItem = function (ul, item) {
+                            return $('<li class="ui-menu-item" role="presentation"></li>')
+                                .data("item.autocomplete", item)
+                                .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+                                .appendTo(ul);
+                        };
+                    }
 
                 } else {
 
-                    $(elem).autocomplete({
+                    var results = $(elem).autocomplete({
                         source: url,
                         select: function (event, ui) {
                             if (fillSelected) {
@@ -115,12 +119,16 @@ Aspectize.Extend("JQueryAutoComplete", {
                                 Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
                             }
                         }
-                    }).data(attribute)._renderItem = function (ul, item) {
-                        return $('<li class="ui-menu-item" role="presentation"></li>')
-                            .data("item.autocomplete", item)
-                            .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
-                            .appendTo(ul);
-                    };
+                    });
+                    
+                    if (jqVersion >= "1.9") {
+                        results.data(attribute)._renderItem = function (ul, item) {
+                            return $('<li class="ui-menu-item" role="presentation"></li>')
+                                .data("item.autocomplete", item)
+                                .append('<a><span class="' + item.type + '"></span>' + item.label + '</a>')
+                                .appendTo(ul);
+                        };
+                    }
                 }
             });
         });
