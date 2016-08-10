@@ -18,9 +18,11 @@ Aspectize.Extend("JQueryButton", {
 });
 
 Aspectize.Extend("JQueryAutoComplete", {
-    Properties: { Url: '', value: '', MultiValue: false, MultiValueSeparator: ',', FillSelected: true },
+    Properties: { Url: '', Value: '', MultiValue: false, MultiValueSeparator: ',', FillSelected: true },
     Events: ['OnSelectItem', 'OnSelectNewItem'],
     Init: function (elem) {
+
+        var valuePropertyName = 'Value';
 
         $(elem).autocomplete({
             minLength: 0,
@@ -59,7 +61,7 @@ Aspectize.Extend("JQueryAutoComplete", {
                     case 'MultiValue':
                     case 'FillSelected': reInit = true; break;
 
-                    case 'value': $(sender).val(arg[p]); break;
+                    case valuePropertyName: $(sender).val(arg[p]); break;
 
                     case 'MultiValueSeparator':
 
@@ -96,7 +98,7 @@ Aspectize.Extend("JQueryAutoComplete", {
                     options.select = function (event, ui) {
 
                         if (fillSelected) {
-                            var currentValue = Aspectize.UiExtensions.GetProperty(elem, 'value');
+                            var currentValue = Aspectize.UiExtensions.GetProperty(elem, valuePropertyName);
                             var terms = split(currentValue);
                             // remove the current input
                             terms.pop();
@@ -107,7 +109,7 @@ Aspectize.Extend("JQueryAutoComplete", {
                             var s = Aspectize.UiExtensions.GetProperty(elem, 'MultiValueSeparator') + ' ';
 
                             var newValue = terms.join(s);
-                            Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
+                            Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, newValue);
                             $(elem).val(newValue);
                             //event.preventDefault();
                             event.stopPropagation();
@@ -122,7 +124,7 @@ Aspectize.Extend("JQueryAutoComplete", {
 
                     options.select = function (event, ui) {
                         if (fillSelected) {
-                            Aspectize.UiExtensions.ChangeProperty(elem, 'value', ui.item.label);
+                            Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, ui.item.label);
                             $(elem).val(ui.item.label);
                         }
                         Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
@@ -143,11 +145,11 @@ Aspectize.Extend("JQueryAutoComplete", {
             }
         });
 
-        $(elem).keyup(function () {
-            var newValue = $(elem).val();
-            Aspectize.UiExtensions.ChangeProperty(elem, 'value', newValue);
-           // Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', true);
-        });
+        //$(elem).keyup(function () {
+        //    var newValue = $(elem).val();
+        //    Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, newValue);
+        //   // Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', true);
+        //});
     }
 });
 
