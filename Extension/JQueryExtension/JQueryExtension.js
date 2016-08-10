@@ -59,6 +59,8 @@ Aspectize.Extend("JQueryAutoComplete", {
                     case 'MultiValue':
                     case 'FillSelected': reInit = true; break;
 
+                    case 'value': $(sender).val(arg[p]); break;
+
                     case 'MultiValueSeparator':
 
                         split = buildSeparatorSplit(arg[p]);
