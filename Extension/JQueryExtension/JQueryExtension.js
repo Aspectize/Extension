@@ -18,7 +18,7 @@ Aspectize.Extend("JQueryButton", {
 });
 
 Aspectize.Extend("JQueryAutoComplete", {
-    Properties: { Url: '', Value: '', MultiValue: false, MultiValueSeparator: ',', FillSelected: true },
+    Properties: { Url: '', Value: '', MultiValue: false, MultiValueSeparator: ',', FillSelected: true, Custom: false },
     Events: ['OnSelectItem', 'OnSelectNewItem'],
     Init: function (elem) {
 
@@ -51,6 +51,7 @@ Aspectize.Extend("JQueryAutoComplete", {
             var url = Aspectize.UiExtensions.GetProperty(elem, 'Url');
             var multiValue = Aspectize.UiExtensions.GetProperty(elem, 'MultiValue');
             var fillSelected = Aspectize.UiExtensions.GetProperty(elem, 'FillSelected');
+            var custom = Aspectize.UiExtensions.GetProperty(elem, 'Custom');
 
             var reInit = false;
             for (var p in arg) {
@@ -79,12 +80,20 @@ Aspectize.Extend("JQueryAutoComplete", {
                     attribute = "uiAutocomplete"; //ui-autocomplete ?
                 }
 
-                var options = {};
+                var options = {};               
 
-                options.change = function (event, ui) {
-                    if (ui.item == null) {
-                        Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', this.value);
-                    }
+                options.close = function (event, ui) {
+
+                    var v = Aspectize.UiExtensions.GetProperty(elem, 'Value');
+
+                    if (custom && elem.value && (elem.value !== v)) {
+
+                        Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, elem.value);
+                        Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', elem.value);
+
+                        if (!fillSelected) elem.value = '';
+
+                    } else if(fillSelected) elem.value = v;
                 };
 
                 if (multiValue) {
@@ -123,10 +132,11 @@ Aspectize.Extend("JQueryAutoComplete", {
                     options.source = url;
 
                     options.select = function (event, ui) {
-                        if (fillSelected) {
-                            Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, ui.item.label);
-                            $(elem).val(ui.item.label);
-                        }
+
+                        Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, ui.item.label);
+
+                        elem.value = fillSelected ? ui.item.label : '';
+
                         Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
                         return false;
                     };
@@ -144,17 +154,13 @@ Aspectize.Extend("JQueryAutoComplete", {
                 }
             }
         });
-
-        //$(elem).keyup(function () {
-        //    var newValue = $(elem).val();
-        //    Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, newValue);
-        //   // Aspectize.UiExtensions.ChangeProperty(elem, 'Custom', true);
-        //});
     }
 });
 
 Aspectize.Extend("JQueryMask", {
-    Properties: { Value: '', Mask: '' },
+    Properties: {
+        Value: '', Mask: ''
+    },
     Events: [],
     Init: function (elem) {
 
@@ -200,7 +206,9 @@ Aspectize.Extend("JQueryMask", {
 });
 
 Aspectize.Extend("JQueryColorPicker", {
-    Properties: { Value: '', DefaultValue: '', InLine: false, Theme: 'default' },
+    Properties: {
+        Value: '', DefaultValue: '', InLine: false, Theme: 'default'
+    },
     Events: ['OnValueChanged'],
     Init: function (elem) {
         var jqminicolor = $(elem).minicolors ? $(elem).minicolors : $(elem).miniColors;
@@ -215,18 +223,26 @@ Aspectize.Extend("JQueryColorPicker", {
             if (arg.Name === 'Value') {
                 jqminicolor.call($(elem), 'value', arg.Value);
             } else if (arg.Name === 'DefaultValue') {
-                jqminicolor.call($(elem), 'settings', { 'defaultValue': arg.Value });
+                jqminicolor.call($(elem), 'settings', {
+                    'defaultValue': arg.Value
+                });
             } else if (arg.Name === 'InLine') {
-                jqminicolor.call($(elem), 'settings', { 'inline': arg.Value });
+                jqminicolor.call($(elem), 'settings', {
+                    'inline': arg.Value
+                });
             } else if (arg.Name === 'Theme') {
-                jqminicolor.call($(elem), 'settings', { 'theme': arg.Value });
+                jqminicolor.call($(elem), 'settings', {
+                    'theme': arg.Value
+                });
             }
         });
     }
 });
 
 Aspectize.Extend("JQueryDatePicker", {
-    Properties: { Value: new Date(4100000000000), MinDate: null, MaxDate: null, DefaultDate: new Date(), Mask: '', DisplayFormat: '', FirstDay: 0, ChangeMonth: false, ChangeYear: false, YearRange: 'c-10:c+10', ShowButton: true, ShowOn: '', WithTime: false, ShowTime: true, OnlyTime: false, StepMinute: 1, TimeZone: null },
+    Properties: {
+        Value: new Date(4100000000000), MinDate: null, MaxDate: null, DefaultDate: new Date(), Mask: '', DisplayFormat: '', FirstDay: 0, ChangeMonth: false, ChangeYear: false, YearRange: 'c-10:c+10', ShowButton: true, ShowOn: '', WithTime: false, ShowTime: true, OnlyTime: false, StepMinute: 1, TimeZone: null
+    },
     Events: ['OnValueChanged'],
     Init: function (elem) {
 
@@ -372,7 +388,9 @@ Aspectize.Extend("JQueryDatePicker", {
             return options;
         }
 
-        var needsNewPicker = { WithTime: true, OnlyTime: true };
+        var needsNewPicker = {
+            WithTime: true, OnlyTime: true
+        };
 
         function newPicker(control) {
 
@@ -466,9 +484,13 @@ Aspectize.Extend("JQueryDatePicker", {
                 var mustRebuildPicker = false;
                 for (var p in arg) {
 
-                    if (needsNewPicker[p]) { mustRebuildPicker = true; break; }
+                    if (needsNewPicker[p]) {
+                        mustRebuildPicker = true; break;
+                    }
 
-                    onPropertyChanged(elem, { Name: p, Value: arg[p] });
+                    onPropertyChanged(elem, {
+                        Name: p, Value: arg[p]
+                    });
                 }
 
                 if (mustRebuildPicker) {
