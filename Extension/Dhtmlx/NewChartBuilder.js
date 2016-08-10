@@ -219,7 +219,7 @@ Global.NewChartBuilder = {
                     this.data.push(chartItem);
                 },
 
-                RefreshData (id, field, value) {
+                RefreshData: function (id, field, value) {
 
                     if (id) {
 
