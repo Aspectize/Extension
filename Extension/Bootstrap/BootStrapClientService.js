@@ -137,7 +137,13 @@ Global.BootStrapClientService = {
                 $('#' + viewName).on('hidden.bs.modal', function () {
                     var uiService = Aspectize.Host.GetService('UIService');
 
+                    // TODO: 
                     uiService.UnactivateView(viewName);
+
+                    // in case 2 modals are opened
+                    if ($('.modal.in').css('display') == 'block') {
+                        $('body').addClass('modal-open');
+                    }
                 });
             }
         }
