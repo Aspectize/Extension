@@ -80,21 +80,22 @@ Aspectize.Extend("JQueryAutoComplete", {
                     attribute = "uiAutocomplete"; //ui-autocomplete ?
                 }
 
-                var options = {};               
+                var options = {};                               
 
-                options.close = function (event, ui) {
+                $(elem).on("blur", function (e) {
 
                     var v = Aspectize.UiExtensions.GetProperty(elem, 'Value');
 
-                    if (custom && elem.value && (elem.value !== v)) {
+                    if (custom && (elem.value !== v)) {
 
                         Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, elem.value);
                         Aspectize.UiExtensions.Notify(elem, 'OnSelectNewItem', elem.value);
 
                         if (!fillSelected) elem.value = '';
 
-                    } else if(fillSelected) elem.value = v;
-                };
+                    } else if (fillSelected) elem.value = v;
+
+                });
 
                 if (multiValue) {
 
