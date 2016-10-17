@@ -148,16 +148,16 @@ namespace Aspectize.OAuth {
 
             ExecutingContext.RedirectUrl = url;
 
-            logMessage("Leave {0}.RedirectToOAuthProvider", svcName);
+            logMessage("Leave {0}.RedirectToOAuthProvider with url = {1}", svcName, url);
         }
 
         void IFacebookOAuth.OAuth (string code, string state, string error, string error_description) {
 
             try {
 
-                if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
+                logMessage("Enter {0}.OAuth : code = {1} state = {2} error = {3} error_description = {4}", svcName, code, state, error, error_description);
 
-                    logMessage("Enter {0}.OAuth : state = {1}", svcName, state);
+                if (!String.IsNullOrEmpty(code) && !String.IsNullOrEmpty(state)) {
 
                     Guid id;
 

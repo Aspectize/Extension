@@ -18,7 +18,7 @@ Aspectize.Extend("JQueryButton", {
 });
 
 Aspectize.Extend("JQueryAutoComplete", {
-    Properties: { Url: '', Value: '', MultiValue: false, MultiValueSeparator: ',', FillSelected: true, Custom: false },
+    Properties: { Url: '', Value: '', Tag:null, MultiValue: false, MultiValueSeparator: ',', FillSelected: true, Custom: false },
     Events: ['OnSelectItem', 'OnSelectNewItem'],
     Init: function (elem) {
 
@@ -135,7 +135,8 @@ Aspectize.Extend("JQueryAutoComplete", {
                     options.select = function (event, ui) {
 
                         Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, ui.item.label);
-
+                        Aspectize.UiExtensions.ChangeProperty(elem, 'Tag', ui.item.value);
+                        
                         elem.value = fillSelected ? ui.item.label : '';
 
                         Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
