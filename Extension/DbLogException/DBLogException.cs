@@ -46,7 +46,7 @@ namespace DBLogException
 
                     AspectizeUser aspectizeUser = ExecutingContext.CurrentUser;
 
-                    if (aspectizeUser.IsAuthenticated)
+                    if (aspectizeUser.IsAuthenticated && aspectizeUser["Email"] != null)
                     {
                         logException.UserName = aspectizeUser["Email"].ToString();
                     }
