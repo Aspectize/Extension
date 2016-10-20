@@ -69,14 +69,14 @@ Global.FacebookConnectJS = {
                 
                 var svc = Aspectize.Host.GetService('SecurityServices');
 
-                FB.api('/me', 'get', { fields: 'id,email' }, function (r) {
+                FB.api('/me', 'get', { fields: 'id,name,gender,email' }, function (response) {
 
                     var params = automaticCall ? { action: 'validateUser' } : null;
 
                     Aspectize.HttpForm('GET', cmdUrl, params, function (data) {
 
-                        var email = r.email || '404';
-                        var fbId = r.id || null;
+                        var email = response.email || '404';
+                        var fbId = response.id || null;
                         svc.Authenticate(email + '@Facebook', fbId, rememberMe);
 
                         callBack();
