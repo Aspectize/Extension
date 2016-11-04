@@ -5,7 +5,15 @@ Global.NewChartBuilder = {
     aasService: 'NewChartBuilder',
     aasPublished: false,
 
+    initCSS: false,
+
     Build: function (controlInfo) {
+
+        if (!this.initCSS) {
+            var style = document.createElement('style');
+            style.innerHTML = ".hidden.dhx_chart_legend_item { display: block !important; visibility: visible !important; }";
+            document.body.appendChild(style);
+        }
 
         function buildChartAxisInfo(axis, name) {
 
@@ -33,9 +41,12 @@ Global.NewChartBuilder = {
 
             var cp = control.aasChartProperties;
 
+            var savedData = [];
+
             if (cp.dxChart && cp.MustRebuildChart) {
-                //control.innerHTML = '';
-                //cp.dxChart = null;
+                control.innerHTML = '';
+                cp.dxChart = null;
+                savedData = cp.data;
             }
 
             if (cp.dxChart === null) {
@@ -49,33 +60,34 @@ Global.NewChartBuilder = {
 
                 var info = { view: chartType, container: control.id };
 
-                var cai = buildChartAxisInfo (cp.AllAxis[yAxis], yAxis);
+                var cai = buildChartAxisInfo(cp.AllAxis[yAxis], yAxis);
                 for (var k in cai) info[k] = cai[k];
 
                 var min = controlInfo.PropertyBag.yStart;
                 var max = controlInfo.PropertyBag.yEnd;
+                var step = controlInfo.PropertyBag.yStep;
 
-                info.lines = false; //controlInfo.PropertyBag.hLines;
-                info.disableItems = true; // points;
+                info.lines = controlInfo.PropertyBag.hLines;
+                info.disableItems = !controlInfo.PropertyBag.ShowPoints;
 
                 info.xAxis = {
-                    title: '',
+                    title: cp.AllAxis[xAxis].Title,
                     template: '#' + xAxis + 'Label#',
                     lines: false, //controlInfo.PropertyBag.vLines
                 };
-                
+
                 info.yAxis = {
 
-                    start: getGraphBegin(min, max),
-                    end: getGraphEnd(min, max),
-                    step: 5//getGraphStep(min, max)
-                };                
+                    start: getGraphBegin(min, max, step),
+                    end: getGraphEnd(min, max, step),
+                    step: getGraphStep(min, max, step)
+                };
 
                 if (otherYAxis.length > 0) {
 
                     var legend = {
-                        layout: "y",
-                        align: "right",
+                        layout: controlInfo.PropertyBag.Legendlayout,
+                        align: controlInfo.PropertyBag.LegendAlign,
                         valign: "middle",
                         //marker: { width: 15, radius: 3 },
                         values: []
@@ -94,17 +106,17 @@ Global.NewChartBuilder = {
 
                     var axisName = otherYAxis[i];
 
-                    chart.addSeries(buildChartAxisInfo (cp.AllAxis[axisName], axisName));
+                    chart.addSeries(buildChartAxisInfo(cp.AllAxis[axisName], axisName));
                 }
 
                 if (cp.data.length > 0) {
 
                     Aspectize.ProtectedCall(chart, chart.parse, cp.data, 'json');
-                    
+
                 } else Aspectize.ProtectedCall(chart, chart.refresh);
 
                 cp.dxChart = chart;
-                cp.data = [];
+                cp.data = savedData;
 
             } else {
 
@@ -120,14 +132,14 @@ Global.NewChartBuilder = {
             cp.MustRebuildChart = false;
         }
 
-        function buildAxisProperties(index) {
+        function buildAxisProperties(index, title) {
 
-            var colors = ['#000000', '#FF0000', '#00FF00', '#D4D4D4','#0000FF', '#FFFF00', '#00FFFF', '#FF00FF'];
+            var colors = ['#000000', '#D4D4D4', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF'];
 
             var color = colors[index % colors.length];
 
             return {
-                Title: '', ShowLine: false,
+                Title: title, ShowLine: false,
                 Start: null, End: null, Step: null,
                 AlphaTransparency: 0.2, LineColor: color, LineWidth: 1,
                 ItemColor: color, ItemBorderColor: '#000000', ItemRadius: 4, ItemBorderWidth: 1,
@@ -204,11 +216,13 @@ Global.NewChartBuilder = {
                             this.MustRebuildChart = true;
                         }
 
-                    } else if (property in this.AllAxis[axis]) {
+                    } else {
 
-                        if (this.AllAxis[axis][property] !== value) {
+                        var a = this.AllAxis[axis];
 
-                            this.AllAxis[axis][property] = value;
+                        if (a && (property in a) && (a[property] !== value)) {
+
+                            a[property] = value;
                             this.MustRebuildChart = true;
                         }
                     }
@@ -244,11 +258,11 @@ Global.NewChartBuilder = {
                 }
             };
 
-            control.aasChartProperties.AllAxis[xAxis] = buildAxisProperties(0);
-            control.aasChartProperties.AllAxis[yAxis] = buildAxisProperties(1);
+            control.aasChartProperties.AllAxis[xAxis] = buildAxisProperties(0, xAxis);
+            control.aasChartProperties.AllAxis[yAxis] = buildAxisProperties(1, yAxis);
 
             for (var i = 0; i < otherYAxis.length; i++) {
-                control.aasChartProperties.AllAxis[otherYAxis[i]] = buildAxisProperties(2 + i);
+                control.aasChartProperties.AllAxis[otherYAxis[i]] = buildAxisProperties(2 + i, otherYAxis[i]);
             }
 
             buildDhtmlxChart(control);
@@ -357,20 +371,6 @@ Global.NewAxisBuilder = {
         controlInfo.CreateInstance = function (ownerWindow, id) {
 
             var control = Aspectize.createElement('div', ownerWindow);
-
-            controlInfo.aasLastSetValue = null;
-
-            var needsFlush = false;
-            function deferredFlush() {
-
-                function flush() {
-
-                    needsFlush = false;
-                    // Aspectize.ProtectedCall(control.aasDxChart, control.aasDxChart.refresh);
-                }
-
-                if (!needsFlush) { needsFlush = true; setTimeout(flush, 0); }
-            };
 
             controlInfo.ChangePropertyValue = function (property, newValue) {
 

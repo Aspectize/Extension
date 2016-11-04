@@ -1,4 +1,7 @@
-﻿function getGraphStep(minValue, maxValue) {
+﻿function getGraphStep(minValue, maxValue, step) {
+
+    if (step) return step;
+
     var copy = maxValue;
 
     if (minValue < 0) {
@@ -16,8 +19,8 @@
     return Math.pow(10, pow - 1);
 }
 
-function getGraphEnd(minValue, maxValue) {
-    var step = getGraphStep(minValue, maxValue);
+function getGraphEnd(minValue, maxValue, s) {
+    var step = getGraphStep(minValue, maxValue, s);
 
     var max = 0;
 
@@ -29,10 +32,10 @@ function getGraphEnd(minValue, maxValue) {
     return max;
 }
 
-function getGraphBegin(minValue, maxValue) {
+function getGraphBegin(minValue, maxValue, s) {
     if (minValue > 0) return 0;
 
-    var step = getGraphStep(minValue, maxValue);
+    var step = getGraphStep(minValue, maxValue, s);
     var min = 0;
 
     while (min > minValue) {
