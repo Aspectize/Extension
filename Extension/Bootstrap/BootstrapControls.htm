@@ -24,7 +24,7 @@
 
     <div aas-control="name:'BootstrapButtonIcon', isControlPart:true, events:['Click']" >
         <div aas-section="header">{HeaderText}</div>
-        <div aas-section="data"><button title="{ToolTip}" class="btn btn-xs btn-default" onclick="return Aspectize.GridColumnClicked (event, this);">{Text}&nbsp;<i class="{IconButton}"></i></button></div>    
+        <div aas-section="data"><button title="{ToolTip}" class="btn btn-xs btn-default {Hidden}" onclick="return Aspectize.GridColumnClicked (event, this);">{Text}&nbsp;<i class="{IconButton}"></i></button></div>    
     </div>
 
     <div aas-control="name:'BootstrapText', isControlPart:true" >
