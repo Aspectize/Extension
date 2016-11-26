@@ -147,6 +147,7 @@ Global.NewChartBuilder = {
             };
         }
 
+
         controlInfo.CreateInstance = function (ownerWindow, id) {
 
             var chart = Aspectize.createElement('div', ownerWindow);
@@ -163,7 +164,11 @@ Global.NewChartBuilder = {
 
         controlInfo.InitGrid = function (control) {
 
-            control.style.height = '350px';
+            //control.style.height = '350px';
+            control.style.height = '100%';
+            control.style.width = '100%';
+            control.style.minHeight = '100%';
+            control.style.minWidth = '100%';
 
             if (control.parentNode.width) {
                 control.style.width = control.parentNode.width;

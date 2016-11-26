@@ -46,6 +46,22 @@ function getGraphBegin(minValue, maxValue, s) {
     return min;
 }
 
+function getDxChart(graphControl) {
+
+    if (graphControl) {
+
+        if (graphControl.aasDxChart) {
+
+            return graphControl.aasDxChart;
+
+        } else if (graphControl.aasChartProperties) {
+
+            return graphControl.aasChartProperties.dxChart;
+        }
+    }
+
+    return null;
+}
 Global.DhtmlxChartService = {
 
     aasService: 'DhtmlxChartService',
@@ -67,14 +83,19 @@ Global.DhtmlxChartService = {
 
         var graphControl = document.getElementById(graphControlId);
 
-        if (graphControl && graphControl.aasDxChart) {
-            var rowCount = graphControl.aasRowCount; // control.aasDxChart.data.dataCount();
+        var dxChart = getDxChart(graphControl);
+
+        if (graphControl && dxChart) {
+
+            var rowCount = graphControl.aasRowCount;
 
             var currentWidth = graphControl.parentNode.clientWidth;
 
             graphControl.style.width = graphControl.parentNode.clientWidth + 'px';
 
-            var pointWidth = graphControl.aasChartProperties.XAxis.PointWidth;
+            var xAxis = graphControl.aasChartProperties.xAxis;
+
+            var pointWidth = graphControl.aasChartProperties.AllAxis[xAxis].PointWidth;
 
             if (currentWidth <= rowCount * pointWidth) {
                 graphControl.style.width = rowCount * pointWidth + 'px';
@@ -83,8 +104,8 @@ Global.DhtmlxChartService = {
                 graphControl.style.width = graphControl.parentNode.clientWidth + 'px';
             }
 
-            Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.refresh);
-            Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.resize);
+            Aspectize.ProtectedCall(dxChart, dxChart.refresh);
+            Aspectize.ProtectedCall(dxChart, dxChart.resize);
         }
     },
 
@@ -108,7 +129,7 @@ Global.DhtmlxChartService = {
         var graphControl = document.getElementById(graphControlId);
 
         if (graphControl && graphControl.aasDxChart) {
-           
+
             Aspectize.ProtectedCall(graphControl.aasDxChart, graphControl.aasDxChart.parse, data, 'json');
         }
     }
@@ -137,7 +158,11 @@ Global.DhtmlxChartBuilder = {
 
         controlInfo.InitGrid = function (control) {
 
-            control.style.height = '350px';
+            //control.style.height = '350px';
+            control.style.height = '100%';
+            control.style.width = '100%';
+            control.style.minHeight = '100%';
+            control.style.minWidth = '100%';
 
             if (control.parentNode.width) {
                 control.style.width = control.parentNode.width;
@@ -316,10 +341,10 @@ Global.DhtmlxChartBuilder = {
             if (!start) start = getGraphBegin(min, max);
 
             var step = control.aasChartProperties.YAxis[control.aasDxChartYAxis].Step;
-            if (!step) step = getGraphStep(min, max);            
+            if (!step) step = getGraphStep(min, max);
 
             var end = control.aasChartProperties.YAxis[control.aasDxChartYAxis].End;
-            if (!end) end = getGraphEnd(min, max);            
+            if (!end) end = getGraphEnd(min, max);
 
             control.aasDxChart.define('yAxis', {
                 start: start,
@@ -413,7 +438,7 @@ Global.DhtmlxChartAxisBuilder = {
 
             controlInfo.ChangePropertyValue = function (property, newValue) {
 
-                if(property === 'LabelValue') return;
+                if (property === 'LabelValue') return;
 
                 controlInfo.PropertyBag[property] = newValue;
 
@@ -476,7 +501,7 @@ Global.DhtmlxChartAxisBuilder = {
                             var t = translateToObjectProperty(property);
 
                             var o = {}; o[t.Property] = newValue;
-                            
+
                             control.aasDxChart.define(t.Obj, o);
 
                             //control.aasDxChart.define('yAxis', {
