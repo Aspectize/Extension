@@ -3,58 +3,52 @@
 
 Aspectize.Extend("BootstrapSlider", {
 
-    Properties: { V1: 0, V2: 0, MinValue: 0, MaxValue: 100, Step: 1, Orientation: 'horizontal', Enabled: true, Ticks:"", TickLabels : "" },
+    Properties: { V1: 0, V2: 0, MinValue: 0, MaxValue: 100, Step: 1, Orientation: 'horizontal', Enabled: true, Ticks: "", TickLabels: "" },
     Events: ['OnV1Changed', 'OnV2Changed'],
     Init: function (elem) {
 
         var optionMap = { MinValue: 'min', MaxValue: 'max', Step: 'step', Orientation: 'orientation' };
         var theSlider = null;
-        var rxSingle = /^\s*\d+\s*$/;
-        var rxDouble = /\[\s*(\d+\s*,\s*\d+)\s*\]/;
 
         var hasTwoValues = false;
-        
+
         function buildNewSlider() {
 
             if (theSlider) theSlider.destroy();
 
             var value = 0;
 
-            if (elem.hasAttribute('aas-initial-value')) {
+            var initialValues = Aspectize.UiExtensions.GetProperty(elem, 'InitialValues');
 
-                var initialValue = elem.getAttribute('aas-initial-value').trim();
+            if (initialValues) {
 
-                if (rxSingle.test(initialValue)) {
+                var errMessage = '';
 
-                    value = Number(initialValue);
+                if (initialValues.constructor === Array) {
 
+                    value = initialValues[0];
                     Aspectize.UiExtensions.ChangeProperty(elem, 'V1', value);
                     Aspectize.UiExtensions.Notify(elem, 'OnV1Changed', value);
 
-                } else {
+                    if (initialValues.length === 2) {
 
-                    var m = rxDouble.exec(initialValue);
+                        value = initialValues;
+                        hasTwoValues = true;
 
-                    if (m) {
+                        Aspectize.UiExtensions.ChangeProperty(elem, 'V2', initialValues[1]);
+                        Aspectize.UiExtensions.Notify(elem, 'OnV2Changed', initialValues[1]);
 
-                        var values = m[1].split(',');
+                    } else if (initialValues.length > 2) errMessage = ' You have ' + initialValues.length + '.';
 
-                        if (values.length === 2) {
+                } else errMessage = " You don't have an array.";
 
-                            hasTwoValues = true;
-                            value = [Number(values[0].trim()), Number(values[1].trim())];
+                if (errMessage) {
 
-                            Aspectize.UiExtensions.ChangeProperty(elem, 'V1', value[0]);
-                            Aspectize.UiExtensions.Notify(elem, 'OnV1Changed', value[0]);
-
-                            Aspectize.UiExtensions.ChangeProperty(elem, 'V2', value[1]);
-                            Aspectize.UiExtensions.Notify(elem, 'OnV2Changed', value[1]);
-                        }
-                    }
+                    Aspectize.Throw(elem.id + ' BootstrapSlider : InitialValues can only be set to an array of one or two numbers !' + errMessage);
                 }
             }
 
-            var options = {value:value};
+            var options = { value: value };
             for (var p in optionMap) {
 
                 options[optionMap[p]] = Aspectize.UiExtensions.GetProperty(elem, p);
@@ -111,7 +105,7 @@ Aspectize.Extend("BootstrapSlider", {
             });
 
         }
-               
+
         buildNewSlider();
 
         var currentOptions = theSlider.getAttribute();
@@ -132,7 +126,7 @@ Aspectize.Extend("BootstrapSlider", {
                     switch (p) {
 
                         case 'V1': theSlider.setValue(arg.V1); break;
-                        
+
                         case 'Enabled': {
 
                             if (arg.Enabled && !currentOptions.enabled) {
