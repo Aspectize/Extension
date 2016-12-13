@@ -24,7 +24,7 @@ namespace DBLogException
 
         void ILog.WriteLog(TraceInfo traceInfo)
         {
-            if (traceInfo.Level == -1)
+            if (traceInfo.Level < 0)
             {
                 IDataManager dm = EntityManager.FromDataBaseService(DataServiceName);
 
