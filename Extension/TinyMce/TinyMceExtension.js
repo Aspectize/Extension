@@ -1,6 +1,6 @@
 ﻿
 Aspectize.Extend("TinyMCEv4", {
-    Properties: { EditMode: true, Value: '', CustomImage: false, CustomLink: false, RelativeUrls: false, Inline: false, MenuBar: false, StatusBar: false, WordCount: false, DisableIFrame: false },
+    Properties: { EditMode: true, Value: '', CustomImage: false, CustomLink: false, RelativeUrls: false, Inline: false, MenuBar: false, StatusBar: false, WordCount: false, DisableIFrame: false, RemoveTrailingBrs: true },
     Events: ['OnCustomImage', 'OnCustomLink'],
     Init: function (elem) {
 
@@ -43,6 +43,7 @@ Aspectize.Extend("TinyMCEv4", {
                 language: 'fr_FR',
                 selector: '#' + elem.id,
                 allow_script_urls: true,
+                remove_trailing_brs: Aspectize.UiExtensions.GetProperty(elem, 'RemoveTrailingBrs'),
                 visual_table_class: Aspectize.UiExtensions.GetProperty(elem, 'EditMode') ? 'mce-item-table' : 'my-custom-class',
                 relative_urls: Aspectize.UiExtensions.GetProperty(elem, 'RelativeUrls'),
                 remove_script_host: Aspectize.UiExtensions.GetProperty(elem, 'RelativeUrls'),
