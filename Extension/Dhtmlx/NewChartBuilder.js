@@ -73,7 +73,7 @@ Global.NewChartBuilder = {
                 info.xAxis = {
                     title: cp.AllAxis[xAxis].Title,
                     template: '#' + xAxis + 'Label#',
-                    lines: false, //controlInfo.PropertyBag.vLines
+                    lines: false //controlInfo.PropertyBag.vLines
                 };
 
                 info.yAxis = {
