@@ -83,29 +83,37 @@ Global.DhtmlxChartService = {
 
         var graphControl = document.getElementById(graphControlId);
 
-        var dxChart = getDxChart(graphControl);
+        if (graphControl.aasChartProperties) {
 
-        if (graphControl && dxChart) {
+            gc.aasChartProperties.MustRebuildChart = true;
+            gc.aasChartProperties.RefreshData();
 
-            var rowCount = graphControl.aasRowCount;
+        } else {
 
-            var currentWidth = graphControl.parentNode.clientWidth;
+            var dxChart = getDxChart(graphControl);
 
-            graphControl.style.width = graphControl.parentNode.clientWidth + 'px';
+            if (graphControl && dxChart) {
 
-            var xAxis = graphControl.aasChartProperties.xAxis;
+                var rowCount = graphControl.aasRowCount;
 
-            var pointWidth = graphControl.aasChartProperties.AllAxis[xAxis].PointWidth;
+                var currentWidth = graphControl.parentNode.clientWidth;
 
-            if (currentWidth <= rowCount * pointWidth) {
-                graphControl.style.width = rowCount * pointWidth + 'px';
-            }
-            else {
                 graphControl.style.width = graphControl.parentNode.clientWidth + 'px';
-            }
 
-            Aspectize.ProtectedCall(dxChart, dxChart.refresh);
-            Aspectize.ProtectedCall(dxChart, dxChart.resize);
+                var xAxis = graphControl.aasChartProperties.xAxis;
+
+                var pointWidth = graphControl.aasChartProperties.AllAxis[xAxis].PointWidth;
+
+                if (currentWidth <= rowCount * pointWidth) {
+                    graphControl.style.width = rowCount * pointWidth + 'px';
+                }
+                else {
+                    graphControl.style.width = graphControl.parentNode.clientWidth + 'px';
+                }
+
+                Aspectize.ProtectedCall(dxChart, dxChart.refresh);
+                Aspectize.ProtectedCall(dxChart, dxChart.resize);
+            }
         }
     },
 
