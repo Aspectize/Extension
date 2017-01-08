@@ -280,6 +280,11 @@ Global.NewChartBuilder = {
             cellControl.aasRowId = rowId;
         };
 
+        controlInfo.BeforeRender = function (control, rowCount) {
+
+            control.aasChartProperties.MustRebuildChart = true;
+            control.aasChartProperties.data = [];
+        }
 
         controlInfo.RowCreated = function (control, rowId, cellControls) {
 
