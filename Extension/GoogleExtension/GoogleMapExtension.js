@@ -30,7 +30,7 @@ Aspectize.Extend("GoogleMapPlaceInput", {
                             property = "Zip";
                         } else if (type == "country") {
                             property = "Country";
-                        } else if (type == "administrative_area_level_2") { // "locality") {
+                        } else if (type == "locality") { // "locality") {
                             property = "City";
                         } else if (type == "street_number") {
                             property = "StreetNumber";
