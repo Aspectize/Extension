@@ -1,5 +1,26 @@
 ﻿/// <reference path="S:\Delivery\Aspectize.core\AspectizeIntellisenseLibrary.js" />
 
+function getErrorService() {
+
+    var name = Aspectize.Host.Parameters.DisplayExceptionServiceName;
+    var displayError = null;
+
+    if (name) {
+        var svc = Aspectize.Host.GetService(name);
+        displayError = svc.Display;
+    }
+    return function (level, message, type) {
+
+        if (displayError) {
+
+            var x = { Level: level, Message: message, ErrorInfo: type };
+
+            displayError(x, message);
+
+        } else if (message) alert(message);
+    };
+}
+
 Aspectize.Extend("Autosize", {
     Properties: {},
     Events: [],
@@ -18,7 +39,7 @@ Aspectize.Extend("JQueryButton", {
 });
 
 Aspectize.Extend("JQueryAutoComplete", {
-    Properties: { Url: '', Value: '', Tag:null, MultiValue: false, MultiValueSeparator: ',', FillSelected: true, Custom: false },
+    Properties: { Url: '', Value: '', Tag: null, MultiValue: false, MultiValueSeparator: ',', FillSelected: true, Custom: false },
     Events: ['OnSelectItem', 'OnSelectNewItem'],
     Init: function (elem) {
 
@@ -80,7 +101,7 @@ Aspectize.Extend("JQueryAutoComplete", {
                     attribute = "uiAutocomplete"; //ui-autocomplete ?
                 }
 
-                var options = {};                               
+                var options = {};
 
                 $(elem).on("blur", function (e) {
 
@@ -136,7 +157,7 @@ Aspectize.Extend("JQueryAutoComplete", {
 
                         Aspectize.UiExtensions.ChangeProperty(elem, valuePropertyName, ui.item.label);
                         Aspectize.UiExtensions.ChangeProperty(elem, 'Tag', ui.item.value);
-                        
+
                         elem.value = fillSelected ? ui.item.label : '';
 
                         Aspectize.UiExtensions.Notify(elem, 'OnSelectItem', ui.item.value);
@@ -262,6 +283,7 @@ Aspectize.Extend("JQueryDatePicker", {
         function buildOptions(properties) {
 
             var langageInfo = Aspectize.CultureInfo.GetLanguageInfo();
+            var regionInfo = Aspectize.CultureInfo.GetRegionInfo();
 
             var showOnOption = Aspectize.UiExtensions.GetProperty(elem, 'ShowOn');
 
@@ -269,7 +291,7 @@ Aspectize.Extend("JQueryDatePicker", {
                 showOnOption = Aspectize.UiExtensions.GetProperty(elem, 'ShowButton') ? 'button' : 'focus';
             }
 
-            var dateCustomFormat = Aspectize.UiExtensions.JQuery.GetDateFormat();
+            var dateCustomFormat = regionInfo.dateFormat;
             var boundFormat = Aspectize.UiExtensions.GetProperty(elem, 'DisplayFormat');
 
             if (boundFormat) dateCustomFormat = boundFormat;
@@ -354,7 +376,31 @@ Aspectize.Extend("JQueryDatePicker", {
             $(elem).on('change', function (e) {
 
                 var f = modeWithTime ? 'datetimepicker' : 'datepicker';
-                var value = $(elem)[f]('getDate');
+
+                var errMessage = "";
+                var editedValue = elem.value;
+                var value = null;
+
+                if (!editedValue) {
+
+                    value = Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate');
+
+                } else {
+
+                    var f = modeWithTime ? 'datetimepicker' : 'datepicker';
+
+                    try {
+                        value = $[f].parseDate(dateCustomFormat, editedValue);
+
+                    } catch (x) {
+                        
+                        errMessage = Aspectize.FormatString("{0} Invalid ! format = {1}.", editedValue, dateCustomFormat);
+
+                        getErrorService()(1000, errMessage, 'JQueryExtension.JQueryDatePicker');
+                    }
+                }
+                
+                $(elem)[f]('setDate', value);
 
                 if (value === null) {
 
@@ -372,17 +418,18 @@ Aspectize.Extend("JQueryDatePicker", {
                         Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
 
                     } else {
-
-                        var errMessage = "";
-
+                        
                         if (minDate) {
 
                             errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be greater than {1:yyyy-MM-dd}", value, minDate);
+                            getErrorService()(1000, errMessage, 'JQueryExtension.JQueryDatePicker');
 
                         } else if (maxDate) {
 
                             errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be less than {1:yyyy-MM-dd}", value, maxDate);
+                            getErrorService()(1000, errMessage, 'JQueryExtension.JQueryDatePicker');
                         }
+                        
                     }
                 }
             });
