@@ -81,6 +81,7 @@ Aspectize.Extend("JQueryAutoComplete", {
 
                     case 'Url':
                     case 'MultiValue':
+                    case 'Custom':
                     case 'FillSelected': reInit = true; break;
 
                     case valuePropertyName: $(sender).val(arg[p]); break;
