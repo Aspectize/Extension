@@ -4,6 +4,34 @@ Global.BootStrapClientService = {
     aasService: 'BootStrapClientService',
     aasPublished: true,
 
+    StyleCheckBoxList: function () {
+
+        var rx = /\binline\b/;
+        var divs = document.querySelectorAll('.aasCheckBoxList div');
+
+        Array.prototype.forEach.call(divs, function (div) {
+
+            var gpClass = div.parentElement.parentElement.className;
+            var inline = rx.test(gpClass);
+
+            if (!div.className) div.className = inline ? 'checkbox-inline' : 'checkbox';
+        });
+    },
+
+    StyleRadioButtons: function () {
+
+        var rx = /\binline\b/;
+        var labels = document.querySelectorAll('.aasRadioButtons label');
+
+        Array.prototype.forEach.call(labels, function (lbl) {
+
+            var gpClass = lbl.parentElement.parentElement.className;
+            var inline = rx.test(gpClass);
+
+            if (lbl.className.lastIndexOf('radio') === -1) lbl.className += inline ? ' radio-inline' : ' radio';
+        });
+    },
+
     DisplayValidator: function (control, message) {
         var controlName = control.name;
 
