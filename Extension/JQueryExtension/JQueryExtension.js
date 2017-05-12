@@ -410,7 +410,7 @@ Aspectize.Extend("JQueryDatePicker", {
 
                 if (!editedValue) {
 
-                    value = Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate');
+                    //value = Aspectize.UiExtensions.GetProperty(elem, 'DefaultDate');
 
                 } else {
 
