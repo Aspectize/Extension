@@ -102,11 +102,26 @@ Aspectize.Extend("JQueryAutoComplete", {
                     attribute = "uiAutocomplete"; //ui-autocomplete ?
                 }
 
+                var localeList = false; var commandName; var parameters;
+                if (url.startsWith('Browser/')) {
+                    localeList = true;
+                    var urlCommand = url.substring(8);
+                    
+                    var parts = urlCommand.split('?');
+                    var commandNameParts = parts[0].split('.');
+                    commandName = commandNameParts[0] + '.' + commandNameParts[1];
+                    
+                    if (parts.length > 1) {
+                        var parametersPart = parts[1].split('&');
+                        
+                    }
+                }
+
                 var options = {};
 
                 $(elem).on("blur", function (e) {
 
-                    var v = Aspectize.UiExtensions.GetProperty(elem, 'Value');
+                    var v = Aspectize.UiExtensions.GetProperty(elem, valuePropertyName);
 
                     if (custom && (elem.value !== v)) {
 
@@ -121,11 +136,15 @@ Aspectize.Extend("JQueryAutoComplete", {
 
                 if (multiValue) {
 
-                    options.source = function (request, response) {
-                        $.getJSON(url, {
-                            term: extractLast(request.term)
-                        }, response);
-                    };
+                    if (localeList) {
+                        
+                    } else {
+                        options.source = function (request, response) {
+                            $.getJSON(url, {
+                                term: extractLast(request.term)
+                            }, response);
+                        };
+                    }
 
                     options.select = function (event, ui) {
 
@@ -151,8 +170,15 @@ Aspectize.Extend("JQueryAutoComplete", {
                     };
 
                 } else {
-
-                    options.source = url;
+                    if (localeList) {
+                        options.source = function (request, response) {
+                            var term = request.term;
+                            var info = Aspectize.Host.ExecuteCommand(commandName, term);
+                            response(info);
+                        };
+                    } else {
+                        options.source = url;
+                    }
 
                     options.select = function (event, ui) {
 
