@@ -103,19 +103,21 @@ Aspectize.Extend("JQueryAutoComplete", {
                 }
 
                 var localeList = false; var commandName; var parameters;
-                if (url.startsWith('Browser/')) {
-                    localeList = true;
-                    var urlCommand = url.substring(8);
-                    
-                    var parts = urlCommand.split('?');
-                    var commandNameParts = parts[0].split('.');
-                    commandName = commandNameParts[0] + '.' + commandNameParts[1];
-                    
-                    if (parts.length > 1) {
-                        var parametersPart = parts[1].split('&');
-                        
-                    }
-                }
+
+                //if (url.startsWith('Browser/')) {
+                //if (url.lastIndexOf('Browser/', 0) === 0) {
+                //    localeList = true;
+                //    var urlCommand = url.substring(8);
+
+                //    var parts = urlCommand.split('?');
+                //    var commandNameParts = parts[0].split('.');
+                //    commandName = commandNameParts[0] + '.' + commandNameParts[1];
+
+                //    if (parts.length > 1) {
+                //        var parametersPart = parts[1].split('&');
+
+                //    }
+                //}
 
                 var options = {};
 
@@ -136,15 +138,15 @@ Aspectize.Extend("JQueryAutoComplete", {
 
                 if (multiValue) {
 
-                    if (localeList) {
-                        
-                    } else {
-                        options.source = function (request, response) {
-                            $.getJSON(url, {
-                                term: extractLast(request.term)
-                            }, response);
-                        };
-                    }
+                    //if (localeList) {
+
+                    //} else {
+                    options.source = function (request, response) {
+                        $.getJSON(url, {
+                            term: extractLast(request.term)
+                        }, response);
+                    };
+                    //}
 
                     options.select = function (event, ui) {
 
@@ -170,15 +172,15 @@ Aspectize.Extend("JQueryAutoComplete", {
                     };
 
                 } else {
-                    if (localeList) {
-                        options.source = function (request, response) {
-                            var term = request.term;
-                            var info = Aspectize.Host.ExecuteCommand(commandName, term);
-                            response(info);
-                        };
-                    } else {
-                        options.source = url;
-                    }
+                    //if (localeList) {
+                    //    options.source = function (request, response) {
+                    //        var term = request.term;
+                    //        var info = Aspectize.Host.ExecuteCommand(commandName, term);
+                    //        response(info);
+                    //    };
+                    //} else {
+                    options.source = url;
+                    //}
 
                     options.select = function (event, ui) {
 
@@ -420,13 +422,13 @@ Aspectize.Extend("JQueryDatePicker", {
                         value = $[f].parseDate(dateCustomFormat, editedValue);
 
                     } catch (x) {
-                        
+
                         errMessage = Aspectize.FormatString("{0} Invalid ! format = {1}.", editedValue, dateCustomFormat);
 
                         getErrorService()(1000, errMessage, 'JQueryExtension.JQueryDatePicker');
                     }
                 }
-                
+
                 $(elem)[f]('setDate', value);
 
                 if (value === null) {
@@ -445,7 +447,7 @@ Aspectize.Extend("JQueryDatePicker", {
                         Aspectize.UiExtensions.ChangeProperty(elem, 'Value', value);
 
                     } else {
-                        
+
                         if (minDate) {
 
                             errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be greater than {1:yyyy-MM-dd}", value, minDate);
@@ -456,7 +458,7 @@ Aspectize.Extend("JQueryDatePicker", {
                             errMessage = Aspectize.FormatString("{0:yyyy-MM-dd} must be less than {1:yyyy-MM-dd}", value, maxDate);
                             getErrorService()(1000, errMessage, 'JQueryExtension.JQueryDatePicker');
                         }
-                        
+
                     }
                 }
             });
