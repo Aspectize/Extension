@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimalLanguageDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="GoogleOAuth">
+  <diagramMoniker Id="607ed3fa-889a-48bb-995e-59457f5631bf" />
+  <nestedChildShapes>
+    <entityShape Id="2f90467b-ec6f-4e49-a48f-be7fd54f3bb5" absoluteBounds="0.75, 0.75, 1.75, 0.81460286458333364">
+      <entityMoniker Id="3f14dd24-32a1-40ad-af1b-a9bc3756e7a7" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ffc70858-e95b-44ba-98a2-d12567280e56" absoluteBounds="0.76500000000000012, 1.08, 1.7200000000000002, 0.38460286458333331" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="d5a27883-db2c-4757-ac03-95574772666b" absoluteBounds="2.875, 0.75, 2, 1.3915071614583332">
+      <entityMoniker Id="05cfe60b-11cc-418c-9ee8-c5dd1ec5b18e" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0c97e86f-2cf4-4126-9789-8dd478a34641" absoluteBounds="2.8899999999999997, 1.08, 1.9700000000000002, 0.96150716145833326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="e1407c21-9414-4881-9bdc-189ba9203e40" absoluteBounds="6.125, 0.875, 1.75, 1.1992057291666667">
+      <entityMoniker Id="b53b5b95-4703-45a9-be90-87d1903f7547" />
+      <nestedChildShapes>
+        <elementListCompartment Id="92f70d07-c5a4-46b1-8bec-d04b0456e5c4" absoluteBounds="6.14, 1.205, 1.7200000000000002, 0.76920572916666663" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+  </nestedChildShapes>
+</minimalLanguageDiagram>

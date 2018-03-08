@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<diagram xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="607ed3fa-889a-48bb-995e-59457f5631bf" domain="GoogleOAuth" xmlns="http://schemas.microsoft.com/dsltools/EntityDesigner">
+  <entities>
+    <entity Id="3f14dd24-32a1-40ad-af1b-a9bc3756e7a7" name="GoogleTokenExchange" guid="dcf3bc7f-cdf9-42d2-b25b-9decad48a3c1" hasCustomValidators="false" hasTriggers="false">
+      <properties>
+        <entityProperty name="Timestamp" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="UserId" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+      </properties>
+    </entity>
+    <entity Id="05cfe60b-11cc-418c-9ee8-c5dd1ec5b18e" name="GoogleTokenInfo" guid="9ab94f06-f710-44f8-b8af-21b5ed84327d" hasCustomValidators="false" hasTriggers="false">
+      <properties>
+        <entityProperty name="Token" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" serverOnly="true" />
+        <entityProperty name="RefreshToken" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" serverOnly="true" />
+        <entityProperty name="IdToken" nullable="true" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="RefreshedTime" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="ValidityInSeconds" type="Int32" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+      </properties>
+    </entity>
+    <entity Id="b53b5b95-4703-45a9-be90-87d1903f7547" name="GoogleEvent" guid="4ab86912-bd0b-4d2f-a0b3-a05aba481962" mustPersist="false" hasCustomValidators="false" hasTriggers="false">
+      <properties>
+        <entityProperty name="Title" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="EventStart" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="EventEnd" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+        <entityProperty name="AllDayEvent" type="Boolean" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
+      </properties>
+    </entity>
+  </entities>
+</diagram>
