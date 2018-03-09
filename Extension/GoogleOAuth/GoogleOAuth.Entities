@@ -18,6 +18,7 @@
     </entity>
     <entity Id="b53b5b95-4703-45a9-be90-87d1903f7547" name="GoogleEvent" guid="4ab86912-bd0b-4d2f-a0b3-a05aba481962" mustPersist="false" hasCustomValidators="false" hasTriggers="false">
       <properties>
+        <entityProperty name="GoogleEvtId" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="Title" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="EventStart" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />
         <entityProperty name="EventEnd" type="DateTime" identity="false" isEnumType="false" isCompoType="false" isExternType="false" isEnumInBaseType="false" />

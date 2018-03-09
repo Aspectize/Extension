@@ -151,6 +151,7 @@ namespace GoogleOAuth {
 
             return null;
         }
+
         [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
         DataSet IGoogleCalendar.GetEvents(DateTime? start, DateTime? end) {
 
@@ -206,7 +207,8 @@ namespace GoogleOAuth {
 
                     var evt = jsonEvents[n];
 
-                    var id = evt.SafeGetValue<string>("id").ToGuid();
+                    var gid = evt.SafeGetValue<string>("id");
+                    var id = gid.ToGuid();
                     var title = evt.SafeGetValue<string>("summary");
 
                     //var creator = evt.SafeGetValue<JsonObject>("creator");
@@ -223,6 +225,7 @@ namespace GoogleOAuth {
                         var gEvt = em.CreateInstance<GoogleOAuth.GoogleEvent>();
 
                         gEvt.Id = id;
+                        gEvt.GoogleEvtId = gid;
                         gEvt.Title = title;
 
                         gEvt.EventStart = sdt.Value;

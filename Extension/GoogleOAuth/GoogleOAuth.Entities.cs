@@ -137,6 +137,7 @@ namespace GoogleOAuth
 		public static partial class Fields
 		{
 			public const string Id = "Id";
+			public const string GoogleEvtId = "GoogleEvtId";
 			public const string Title = "Title";
 			public const string EventStart = "EventStart";
 			public const string EventEnd = "EventEnd";
@@ -153,6 +154,13 @@ namespace GoogleOAuth
 		{
 			get { return getValue<Guid>("Id"); }
 			set { setValue<Guid>("Id", value); }
+		}
+
+		[Data]
+		public string GoogleEvtId
+		{
+			get { return getValue<string>("GoogleEvtId"); }
+			set { setValue<string>("GoogleEvtId", value); }
 		}
 
 		[Data]
