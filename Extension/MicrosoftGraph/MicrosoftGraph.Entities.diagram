@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimalLanguageDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MicrosoftGraph">
+  <diagramMoniker Id="0556d0ea-c3d5-4c84-9aae-f8da4e0aee95" />
+  <nestedChildShapes>
+    <entityShape Id="3aa43c4b-e4a7-4457-be14-8e3327ba108c" absoluteBounds="0.875, 1.5, 1.75, 0.81460286458333342">
+      <entityMoniker Id="a469f493-59b5-466d-976f-95aa479e2d45" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e705f9d3-61be-4c41-9f5c-b4a2c377892a" absoluteBounds="0.89000000000000057, 1.83, 1.7200000000000002, 0.38460286458333331" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="eed5c652-1a86-4018-80a8-d5a3f8e69dae" absoluteBounds="3.5, 1.5, 1.75, 1.3915071614583332">
+      <entityMoniker Id="fca901e8-6dc0-4a30-84ae-fd105e80ed6b" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6bfd860b-3df9-41d9-8a6a-ecedf74717ca" absoluteBounds="3.5149999999999997, 1.83, 1.7200000000000002, 0.96150716145833326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="1da07fe6-ebe8-4086-86b1-dc1e5eee6117" absoluteBounds="6.375, 1.5, 1.75, 1.3915071614583332">
+      <entityMoniker Id="a7aef867-6275-4293-8382-29b0909396b0" />
+      <nestedChildShapes>
+        <elementListCompartment Id="66bf1d66-3230-4550-be22-cd4d7d187776" absoluteBounds="6.39, 1.83, 1.7200000000000002, 0.96150716145833326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+  </nestedChildShapes>
+</minimalLanguageDiagram>

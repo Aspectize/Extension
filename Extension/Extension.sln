@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspectizePubNub", "Aspectiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleOAuth", "GoogleOAuth\GoogleOAuth.csproj", "{F4F4BEB1-7CB2-415F-9A5C-6562C53C7F08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftGraph", "MicrosoftGraph\MicrosoftGraph.csproj", "{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{F4F4BEB1-7CB2-415F-9A5C-6562C53C7F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4F4BEB1-7CB2-415F-9A5C-6562C53C7F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4F4BEB1-7CB2-415F-9A5C-6562C53C7F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +93,6 @@ Global
 		{4B5360F5-5B41-4035-A46D-7832EE6579CD} = {A7036E6F-2D62-4086-8CAD-B133E310C6CB}
 		{C8EA9290-266A-4EEE-B010-3729D59F299E} = {DA87ECBB-8959-49BA-91D3-84441045C50D}
 		{F4F4BEB1-7CB2-415F-9A5C-6562C53C7F08} = {78EE9290-E7EA-4117-AFC6-5F452952E117}
+		{048C0F68-092B-440B-9DB6-E7F9CDC7F1DD} = {78EE9290-E7EA-4117-AFC6-5F452952E117}
 	EndGlobalSection
 EndGlobal

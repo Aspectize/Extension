@@ -10,8 +10,6 @@ namespace GoogleOAuth {
 
     public interface IGoogleOAuth {
 
-        Dictionary<string, object> GetApplicationInfo();
-
         [Command(Bindable = false)]
         void OAuth(string code, string state, string error, string error_description);
 
@@ -55,10 +53,6 @@ namespace GoogleOAuth {
                 var appName = Context.CurrentApplication.Name;
                 return String.Format("{0}{1}/{2}.OAuth.json.cmd.ashx", host, appName, svcName);
             }
-        }
-
-        Dictionary<string, object> IGoogleOAuth.GetApplicationInfo() {
-            throw new NotImplementedException();
         }
 
         void IGoogleOAuth.OAuth(string code, string state, string error, string error_description) {

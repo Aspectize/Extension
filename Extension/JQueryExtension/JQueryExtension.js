@@ -119,7 +119,9 @@ Aspectize.Extend("JQueryAutoComplete", {
                 //    }
                 //}
 
-                var options = {};
+                var options = {
+                    delay: 300
+                };
 
                 $(elem).on("blur", function (e) {
 
