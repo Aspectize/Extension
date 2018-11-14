@@ -146,7 +146,7 @@ namespace GoogleOAuth {
             return null;
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
+        //[PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
         DataSet IGoogleCalendar.GetEvents(DateTime? start, DateTime? end) {
 
             if (!start.HasValue) start = DateTime.UtcNow.AddDays(-1.0);

@@ -5,7 +5,7 @@
 </head>
 <body>
 
-    <div aas-control="name:'BootstrapGrid', binding:'GridBinding', properties : {CurrentData:null, AutoSort:true, GroupRows:false, PageSize:0, EmptyGridMessage:'', HideHeadersIfNoData:false, RowCount:0, MinRows:0}, events:['OnRowClick', 'OnRowCountChanged'], templateBuilders:['HtmlTableBuilder'], parts:['BootstrapSpan', 'BootstrapHtmlDiv', 'BootstrapButton', 'BootstrapButtonIcon', 'BootstrapText', 'BootstrapImage', 'CheckBox', 'CheckBoxHeader', 'Link', 'DynamicImageLink', 'DynamicLink', 'RowClass'], selectedStyle:'active'" class='table'></div>
+    <div aas-control="name:'BootstrapGrid', binding:'GridBinding', properties : {CurrentData:null, AutoSort:true, GroupRows:false, PageSize:0, EmptyGridMessage:'', HideHeadersIfNoData:false, RowCount:0, MinRows:0, SelectedStyle:'active'}, events:['OnRowClick', 'OnRowCountChanged'], templateBuilders:['HtmlTableBuilder'], parts:['BootstrapSpan', 'BootstrapHtmlDiv', 'BootstrapButton', 'BootstrapButtonIcon', 'BootstrapText', 'BootstrapImage', 'CheckBox', 'CheckBoxHeader', 'Link', 'DynamicImageLink', 'DynamicLink', 'RowClass'], selectedStyle:'active'" class='table'></div>
     
     <div aas-control="name:'BootstrapSpan', isControlPart:true, properties: {NullValueDisplay:''}, events:['Click']">
         <div aas-section="header"><span onclick="Aspectize.SortGridColumn (this);"><i class="{HeaderIconClass}"></i>{HeaderText}<span><span class="up">&#9650;</span><span class="down">&#9660;</span></span></span></div>
